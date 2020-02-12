@@ -1,2 +1,2 @@
-# odds-crwal-app
- Crwaling football odds live with data viz
+# odds-crawl-app
+ Crawling football odds live with data viz
