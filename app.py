@@ -18,7 +18,8 @@ import dash_html_components as html
 import plotly
 from dash.dependencies import Input, Output
 
-from crawler import game_info
+from game_info import game_data
+# from crawler import get_event_id
 
 def data_pipeline(data_path):
     data = pd.read_csv(data_path)
@@ -97,7 +98,6 @@ def update_graph(n):
     return {'data': traces, 'layout': layout}
     
 if __name__ == '__main__':
-    game = game_info()
-    print(game.event_id)
+    game = game_data()
     data_path = 'data/'+game.event_id+'.csv'
     app.run_server(debug=True)

@@ -1,0 +1,4175 @@
+<html>
+ <head>
+  <script type="text/javascript">
+   var enableAccessControl =false;function checkAccessControl() {if (enableAccessControl && window.sessionStorage.getItem('is_logon')!=1) {window.location.replace("/general_index.aspx?lang=en");return true;}return false;}
+if ( location.href.indexOf('general_index.aspx')<0 ) {checkAccessControl();}
+  </script>
+  <title>
+   HKJC Football Betting Limited
+  </title>
+  <meta charset="utf-8"/>
+  <meta content="width=1024, user-scalable=1" name="viewport"/>
+  <meta content="Football Homepage" name="keywords"/>
+  <meta content="Football Homepage Details" name="description"/>
+  <link href="/favicon.ico?CV=L3.05R1g" rel="shortcut icon" type="image/x-icon"/>
+  <link href="/ContentServer/jcbw/apple_touch_icons/icon_60x60.png?CV=L3.05R1g" rel="apple-touch-icon"/>
+  <link href="/ContentServer/jcbw/apple_touch_icons/icon_76x76.png?CV=L3.05R1g" rel="apple-touch-icon" sizes="76x76"/>
+  <link href="/ContentServer/jcbw/apple_touch_icons/icon_120x120.png?CV=L3.05R1g" rel="apple-touch-icon" sizes="120x120"/>
+  <link href="/ContentServer/jcbw/apple_touch_icons/icon_152x152.png?CV=L3.05R1g" rel="apple-touch-icon" sizes="152x152"/>
+  <link href="/football/info/css/en/football.css?CV=L3.05R1g" id="mainCssFile" rel="stylesheet" type="text/css"/>
+  <link href="/info/include/css/info.css?CV=L3.05R1g" rel="stylesheet" type="text/css"/>
+  <link href="/info/include/css/en/styles.css?CV=L3.05R1g" id="rootStyleFile" rel="stylesheet" type="text/css"/>
+  <link href="/info/include/css/en/menu_styles.css?CV=L3.05R1g" id="menuStyleFile" rel="stylesheet" type="text/css"/>
+  <link href="/info/include/css/en/bet_main_home.css?CV=L3.05R1g" id="bMainStyleFile" rel="stylesheet" type="text/css"/>
+  <link href="/info/include/css/en/betslip.css?CV=L3.05R1g" rel="stylesheet" type="text/css"/>
+  <link href="/info/include/css/en/betslip_button.css?CV=L3.05R1g" rel="stylesheet" type="text/css"/>
+  <link href="/info/include/css/en/betslip_overlay.css?CV=L3.05R1g" rel="stylesheet" type="text/css"/>
+  <link href="/info/include/css/en/betslip_eft.css?CV=L3.05R1g" rel="stylesheet" type="text/css"/>
+  <link href="/football/info/css/pd_menu.css?CV=L3.05R1g" id="pdMenuCssFile" rel="stylesheet" type="text/css"/>
+  <link href="/football/info/css/odds_menu.css?CV=L3.05R1g" id="oddsMenuCssFile" rel="stylesheet" type="text/css"/>
+  <script src="//txn.hkjc.com/BetSlipIB//js/siteId.js?CV=L3.05R1g" type="text/javascript">
+  </script>
+  <script type="text/javascript">
+   var SERVER_NAME = window.location.hostname;var domainName = SERVER_NAME.substr(SERVER_NAME.indexOf(".") + 1);document.domain = domainName;var cacheVersion = '?CV=L3.05R1g';var curProduct = 'football';var curPageId = window.location.pathname.toLowerCase().replace('/' + curProduct + '/', '').replace('.aspx', '').replace('/index', 'index');var curLang = 'en';var offsetTime = 0;var isQRPortal = false;var allowOddsPush = false;var oddsPushIconDisplay = false;var secMenuE = '/ContentServer/jcbw/cmc/userxml/sbdata_userMenuE.xml';var secMenuC = '/ContentServer/jcbw/cmc/userxml/sbdata_userMenuC.xml';var jcewURL0 = '//www.hkjc.com/home/{0}/index.asp';var jcewURL1 = '//entertainment.hkjc.com/entertainment/{0}/index.aspx';var jcewURL2 = '//racing.hkjc.com/racing/{0}/index.aspx';var jcewURL3 = '//football.hkjc.com/football/{0}/index.aspx';var jcewURL4 = '//member.hkjc.com/member/{0}/index.asp';var jcewURL5 = '//charities.hkjc.com/charities/{0}/index.aspx';var jcewURL6 = '//corporate.hkjc.com/corporate/{0}/index.aspx';var info_top_enable = true;var info_bottom_enable = true;var isMobileSplashScreenEnable = false;var mobileSplashScreenLink = '//is.hkjc.com/jcbw/SplashScn/mobile/js_ewin/Mass/en.asp';var smartAppIOSEnable = true;var smartAppIOSId = 'app-id=432462569';var smartAppAOSEnable = true;var smartAppAOSUrl = 'intent://s.hkjc.com/apphome#Intent;scheme=hkjc;package=com.hkjc.bet;S.browser_fallback_url=https://is.hkjc.com/mbs/site/en/android_download.asp?b_cid=ISLDSPE_1718ISBW_BWH_ANDROID;end';var bsUsePopup = true;var url_regonline = '//special.hkjc.com/infomenu/en/register/regonline.asp';var url_applybet = '//special.hkjc.com/infomenu/en/register/applybet.asp';var url_cannotlogin = '//wcip.hkjc.com/inputaccoremail.aspx?UIC=en-US&EP=BS';var url_chg_web_pass = '//wcip.hkjc.com/loginform.aspx?NTAL=LDEM&UIC=en-US&EP=BS';var url_chg_sec_question = '//wcip.hkjc.com/loginform.aspx?NTAL=LDEM&UIC=en-US&EP=BS';var url_chg_web_profile = '//wcip.hkjc.com/loginform.aspx?NTAL=BPU&UIC=en-US&EP=BS';var url_associate_account = '//wcip.hkjc.com/loginform.aspx?NTAL=PA&UIC=en-US&EP=BS';var url_ewallet_upgrade = '//wcip.hkjc.com/setupewalletekba.aspx?isMobile=false&UIC=en-US&EP=BS&cid=SPLDSPE_1819EWALL_BETS';var url_help_acc_rec = '//is.hkjc.com/Page_Redirect/eWin/faq/en/pastRecFAQ.asp';var url_help_recall = '//is.hkjc.com/Page_Redirect/eWin/faq/en/txnRecFAQ.asp';var url_help_log = '//is.hkjc.com/Page_Redirect/eWin/faq/en/currRecFAQ.asp';var url_faq = '//is.hkjc.com/jcbw/ekba/faq/en/betslipFAQ.asp';var url_allup_faq = '//is.hkjc.com/jcbw/ekba/faq/en/allupFAQ.asp';var url_login_timeout = '//bclient.hkjc.com/OddsServer/bchk/BChk128.aspx?bhcp=1';var url_logout_box = '//is.hkjc.com/jcbw/ekba/promo/betslip_logout/betslip_lpromo.asp?lang=en&new=';var url_FootballLivePath = '//football.hkjc.com/football/football/football-live/football-live-player.aspx?ci=en-us';var url_SSOAuthen4WebcastURL = 'https://elogin.hkjc.com/api/SSOWeb/GetToken?UIC=en-US';var refreshBalInterval = '3';var refreshBalTimeout = '10';var cMaxBetlines = 30;var cMaxBetBuffer = 982;var inplayDelayRetryTime = 4;var BetSlipIBPath = '//txn.hkjc.com/BetSlipIB/';if (typeof txnSiteId !== "undefined" && txnSiteId) {if (txnSiteId != "@@@para_txnSiteId@@@") {BetSlipIBPath = BetSlipIBPath.replace("txx.", "txx" + txnSiteId + ".");BetSlipIBPath = BetSlipIBPath.replace("txn.", "txn" + txnSiteId + ".");}}var tAndCPath = '/contentserver/jcbw/tAndC.json';var byPassEOD = false;var extStatement = false;var idleSoundAlert = '//is.hkjc.com/jcbw/ekba/idleAlert/sound/Exclamation.wav';var redirectAfterLogin = '';var enableWebcastAccess = false;var alupMaxLeg = 'HFT:6;HDC:8;HHA:8;CRS:6;NTS:8;OOE:8;FHL:8;FTS:8;HAD:8;FGS:6;HIL:8;FHA:8;GPW:8;CHL:8;GPF:8;FCS:6;TTG:8';var minBet = 'OOE:10;CRS:10;FCS:10;ADT:10;HFT:10;TPS:10;FHA:10;HFM:10;GPF:10;NTS:10;GPW:10;CHP:10;HDC:200;FTS:10;TOF:10;DHC:10;FHL:10;HHA:10;TQL:10;SPC:10;CHL:10;HIL:10;FGS:10;HAD:10;TTG:10;ALUPX:10;JKC:10';var fpsBannerInfo = '{"FPSBannerControl":{"Image":[{"@path":"/ParameterControl/JCBW/Images/ImageLoaderEN.jpg","@name":"ImageLoaderEN"},{"@path":"/ParameterControl/JCBW/Images/ImageLoaderTC.jpg","@name":"ImageLoaderTC"}],"ImageLoaderUrlEN":"","ImageTargetEN":"_self","ImageLoaderUrlTC":"","ImageTargetTC":"_self","StartTime":"2020-02-07 18:04","EndTime":"2020-12-31 23:59"}}';var multiSlipPanel = null;var ewinParaPath = BetSlipIBPath + 'services/Para.svc/GetEwinPara';var pServer = 'pushpublic.hkjc.com';var oMenuPara = {};var oMenuDV = '';var eftConfig = {ppsFAQPage: '//is.hkjc.com/jcbw/ekba/promo/pps/pps_faq_en.asp',enableFPS: true,enablePPS: true,enableLinkAcc: true,url_help_fund_deposit: '//is.hkjc.com/Page_Redirect/eWin/faq/en/eftFAQ.asp',url_help_fund_withdrawal: '//is.hkjc.com/Page_Redirect/eWin/faq/en/eftBalFAQ.asp',secId: 0,fpsInfo: null,otpResendSeconds: "180",linkTandCPath: "/contentserver/jcbw/linkTAndC.json"};var statementConfig = {enableEwalletIcon: false,url_help_acc_rec: "//is.hkjc.com/Page_Redirect/eWin/faq/en/pastRecFAQ.asp",url_help_log: "//is.hkjc.com/Page_Redirect/eWin/faq/en/currRecFAQ.asp",url_help_recall: "//is.hkjc.com/Page_Redirect/eWin/faq/en/txnRecFAQ.asp"};if (smartAppIOSEnable) {var meta = document.createElement("meta");meta.name = "apple-itunes-app";meta.content = smartAppIOSId;document.head.appendChild(meta);}
+  </script>
+  <meta content="app-id=432462569" name="apple-itunes-app"/>
+  <style id="bg-for-print">
+  </style>
+  <script src="/extvar.js?CV=L3.05R1g" type="text/javascript">
+  </script>
+  <script src="/common/VisitorAPI.js?CV=L3.05R1g" type="text/javascript">
+  </script>
+  <script src="/info/include/js/default.js?CV=L3.05R1g" type="text/javascript">
+  </script>
+  <script src="/info/include/js/jquery-3.3.1.min.js?CV=L3.05R1g" type="text/javascript">
+  </script>
+  <script src="/info/include/js/jquery-cookie.js?CV=L3.05R1g" type="text/javascript">
+  </script>
+  <script src="/info/include/js/common.js?CV=L3.05R1g" type="text/javascript">
+  </script>
+  <script src="/info/include/js/pd_odds_menu.js?CV=L3.05R1g" type="text/javascript">
+  </script>
+  <script src="/info/include/js/home_msg.js?CV=L3.05R1g" type="text/javascript">
+  </script>
+  <script src="/info/include/js/autopolling.js?CV=L3.05R1g" type="text/javascript">
+  </script>
+  <script src="/info/include/js/menu.js?CV=L3.05R1g" type="text/javascript">
+  </script>
+  <script src="/info/include/rgp/rgp.js?CV=L3.05R1g" type="text/javascript">
+  </script>
+  <script src="/football/Lib/react.min.js?CV=L3.05R1g" type="text/javascript">
+  </script>
+  <script src="/football/Lib/react-dom.min.js?CV=L3.05R1g" type="text/javascript">
+  </script>
+  <script src="/info/include/js/commons/custom/oddspusherr.js?CV=L3.05R1g" type="text/javascript">
+  </script>
+  <script src="/info/include/js/commons/lightstreamer/lscommons.js?CV=L3.05R1g" type="text/javascript">
+  </script>
+  <script src="/info/include/js/commons/lightstreamer/lspushpage.js?CV=L3.05R1g" type="text/javascript">
+  </script>
+  <script src="/info/include/js/commons/custom/misc.js?CV=L3.05R1g" type="text/javascript">
+  </script>
+  <script src="/info/include/js/bs_eft.js?CV=L3.05R1g" type="text/javascript">
+  </script>
+  <script src="/info/include/js/bs_eftValue.js?CV=L3.05R1g" type="text/javascript">
+  </script>
+  <script src="/info/include/js/bs_eftKeypad.js?CV=L3.05R1g" type="text/javascript">
+  </script>
+  <script src="/info/include/js/bs_accInfo.js?CV=L3.05R1g" type="text/javascript">
+  </script>
+  <script src="/info/include/js/bs_common.js?CV=L3.05R1g" type="text/javascript">
+  </script>
+  <script src="/info/include/js/bs_para.js?CV=L3.05R1g" type="text/javascript">
+  </script>
+  <script src="/info/include/js/bs_util.js?CV=L3.05R1g" type="text/javascript">
+  </script>
+  <script src="/info/include/js/bs_data.js?CV=L3.05R1g" type="text/javascript">
+  </script>
+  <script src="/info/include/js/bs_datastore.js?CV=L3.05R1g" type="text/javascript">
+  </script>
+  <script src="/info/include/js/bs_setting.js?CV=L3.05R1g" type="text/javascript">
+  </script>
+  <script src="/info/include/js/bs_allup.js?CV=L3.05R1g" type="text/javascript">
+  </script>
+  <script src="/info/include/js/bs_betcalc.js?CV=L3.05R1g" type="text/javascript">
+  </script>
+  <script src="/info/include/js/bs_layout.js?CV=L3.05R1g" type="text/javascript">
+  </script>
+  <script src="/info/include/js/bs_str_table.js?CV=L3.05R1g" type="text/javascript">
+  </script>
+  <script src="/info/include/js/bs_interface.js?CV=L3.05R1g" type="text/javascript">
+  </script>
+  <script src="/info/include/js/bs_request.js?CV=L3.05R1g" type="text/javascript">
+  </script>
+  <script src="/info/include/js/bs_betdiv.js?CV=L3.05R1g" type="text/javascript">
+  </script>
+  <script src="/info/include/js/bs_logDataAccessor.js?CV=L3.05R1g" type="text/javascript">
+  </script>
+  <script src="/info/include/js/bs_overlay.js?CV=L3.05R1g" type="text/javascript">
+  </script>
+  <script src="/info/include/js/FileSaver.min.js?CV=L3.05R1g" type="text/javascript">
+  </script>
+  <script type="text/javascript">
+   loadLangPreference();function reInit() {$(window).scrollTop(0);supportAutoScrolling = false;$('#printDiv').html('');switchProduct(curProduct, curLang);clearAllInterval();resizePMenu();reloadRGPDiv();curPageId = window.location.pathname.toLowerCase().replace('/' + curProduct + '/', '').replace('.aspx', '').replace('/index', 'index');callWAReq();}$(document).ready(function () {if (isQRPortal) {startQRPortal();} else {loadEwinPara(ewinParaPath);$('#infoDiv').click(function () {if (isSlipOpen() && betslipState != STATE_IDLEALERT) {slipClose(true);}});}genMenuObject(curLang);logonDetectForOddsPush();mobileBrowserChecking();pushFirstHistory();pageScroll();});var checkChangesEnabled = true;if (!isQRPortal) {window.onbeforeunload = function () {var returnValue = null;if (isLogon() || betslipState == STATE_EKBA) {returnValue = GetError("1303");} else if (isBetBasketNotEmpty())returnValue = GetError("refresh_warning");if (returnValue != null) {return returnValue;}};window.onunload = function () {if (isLogon() || betslipState == STATE_EKBA) {forceLogout();}}}
+  </script>
+  <link href="/football/info/css/odds_parimutuel.css?CV=L3.05R1g" id="rCss/football/info/css/odds_parimutuel.css?CV=L3.05R1g" rel="stylesheet" type="text/css"/>
+  <link href="/football/info/css/default.css?CV=L3.05R1g" id="rCss/football/info/css/default.css?CV=L3.05R1g" rel="stylesheet" type="text/css"/>
+  <link href="/football/info/css/odds_table.css?CV=L3.05R1g" id="rCss/football/info/css/odds_table.css?CV=L3.05R1g" rel="stylesheet" type="text/css"/>
+ </head>
+ <body>
+  <div id="printDiv">
+  </div>
+  <div id="infoDiv">
+   <script type="text/javascript">
+    function receiveMessage(event) {var trustedOrigins = '//is.hkjc.com;//special.hkjc.com'.split(';');var i = trustedOrigins.length;while (i--) {if (trustedOrigins[i] === event.origin) {
+eval(event.data);}}}
+if (!window.addEventListener) window.attachEvent('onmessage', receiveMessage);else window.addEventListener('message', receiveMessage, false);
+   </script>
+   <div id="topNav" style="z-index: 5; position: absolute; left: 233px; top: 62px; width: 530px;">
+    <div class="tContainer">
+     <div class="tDropdown" onclick="tMenuClick(0);" onmouseout="tMenuHover(false, 0);" onmouseover="tMenuHover(true, 0);" style="width:132.5px">
+      Apply &amp; Register
+     </div>
+     <div class="tDropdown">
+      <img src="/info/include/images/stroke_menu.gif" width="1px"/>
+     </div>
+     <div class="tDropdown" onclick="tMenuClick(1);" onmouseout="tMenuHover(false, 1);" onmouseover="tMenuHover(true, 1);" style="width:132.5px">
+      Betting Channels
+     </div>
+     <div class="tDropdown">
+      <img src="/info/include/images/stroke_menu.gif" width="1px"/>
+     </div>
+     <div class="tDropdown" onclick="tMenuClick(2);" onmouseout="tMenuHover(false, 2);" onmouseover="tMenuHover(true, 2);" style="width:132.5px">
+      Betting Info
+     </div>
+     <div class="tDropdown">
+      <img src="/info/include/images/stroke_menu.gif" width="1px"/>
+     </div>
+     <div class="tDropdown" onclick="tMenuClick(3);" onmouseout="tMenuHover(false, 3);" onmouseover="tMenuHover(true, 3);" style="width:132.5px">
+      Customer eCentre
+      <span style="text-align:center;color:#ffffff;background:rgb(230,0,0);margin:0 2px;padding:0 1px;font-size:7px;line-height:9px;width:16px;display:inline-block;border-radius:2px;">
+       New
+      </span>
+     </div>
+    </div>
+    <div class="tContainer tDisplayNone tDropdownTable" id="tMenuDD">
+     <div class="tDropdownCell tMenuBorderLeft" id="tMenuDDSub0" style="width:132.5px">
+      <div class="tDropdownItem" onclick="tSubMenuClick(0,0);" onfocusout="tMenuCloseOnFocusOut();">
+       Getting Started
+      </div>
+      <div class="tDropdownItem" onclick="tSubMenuClick(0,1);" onfocusout="tMenuCloseOnFocusOut();">
+       Apply for Betting Account
+      </div>
+      <div class="tDropdownItem" onclick="tSubMenuClick(0,2);" onfocusout="tMenuCloseOnFocusOut();">
+       Register for a Login Name /Register for Online Betting Service (eWin)
+      </div>
+      <div class="tDropdownItem" onclick="tSubMenuClick(0,3);" onfocusout="tMenuCloseOnFocusOut();">
+       Apply for HKJC EFT Service
+      </div>
+      <div class="tDropdownItem" onclick="tSubMenuClick(0,4);" onfocusout="tMenuCloseOnFocusOut();">
+       Download Forms
+      </div>
+     </div>
+     <div class="tMenuStroke">
+     </div>
+     <div class="tDropdownCell" id="tMenuDDSub1" style="width:132.5px">
+      <div class="tDropdownItem" onclick="tSubMenuClick(1,0);" onfocusout="tMenuCloseOnFocusOut();">
+       Overview
+      </div>
+      <div class="tDropdownItem" onclick="tSubMenuClick(1,1);" onfocusout="tMenuCloseOnFocusOut();" onmouseout="menuTxtOver(1, 1, 0, 0);" onmouseover="menuTxtOver(1, 1, 1, 0);">
+       Online Betting Service (eWin)
+      </div>
+      <div class="tDropdownItem" onclick="tSubMenuClick(1,2);" onfocusout="tMenuCloseOnFocusOut();" onmouseout="menuTxtOver(1, 2, 0, 0);" onmouseover="menuTxtOver(1, 2, 1, 0);">
+       Telephone Betting
+      </div>
+      <div class="tDropdownItem" onclick="tSubMenuClick(1,3);" onfocusout="tMenuCloseOnFocusOut();" onmouseout="menuTxtOver(1, 3, 0, 0);" onmouseover="menuTxtOver(1, 3, 1, 0);">
+       1886 Telebet Automated Services
+      </div>
+      <div class="tDropdownItem" onclick="tSubMenuClick(1,4);" onfocusout="tMenuCloseOnFocusOut();" onmouseout="menuTxtOver(1, 4, 0, 0);" onmouseover="menuTxtOver(1, 4, 1, 0);">
+       Mobile Betting Service
+      </div>
+      <div class="tDropdownItem" onclick="tSubMenuClick(1,5);" onfocusout="tMenuCloseOnFocusOut();" onmouseout="menuTxtOver(1, 5, 0, 0);" onmouseover="menuTxtOver(1, 5, 1, 0);">
+       Racing Touch App
+      </div>
+      <div class="tDropdownItem" onclick="tSubMenuClick(1,6);" onfocusout="tMenuCloseOnFocusOut();" onmouseout="menuTxtOver(1, 6, 0, 0);" onmouseover="menuTxtOver(1, 6, 1, 0);">
+       Off-course Betting Branches
+      </div>
+      <div class="tDropdownItem" onclick="tSubMenuClick(1,7);" onfocusout="tMenuCloseOnFocusOut();" onmouseout="menuTxtOver(1, 7, 0, 0);" onmouseover="menuTxtOver(1, 7, 1, 0);">
+       Racecourse
+      </div>
+     </div>
+     <div class="tMenuStroke">
+     </div>
+     <div class="tDropdownCell" id="tMenuDDSub2" style="width:132.5px">
+      <div class="tDropdownItem" onclick="tSubMenuClick(2,0);" onfocusout="tMenuCloseOnFocusOut();">
+       Horse Racing
+      </div>
+      <div class="tDropdownItem" onclick="tSubMenuClick(2,1);" onfocusout="tMenuCloseOnFocusOut();">
+       HKJC Football
+      </div>
+      <div class="tDropdownItem" onclick="tSubMenuClick(2,2);" onfocusout="tMenuCloseOnFocusOut();">
+       Mark Six
+      </div>
+      <div class="tDropdownItem" onclick="tSubMenuClick(2,3);" onfocusout="tMenuCloseOnFocusOut();">
+       Investments and Dividends
+      </div>
+      <div class="tDropdownItem" onclick="tSubMenuClick(2,4);" onfocusout="tMenuCloseOnFocusOut();">
+       About Funds Transfer
+      </div>
+      <div class="tDropdownItem" onclick="tSubMenuClick(2,5);" onfocusout="tMenuCloseOnFocusOut();">
+       About Personal Information Change
+      </div>
+      <div class="tDropdownItem" onclick="tSubMenuClick(2,6);" onfocusout="tMenuCloseOnFocusOut();">
+       About Password Reset
+      </div>
+      <div class="tDropdownItem" onclick="tSubMenuClick(2,7);" onfocusout="tMenuCloseOnFocusOut();">
+       Useful Contacts
+      </div>
+     </div>
+     <div class="tMenuStroke">
+     </div>
+     <div class="tDropdownCell tMenuBorderRight" id="tMenuDDSub3" style="width:132.5px">
+     </div>
+     <div class="tMenuBox" id="menuBox" style="position:absolute; right:2px; width:260px; height:166px; display:none">
+     </div>
+    </div>
+   </div>
+   <script src="/info/include/js/xml2json.min.js?CV=L3.05R1g" type="text/javascript">
+   </script>
+   <div class="fMenuTABLE">
+    <div class="fMenuTR">
+     <div class="fMenuRow">
+      <img height="10" id="machineInfo" src="/info/include/images/spacer.gif?CV=L3.05R1g" title="65" width="10"/>
+     </div>
+     <div class="fMenuRowLang">
+      <a class="topMenuLang" href="javascript:changeLang()">
+      </a>
+     </div>
+     <div class="fMenuRowHome">
+      <a class="topMenuHome" href="javascript:topMenuLink(0);">
+      </a>
+     </div>
+     <div id="fMenuRC" onclick="topMenuLink(1);">
+     </div>
+     <div class="fMenuRowLine">
+     </div>
+     <div id="fMenuHR" onclick="topMenuLink(2);">
+     </div>
+     <div class="fMenuRowLine">
+     </div>
+     <div id="fMenuFB" onclick="topMenuLink(3);">
+     </div>
+     <div class="fMenuRowLine">
+     </div>
+     <div id="fMenuMEM" onclick="topMenuLink(4);">
+     </div>
+     <div class="fMenuRowLine">
+     </div>
+     <div id="fMenuCHA" onclick="topMenuLink(5);">
+     </div>
+     <div class="fMenuRowLine">
+     </div>
+     <div id="fMenuABOUT" onclick="topMenuLink(6);">
+     </div>
+    </div>
+   </div>
+   <div class="secMenu">
+    <div class="secMenuTR">
+     <div class="secTable">
+      <div id="secMenuHR" onclick="switchTo('racing', 'index', curLang);" title="Racing">
+      </div>
+      <div id="secMenuFB" onclick="switchTo('football', 'index', curLang);" title="HKJC Football">
+      </div>
+      <div id="secMenuM6" onclick="switchTo('marksix', 'index', curLang);" title="Mark Six">
+      </div>
+      <div id="secMenu3in1" onclick="switchTo('home', 'index', curLang);" title="EWin">
+      </div>
+      <div class="date" id="server_datetime">
+       10/02/20 02:33 (MON)
+      </div>
+     </div>
+    </div>
+    <div class="secMenuLine">
+    </div>
+   </div>
+   <script type="text/javascript">
+    var serverDateObj = new Date(2020, 1, 10, 2, 33, 2);serverOddsRefresh();function serverOddsRefresh() {$("#server_datetime").html(formatServerOdds(serverDateObj));serverDateObj.setMinutes(serverDateObj.getMinutes() + 1);window.setTimeout("serverOddsRefresh()", 60000);}function formatServerOdds(d) {return addZero(d.getDate()) + "/" + addZero((d.getMonth() + 1)) + "/" + addZero(d.getFullYear()) + " " + addZero(d.getHours()) + ":" + addZero(d.getMinutes())+' ('+jsWeekDayArr[curLang][d.getDay()] + ')';}function addZero(tstr) {return ("0"+tstr).substr((tstr+"").length-1, 2)}$('#machineInfo').prop('title', '65');
+   </script>
+   <div class="topBanner" id="topBannerDiv">
+    <div id="divTopBanner" style="display: none;">
+     <div id="info_top_block">
+     </div>
+     <div id="info_top_promo">
+     </div>
+     <div style="clear:both">
+     </div>
+     <div class="emptyDiv" style="display: none;">
+     </div>
+    </div>
+   </div>
+   <div id="homeSNDiv" style="display:none">
+    <div style="display:table;width:764px;height:37px;background-color:#002E63;border:#002E63 1px solid;padding:0px 5px 0px 5px">
+     <div style="display:table-row;width:764px;background-color:#FFDE00;">
+      <div class="importantCell1">
+       <strong>
+        Special Notice
+       </strong>
+      </div>
+      <div class="importantCell2">
+       <img height="27" src="/info/include/images/bg_brown.gif" width="7"/>
+      </div>
+      <div class="importantCell3" id="divNewsCont">
+       <div class="content" id="divNews">
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="emptyDiv" style="display: none;">
+    </div>
+   </div>
+   <div id="container">
+    <script type="text/javascript">
+     var matchIDArr = [];
+var betValue = [];
+var nameValue = [];
+var poolCloseTime = [];
+var poolSellValue = [];
+var hasStartedAutoRefresh = false;
+var hasStartedPush = false;
+var isConnectedAMS = false;
+var hasStartedIlcAutoRefresh = false;
+var checkboxClickable = false;
+var pooltype = "";
+var needAutoRefresh = true;
+$.when(
+$.getScript("/football/Lib/fbstr.js?lang=EN&CV=L3.05R1g"),
+getScriptNotCache("/football/Lib/sb_cal_hdc.js?CV=L3.05R1g"),
+getScriptNotCache("/football/Lib/sb_cal_common.js?CV=L3.05R1g"),
+getScriptNotCache("/football/Lib/bet.js?CV=L3.05R1g"),
+getScriptNotCache("/football/Lib/mixallup.js?CV=L3.05R1g"),
+getScriptNotCache("/football/Lib/common.js?CV=L3.05R1g"),
+getScriptNotCache("/football/Lib/autorefresh.js?CV=L3.05R1g"),
+getScriptNotCache("/football/Lib/ilc.js?CV=L3.05R1g"),
+getScriptNotCache("/football/Lib/BasePage.js?CV=L3.05R1g"),
+getScriptNotCache("/football/Lib/Utilities.js?CV=L3.05R1g"),
+getScriptNotCache("/football/Lib/League.js?CV=L3.05R1g"),
+getScriptNotCache("/football/Lib/Match.js?CV=L3.05R1g"),
+getScriptNotCache("/football/Lib/AllOddsTable.js?CV=L3.05R1g"),
+getScriptNotCache("/football/Lib/MatchTable.js?CV=L3.05R1g"),
+$.Deferred(function (deferred) {
+$(deferred.resolve);
+})
+).done(function () {
+unloadAllCss();
+loadCss("/football/info/css/odds_parimutuel.css?CV=L3.05R1g");
+loadCss("/football/info/css/default.css?CV=L3.05R1g");
+loadCss("/football/info/css/odds_table.css?CV=L3.05R1g");
+init();
+reInit();
+fbInit();
+document.title = 'HKJC Football Betting Limited';
+$('#todds').toggleClass('odds' + pageName);
+initPage();
+onFinishLoading();
+});
+    </script>
+    <script type="text/javascript">
+     var oMenuLang = 'E';var oMenuPD = 'FB';var oMenuLPD = 'football';var oMenuIconPath = '/ContentServer/jcbw/images/';var oMenuData = {"pMenu":[{"nE":"Match Schedule","nC":"賽程表","uE":"","uC":"","pg":"schedule/schedule","pa":"","at":"","pu":"0","child":[{"nE":"Match Schedule","nC":"受注球賽","uE":"","uC":"","pg":"schedule/schedule","pa":"","at":"","pu":"0","child":null},{"nE":"Preliminary Match Schedule","nC":"暫定受注球賽","uE":"","uC":"","pg":"schedule/pre_schedule","pa":"","at":"","pu":"0","child":null},{"nE":"Selling Hours","nC":"受注時間","uE":"//special.hkjc.com/football/info/en/betting/bet_sellinghours.asp","uC":"//special.hkjc.com/football/info/ch/betting/bet_sellinghours.asp","pg":"","pa":"","at":"","pu":"1","child":null}]},{"nE":"Live Zone","nC":"即場專區","uE":"","uC":"","pg":"odds/odds_ilc","pa":"","at":"","pu":"0","child":null},{"nE":"Results/Dividend","nC":"賽果/派彩","uE":"","uC":"","pg":"results/results","pa":"","at":"","pu":"0","child":[{"nE":"Match Results","nC":"球賽結果","uE":"","uC":"","pg":"results/results","pa":"","at":"","pu":"0","child":null},{"nE":"Double HaFu Score Dividend","nC":"孖寶半全膽派彩","uE":"","uC":"","pg":"results/dhcp_results","pa":"","at":"","pu":"0","child":null},{"nE":"6 HaFu Dividend","nC":"6寶半全場派彩","uE":"","uC":"","pg":"results/hfmp_results","pa":"","at":"","pu":"0","child":null},{"nE":"First Scorer Results","nC":"首名入球結果","uE":"","uC":"","pg":"results/fgs_results","pa":"","at":"","pu":"0","child":null},{"nE":"Champion Results","nC":"冠軍賽果","uE":"","uC":"","pg":"results/chpres","pa":"","at":"","pu":"0","child":null},{"nE":"UE Champions","nC":"歐洲聯賽冠軍盃","uE":"","uC":"","pg":"results/tournres","pa":"{'tournid':'1657'}","at":"","pu":"0","child":null},{"nE":"Payout Time","nC":"派彩時間","uE":"//special.hkjc.com/root2/football/info/en/misc/payout.asp","uC":"//special.hkjc.com/root2/football/info/ch/misc/payout.asp","pg":"","pa":"","at":"width=770,height=545,left=20,top=20,scrollbars=yes","pu":"1","child":null}]},{"nE":"All Up/Calculator","nC":"過關/計算機","uE":"/football/cal/invest_cal/invest_calc2.aspx?lang=EN","uC":"/football/cal/invest_cal/invest_calc2.aspx?lang=CH","pg":"","pa":"","at":"width=680,height=452,left=0,top=20","pu":"1","child":[{"nE":"All Up Combinations","nC":"過關方式及組合","uE":"/football/cal/invest_cal/bet_six.aspx?lang=EN","uC":"/football/cal/invest_cal/bet_six.aspx?lang=CH","pg":"","pa":"","at":"width=680,height=452,left=0,top=20","pu":"1","child":null},{"nE":"Investment Calculator","nC":"投注計算機","uE":"/football/cal/invest_cal/invest_calc2.aspx?lang=EN","uC":"/football/cal/invest_cal/invest_calc2.aspx?lang=CH","pg":"","pa":"","at":"width=680,height=452,left=0,top=20","pu":"1","child":null}]},{"nE":"Match Info","nC":"足智資料庫","uE":"//football.hkjc.com/football/english/index.aspx","uC":"//football.hkjc.com/football/chinese/index.aspx","pg":"","pa":"","at":"width=1020,height=500,left=20,top=20,scrollbars=yes","pu":"1","child":[{"nE":"Live Centre","nC":"賽事直播","uE":"//football.hkjc.com/football/live-centre/english/live-centre.aspx","uC":"//football.hkjc.com/football/live-centre/chinese/live-centre.aspx","pg":"","pa":"","at":"width=1020,height=500,left=20,top=20,scrollbars=yes","pu":"1","child":null},{"nE":"Head to Head","nC":"對賽往績","uE":"//football.hkjc.com/football/statistics/english/head-to-head/summary.aspx","uC":"//football.hkjc.com/football/statistics/chinese/head-to-head/summary.aspx","pg":"","pa":"","at":"width=1020,height=500,left=20,top=20,scrollbars=yes","pu":"1","child":null},{"nE":"League Statistics","nC":"數據中心(聯賽)","uE":"//football.hkjc.com/football/statistics/english/centre/DataCentral-leagues.aspx","uC":"//football.hkjc.com/football/statistics/chinese/centre/DataCentral-leagues.aspx","pg":"","pa":"","at":"width=1020,height=500,left=20,top=20,scrollbars=yes","pu":"1","child":null},{"nE":"Tournament Statistics","nC":"數據中心(盃賽)","uE":"//football.hkjc.com/football/statistics/english/centre/DataCentral-cups.aspx","uC":"//football.hkjc.com/football/statistics/chinese/centre/DataCentral-cups.aspx","pg":"","pa":"","at":"width=1020,height=500,left=20,top=20,scrollbars=yes","pu":"1","child":null},{"nE":"HKJC Football News","nC":"足智新聞","uE":"//football.hkjc.com/football/hkjc-notice/english/hkjc-notice.aspx","uC":"//football.hkjc.com/football/hkjc-notice/chinese/hkjc-notice.aspx","pg":"","pa":"","at":"width=1020,height=500,left=20,top=20,scrollbars=yes","pu":"1","child":null}]},{"nE":"Bet Types","nC":"投注種類","uE":"//is.hkjc.com/football/info/en/betting/bettypes.asp","uC":"//is.hkjc.com/football/info/ch/betting/bettypes.asp","pg":"","pa":"","at":"","pu":"1","child":[{"nE":"Bet Types","nC":"投注種類","uE":"//is.hkjc.com/football/info/en/betting/bettypes.asp","uC":"//is.hkjc.com/football/info/ch/betting/bettypes.asp","pg":"","pa":"","at":"","pu":"1","child":null},{"nE":"Betting Rules","nC":"博彩規例","uE":"//www.hkjc.com/english/betting/betting_rule.htm","uC":"//www.hkjc.com/chinese/betting/betting_rule.htm","pg":"","pa":"","at":"","pu":"1","child":null}]}],"oMenu":[{"nE":"Odds","nC":"賠率","uE":"","uC":"","pg":"","pa":"","ta":"","icon":"","iconE":"","iconC":"","type":"LABEL","dv":"","child":null},{"nE":"In Play Betting","nC":"即場投注","uE":"","uC":"","pg":"odds/odds_inplay","pa":"","ta":"_self","icon":"","iconE":"","iconC":"","type":"INPLAY","dv":"","child":null},{"nE":"All Up / Cross Bet Type All Up","nC":"過關/混合過關","uE":"","uC":"","pg":"odds/odds_mixallup","pa":"","ta":"_self","icon":"","iconE":"","iconC":"","type":"MIXALLUP.ASPX","dv":"","child":null},{"nE":"Home/Away/Draw","nC":"主客和","uE":"","uC":"","pg":"odds/odds_had","pa":"","ta":"_self","icon":"","iconE":"","iconC":"","type":"HAD","dv":"","child":null},{"nE":"To Qualify","nC":"晉級隊伍","uE":"","uC":"","pg":"odds/odds_tql","pa":"","ta":"_self","icon":"","iconE":"","iconC":"","type":"TQL","dv":"","child":null},{"nE":"First Half HAD","nC":"半場主客和","uE":"","uC":"","pg":"odds/odds_fha","pa":"","ta":"_self","icon":"","iconE":"","iconC":"","type":"FHA","dv":"","child":null},{"nE":"Handicap HAD","nC":"讓球主客和","uE":"","uC":"","pg":"odds/odds_hha","pa":"","ta":"_self","icon":"","iconE":"","iconC":"","type":"HHA","dv":"","child":null},{"nE":"Handicap","nC":"讓球","uE":"","uC":"","pg":"odds/odds_hdc","pa":"","ta":"_self","icon":"","iconE":"","iconC":"","type":"HDC","dv":"","child":null},{"nE":"HiLo","nC":"入球大細","uE":"","uC":"","pg":"odds/odds_hil","pa":"","ta":"_self","icon":"","iconE":"","iconC":"","type":"HIL","dv":"","child":null},{"nE":"First Half HiLo","nC":"半場入球大細","uE":"","uC":"","pg":"odds/odds_fhl","pa":"","ta":"_self","icon":"","iconE":"","iconC":"","type":"FHL","dv":"","child":null},{"nE":"Corner HiLo","nC":"角球大細","uE":"","uC":"","pg":"odds/odds_chl","pa":"","ta":"_self","icon":"","iconE":"","iconC":"","type":"CHL","dv":"","child":null},{"nE":"Specials","nC":"特別項目","uE":"","uC":"","pg":"odds/odds_spc","pa":"","ta":"_self","icon":"","iconE":"","iconC":"","type":"SPC","dv":"","child":null},{"nE":"Correct Score","nC":"波膽","uE":"","uC":"","pg":"odds/odds_crs","pa":"","ta":"_self","icon":"","iconE":"","iconC":"","type":"CRS","dv":"","child":null},{"nE":"First Half Correct Score","nC":"半場波膽","uE":"","uC":"","pg":"odds/odds_fcs","pa":"","ta":"_self","icon":"","iconE":"","iconC":"","type":"FCS","dv":"","child":null},{"nE":"First Team to Score","nC":"第一隊入球","uE":"","uC":"","pg":"odds/odds_fts","pa":"","ta":"_self","icon":"","iconE":"","iconC":"","type":"FTS","dv":"","child":null},{"nE":"Total Goals","nC":"總入球","uE":"","uC":"","pg":"odds/odds_ttg","pa":"","ta":"_self","icon":"","iconE":"","iconC":"","type":"TTG","dv":"","child":null},{"nE":"Odd/Even","nC":"入球單雙","uE":"","uC":"","pg":"odds/odds_ooe","pa":"","ta":"_self","icon":"","iconE":"","iconC":"","type":"OOE","dv":"","child":null},{"nE":"First Scorer","nC":"首名入球","uE":"","uC":"","pg":"odds/odds_fgs","pa":"","ta":"_self","icon":"","iconE":"","iconC":"","type":"FGS","dv":"","child":null},{"nE":"HaFu","nC":"半全場","uE":"","uC":"","pg":"odds/odds_hft","pa":"","ta":"_self","icon":"","iconE":"","iconC":"","type":"HFT","dv":"","child":null},{"nE":"Double HaFu Score","nC":"孖寶半全膽","uE":"","uC":"","pg":"odds/odds_dhcp","pa":"","ta":"_self","icon":"","iconE":"","iconC":"","type":"DHCP","dv":"","child":null},{"nE":"6 HaFu","nC":"6寶半全場","uE":"","uC":"","pg":"odds/odds_hfmp","pa":"","ta":"_self","icon":"","iconE":"","iconC":"","type":"HFMP","dv":"","child":null},{"nE":"Champion","nC":"冠軍","uE":"","uC":"","pg":"odds/odds_chp","pa":"","ta":"_self","icon":"cup.gif","iconE":"Cup","iconC":"盃賽","type":"CHP.ASPX","dv":"","child":null},{"nE":"Eng Premier","nC":"英格蘭超級聯賽","uE":"","uC":"","pg":"odds/tournament","pa":"{'tournid':'1644'}","ta":"_self","icon":"","iconE":"","iconC":"","type":"1644","dv":"","child":null},{"nE":"UCL Winning Country","nC":"歐聯勝出國家","uE":"","uC":"","pg":"odds/tournament","pa":"{'tournid':'1658'}","ta":"_self","icon":"","iconE":"","iconC":"","type":"1658","dv":"","child":null},{"nE":"All Odds","nC":"所有賠率","uE":"","uC":"","pg":"odds/odds_allodds","pa":"","ta":"_self","icon":"","iconE":"","iconC":"","type":"ALLODDS","dv":"","child":null}]};
+    </script>
+    <div class="pMenuTABLE" id="thirdMenu">
+     <div class="pContainer">
+      <div class="pDropdown" style="width: 148.496px;">
+       <div class="pDropbtn" onclick="pMenuClick(0);">
+        Match Schedule
+       </div>
+       <div class="pDropdownTable" id="pMenu0">
+        <ul>
+         <li onclick="menuItemClick(0,0);">
+          Match Schedule
+         </li>
+         <li onclick="menuItemClick(0,1);">
+          Preliminary Match Schedule
+         </li>
+         <li onclick="menuItemClick(0,2);">
+          Selling Hours
+         </li>
+        </ul>
+       </div>
+      </div>
+      <div class="pDropdown" style="padding-top: 3px; width: 1.8797px;">
+       <img height="14px" src="/football/info/images/tool_line_v.gif?CV=L3.05R1g" width="1px"/>
+      </div>
+      <div class="pDropdown" onclick="menuItemClick(1,-1);" style="width: 92.1053px;">
+       <span>
+        Live Zone
+       </span>
+      </div>
+      <div class="pDropdown" style="padding-top: 3px; width: 1.8797px;">
+       <img height="14px" src="/football/info/images/tool_line_v.gif?CV=L3.05R1g" width="1px"/>
+      </div>
+      <div class="pDropdown" style="width: 157.895px;">
+       <div class="pDropbtn" onclick="pMenuClick(2);">
+        Results/Dividend
+       </div>
+       <div class="pDropdownTable" id="pMenu2">
+        <ul>
+         <li onclick="menuItemClick(2,0);">
+          Match Results
+         </li>
+         <li onclick="menuItemClick(2,1);">
+          Double HaFu Score Dividend
+         </li>
+         <li onclick="menuItemClick(2,2);">
+          6 HaFu Dividend
+         </li>
+         <li onclick="menuItemClick(2,3);">
+          First Scorer Results
+         </li>
+         <li onclick="menuItemClick(2,4);">
+          Champion Results
+         </li>
+         <li onclick="menuItemClick(2,5);">
+          UE Champions
+         </li>
+         <li onclick="menuItemClick(2,6);">
+          Payout Time
+         </li>
+        </ul>
+       </div>
+      </div>
+      <div class="pDropdown" style="padding-top: 3px; width: 1.8797px;">
+       <img height="14px" src="/football/info/images/tool_line_v.gif?CV=L3.05R1g" width="1px"/>
+      </div>
+      <div class="pDropdown" style="width: 157.895px;">
+       <div class="pDropbtn" onclick="pMenuClick(3);">
+        All Up/Calculator
+       </div>
+       <div class="pDropdownTable" id="pMenu3">
+        <ul>
+         <li onclick="menuItemClick(3,0);">
+          All Up Combinations
+         </li>
+         <li onclick="menuItemClick(3,1);">
+          Investment Calculator
+         </li>
+        </ul>
+       </div>
+      </div>
+      <div class="pDropdown" style="padding-top: 3px; width: 1.8797px;">
+       <img height="14px" src="/football/info/images/tool_line_v.gif?CV=L3.05R1g" width="1px"/>
+      </div>
+      <div class="pDropdown" style="width: 105.263px;">
+       <div class="pDropbtn" onclick="pMenuClick(4);">
+        Match Info
+       </div>
+       <div class="pDropdownTable" id="pMenu4">
+        <ul>
+         <li onclick="menuItemClick(4,0);">
+          Live Centre
+         </li>
+         <li onclick="menuItemClick(4,1);">
+          Head to Head
+         </li>
+         <li onclick="menuItemClick(4,2);">
+          League Statistics
+         </li>
+         <li onclick="menuItemClick(4,3);">
+          Tournament Statistics
+         </li>
+         <li onclick="menuItemClick(4,4);">
+          HKJC Football News
+         </li>
+        </ul>
+       </div>
+      </div>
+      <div class="pDropdown" style="padding-top: 3px; width: 1.8797px;">
+       <img height="14px" src="/football/info/images/tool_line_v.gif?CV=L3.05R1g" width="1px"/>
+      </div>
+      <div class="pDropdown" style="width: 110.902px;">
+       <div class="pDropbtn" onclick="pMenuClick(5);">
+        Bet Types
+       </div>
+       <div class="pDropdownTable" id="pMenu5" style="left: 612px;">
+        <ul>
+         <li onclick="menuItemClick(5,0);">
+          Bet Types
+         </li>
+         <li onclick="menuItemClick(5,1);">
+          Betting Rules
+         </li>
+        </ul>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="bodyMainTable">
+     <div class="bodyMainTableRow">
+      <div class="bodyMainOddsMenu">
+       <div id="oddsMenu">
+        <div id="oMenuTABLE">
+         <div class="oMenuTitle title">
+          Odds
+         </div>
+         <div class="oMenuTR oMenuHighlight">
+          <div class="oMenuTD1">
+           <img height="5px" src="/info/football/info/images/arrow.gif?CV=L3.05R1g" width="4px"/>
+          </div>
+          <div class="oMenuTD2" id="oMenuINPLAY" onclick="switchTo(curProduct, 'odds/odds_inplay', curLang);highLightMenu(this)">
+           In Play Betting
+          </div>
+         </div>
+         <div class="oMenuTR">
+          <div class="oMenuTD1">
+           <img height="5px" src="/info/football/info/images/arrow.gif?CV=L3.05R1g" width="4px"/>
+          </div>
+          <div class="oMenuTD2" id="oMenuMIXALLUP.ASPX" onclick="switchTo(curProduct, 'odds/odds_mixallup', curLang);highLightMenu(this)">
+           All Up / Cross Bet Type All Up
+          </div>
+         </div>
+         <div class="oMenuTR">
+          <div class="oMenuTD1">
+           <img height="5px" src="/info/football/info/images/arrow.gif?CV=L3.05R1g" width="4px"/>
+          </div>
+          <div class="oMenuTD2" id="oMenuHAD" onclick="switchTo(curProduct, 'odds/odds_had', curLang);highLightMenu(this)">
+           Home/Away/Draw
+          </div>
+         </div>
+         <div class="oMenuTR">
+          <div class="oMenuTD1">
+           <img height="5px" src="/info/football/info/images/arrow.gif?CV=L3.05R1g" width="4px"/>
+          </div>
+          <div class="oMenuTD2" id="oMenuTQL" onclick="switchTo(curProduct, 'odds/odds_tql', curLang);highLightMenu(this)">
+           To Qualify
+          </div>
+         </div>
+         <div class="oMenuTR">
+          <div class="oMenuTD1">
+           <img height="5px" src="/info/football/info/images/arrow.gif?CV=L3.05R1g" width="4px"/>
+          </div>
+          <div class="oMenuTD2" id="oMenuFHA" onclick="switchTo(curProduct, 'odds/odds_fha', curLang);highLightMenu(this)">
+           First Half HAD
+          </div>
+         </div>
+         <div class="oMenuTR">
+          <div class="oMenuTD1">
+           <img height="5px" src="/info/football/info/images/arrow.gif?CV=L3.05R1g" width="4px"/>
+          </div>
+          <div class="oMenuTD2" id="oMenuHHA" onclick="switchTo(curProduct, 'odds/odds_hha', curLang);highLightMenu(this)">
+           Handicap HAD
+          </div>
+         </div>
+         <div class="oMenuTR">
+          <div class="oMenuTD1">
+           <img height="5px" src="/info/football/info/images/arrow.gif?CV=L3.05R1g" width="4px"/>
+          </div>
+          <div class="oMenuTD2" id="oMenuHDC" onclick="switchTo(curProduct, 'odds/odds_hdc', curLang);highLightMenu(this)">
+           Handicap
+          </div>
+         </div>
+         <div class="oMenuTR">
+          <div class="oMenuTD1">
+           <img height="5px" src="/info/football/info/images/arrow.gif?CV=L3.05R1g" width="4px"/>
+          </div>
+          <div class="oMenuTD2" id="oMenuHIL" onclick="switchTo(curProduct, 'odds/odds_hil', curLang);highLightMenu(this)">
+           HiLo
+          </div>
+         </div>
+         <div class="oMenuTR">
+          <div class="oMenuTD1">
+           <img height="5px" src="/info/football/info/images/arrow.gif?CV=L3.05R1g" width="4px"/>
+          </div>
+          <div class="oMenuTD2" id="oMenuFHL" onclick="switchTo(curProduct, 'odds/odds_fhl', curLang);highLightMenu(this)">
+           First Half HiLo
+          </div>
+         </div>
+         <div class="oMenuTR">
+          <div class="oMenuTD1">
+           <img height="5px" src="/info/football/info/images/arrow.gif?CV=L3.05R1g" width="4px"/>
+          </div>
+          <div class="oMenuTD2" id="oMenuCHL" onclick="switchTo(curProduct, 'odds/odds_chl', curLang);highLightMenu(this)">
+           Corner HiLo
+          </div>
+         </div>
+         <div class="oMenuTR">
+          <div class="oMenuTD1">
+           <img height="5px" src="/info/football/info/images/arrow.gif?CV=L3.05R1g" width="4px"/>
+          </div>
+          <div class="oMenuTD2" id="oMenuSPC" onclick="switchTo(curProduct, 'odds/odds_spc', curLang);highLightMenu(this)">
+           Specials
+          </div>
+         </div>
+         <div class="oMenuTR">
+          <div class="oMenuTD1">
+           <img height="5px" src="/info/football/info/images/arrow.gif?CV=L3.05R1g" width="4px"/>
+          </div>
+          <div class="oMenuTD2" id="oMenuCRS" onclick="switchTo(curProduct, 'odds/odds_crs', curLang);highLightMenu(this)">
+           Correct Score
+          </div>
+         </div>
+         <div class="oMenuTR">
+          <div class="oMenuTD1">
+           <img height="5px" src="/info/football/info/images/arrow.gif?CV=L3.05R1g" width="4px"/>
+          </div>
+          <div class="oMenuTD2" id="oMenuFCS" onclick="switchTo(curProduct, 'odds/odds_fcs', curLang);highLightMenu(this)">
+           First Half Correct Score
+          </div>
+         </div>
+         <div class="oMenuTR">
+          <div class="oMenuTD1">
+           <img height="5px" src="/info/football/info/images/arrow.gif?CV=L3.05R1g" width="4px"/>
+          </div>
+          <div class="oMenuTD2" id="oMenuFTS" onclick="switchTo(curProduct, 'odds/odds_fts', curLang);highLightMenu(this)">
+           First Team to Score
+          </div>
+         </div>
+         <div class="oMenuTR">
+          <div class="oMenuTD1">
+           <img height="5px" src="/info/football/info/images/arrow.gif?CV=L3.05R1g" width="4px"/>
+          </div>
+          <div class="oMenuTD2" id="oMenuTTG" onclick="switchTo(curProduct, 'odds/odds_ttg', curLang);highLightMenu(this)">
+           Total Goals
+          </div>
+         </div>
+         <div class="oMenuTR">
+          <div class="oMenuTD1">
+           <img height="5px" src="/info/football/info/images/arrow.gif?CV=L3.05R1g" width="4px"/>
+          </div>
+          <div class="oMenuTD2" id="oMenuOOE" onclick="switchTo(curProduct, 'odds/odds_ooe', curLang);highLightMenu(this)">
+           Odd/Even
+          </div>
+         </div>
+         <div class="oMenuTR">
+          <div class="oMenuTD1">
+           <img height="5px" src="/info/football/info/images/arrow.gif?CV=L3.05R1g" width="4px"/>
+          </div>
+          <div class="oMenuTD2" id="oMenuFGS" onclick="switchTo(curProduct, 'odds/odds_fgs', curLang);highLightMenu(this)">
+           First Scorer
+          </div>
+         </div>
+         <div class="oMenuTR">
+          <div class="oMenuTD1">
+           <img height="5px" src="/info/football/info/images/arrow.gif?CV=L3.05R1g" width="4px"/>
+          </div>
+          <div class="oMenuTD2" id="oMenuHFT" onclick="switchTo(curProduct, 'odds/odds_hft', curLang);highLightMenu(this)">
+           HaFu
+          </div>
+         </div>
+         <div class="oMenuTR">
+          <div class="oMenuTD1">
+           <img height="5px" src="/info/football/info/images/arrow.gif?CV=L3.05R1g" width="4px"/>
+          </div>
+          <div class="oMenuTD2" id="oMenuDHCP" onclick="switchTo(curProduct, 'odds/odds_dhcp', curLang);highLightMenu(this)">
+           Double HaFu Score
+          </div>
+         </div>
+         <div class="oMenuTR">
+          <div class="oMenuTD1">
+           <img height="5px" src="/info/football/info/images/arrow.gif?CV=L3.05R1g" width="4px"/>
+          </div>
+          <div class="oMenuTD2" id="oMenuHFMP" onclick="switchTo(curProduct, 'odds/odds_hfmp', curLang);highLightMenu(this)">
+           6 HaFu
+          </div>
+         </div>
+         <div class="oMenuTR">
+          <div class="oMenuTD1">
+           <img height="5px" src="/info/football/info/images/arrow.gif?CV=L3.05R1g" width="4px"/>
+          </div>
+          <div class="oMenuTD2" id="oMenuCHP.ASPX" onclick="switchTo(curProduct, 'odds/odds_chp', curLang);highLightMenu(this)">
+           Champion
+           <img src="/ContentServer/jcbw/images/E_cup.gif?CV=L3.05R1g" title="Cup"/>
+          </div>
+         </div>
+         <div class="oMenuTR">
+          <div class="oMenuTD1">
+           <img height="5px" src="/info/football/info/images/arrow.gif?CV=L3.05R1g" width="4px"/>
+          </div>
+          <div class="oMenuTD2" id="oMenu1644" onclick="switchTo(curProduct, 'odds/tournament', curLang, {'tournid':'1644'});highLightMenu(this)">
+           Eng Premier
+          </div>
+         </div>
+         <div class="oMenuTR">
+          <div class="oMenuTD1">
+           <img height="5px" src="/info/football/info/images/arrow.gif?CV=L3.05R1g" width="4px"/>
+          </div>
+          <div class="oMenuTD2" id="oMenu1658" onclick="switchTo(curProduct, 'odds/tournament', curLang, {'tournid':'1658'});highLightMenu(this)">
+           UCL Winning Country
+          </div>
+         </div>
+         <div class="oMenuTR">
+          <div class="oMenuTD1">
+           <img height="5px" src="/info/football/info/images/arrow.gif?CV=L3.05R1g" width="4px"/>
+          </div>
+          <div class="oMenuTD2" id="oMenuALLODDS" onclick="switchTo(curProduct, 'odds/odds_allodds', curLang);highLightMenu(this)">
+           All Odds
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="bodyMainOddsTable footballmaincontent" id="footballmaincontent">
+       <div id="divLoading" style="display: none;">
+        <div class="emptyDiv" style="display: none;">
+        </div>
+       </div>
+       <div class="oddsAll oddsInplayAll">
+        <div id="dContainer">
+         <div data-reactroot="">
+          <div class="oHeader">
+           <div class="tblHeader">
+            <div class="normalheader">
+             <div class="left">
+              <span class="cDelim">
+               <img alt="" src="/info/include/images/stroke_yellow.gif" title=""/>
+              </span>
+              <span>
+               <label class="btext">
+                In Play Betting
+               </label>
+               <!-- react-text: 10 -->
+               <!-- /react-text -->
+               <a>
+                <span class="spicon sphelp">
+                 <img class="pointer icon" src="/football/info/images/icon_help.gif?CV=L3.05R1g" title="Betting Guide"/>
+                </span>
+               </a>
+               <span>
+                <!-- react-text: 15 -->
+                <!-- /react-text -->
+                <!-- react-text: 16 -->
+                <!-- /react-text -->
+               </span>
+               <span style="display: inline;">
+                <!-- react-text: 18 -->
+                <!-- /react-text -->
+                <!-- react-text: 19 -->
+                <!-- /react-text -->
+                <!-- react-text: 20 -->
+                <!-- /react-text -->
+               </span>
+              </span>
+             </div>
+             <div class="leftPerformTV">
+              <a id="linkPerformTv" style="display: none;" target="_blank">
+               <img alt="HKJC Football Live Schedule" src="/football/info/images/tv_title.gif?CV=L3.05R1g" title="HKJC Football Live Schedule"/>
+               <div class="emptyDiv">
+               </div>
+              </a>
+             </div>
+             <div class="right">
+              <span>
+               <a class="cActionsPrint" href="javascript:printNow('/football/odds/odds_inplay_all.aspx?lang=EN&amp;tmatchid=195df00d-70ca-4522-a290-42d8efb2e456&amp;pv=1');">
+                Print
+               </a>
+               <a class="spiconPrint">
+                <span class="spicon">
+                 <img alt="Print" class="pointer icon" src="/info/include/images/icon_print.gif?CV=L3.05R1g" title="Print"/>
+                </span>
+               </a>
+              </span>
+              <span>
+               <a class="nolnk">
+                <!-- react-text: 33 -->
+                Refreshed at
+                <!-- /react-text -->
+                <!-- react-text: 34 -->
+                :
+                <!-- /react-text -->
+                <label id="sRefreshTime">
+                 02:33
+                </label>
+               </a>
+               <a class="refresh" href="javascript:refreshOddsPage();">
+                Refresh
+               </a>
+               <a class="refresh">
+                <span class="spicon">
+                 <img alt="Refresh" class="pointer icon" src="/info/include/images/icon_refresh.gif?CV=L3.05R1g" title="Refresh"/>
+                </span>
+               </a>
+              </span>
+              <!-- react-text: 40 -->
+              <!-- /react-text -->
+              <div class="addBet" title="Add to Slip">
+              </div>
+             </div>
+            </div>
+           </div>
+          </div>
+          <div class="WUCMatchesDropDown">
+           <div class="cteaminfo ctext">
+            <!-- react-text: 44 -->
+            Match No.
+            <!-- /react-text -->
+            <!-- react-text: 45 -->
+            :
+            <!-- /react-text -->
+            <span class="space">
+            </span>
+            <span id="litMDay">
+             SUN 27
+            </span>
+            <span class="space">
+            </span>
+            <span id="litFlagCol">
+             <img alt="German Division 1" class="cfGSL" src="/ContentServer/jcbw/images/flag_GSL.gif?CV=L3.05R1g" title="German Division 1"/>
+            </span>
+            <span class="space">
+            </span>
+            <span id="litTeamsStr">
+             <span>
+              <span class="teamname">
+               <!-- react-text: 55 -->
+               Bayern Munich
+               <!-- /react-text -->
+               <!-- react-text: 56 -->
+               (Home)
+               <!-- /react-text -->
+              </span>
+              <span class="nolnk span_vs" id="sr20200209SUN27">
+               <span class="matchresult">
+                0 : 0
+               </span>
+              </span>
+              <span class="teamname">
+               <!-- react-text: 60 -->
+               RB Leipzig
+               <!-- /react-text -->
+               <!-- react-text: 61 -->
+               (Away)
+               <!-- /react-text -->
+              </span>
+             </span>
+            </span>
+            <span class="space">
+            </span>
+            <span class="litTotalCorner" id="litTotalCorner">
+             <span class="btext spTotalCornerWrapper" style="display: inline-block;">
+              <!-- react-text: 65 -->
+              <!-- /react-text -->
+              <!-- react-text: 66 -->
+              <!-- /react-text -->
+              <img alt="Corners So Far" src="/football/info/images/icon_corner.gif?CV=L3.05R1g" title="Corners So Far"/>
+              <span class="spTotalCorner">
+               <!-- react-text: 69 -->
+               <!-- /react-text -->
+               <!-- react-text: 70 -->
+               12
+               <!-- /react-text -->
+              </span>
+             </span>
+            </span>
+            <span class="space">
+            </span>
+            <span id="litNeutralVenue">
+            </span>
+            <span class="space">
+            </span>
+            <span id="spInplay">
+            </span>
+            <span class="space">
+            </span>
+            <span id="litTV">
+             <span class="tvall">
+              <span style="cursor: pointer;">
+               <img alt="670-NOW 670" src="/ContentServer/jcbw/images/icon_tv-670.gif?CV=L3.05R1g" title="670-NOW 670"/>
+              </span>
+              <span style="cursor: pointer;">
+               <img alt="C651-i-CABLE 651" src="/ContentServer/jcbw/images/icon_tv-C651.gif?CV=L3.05R1g" title="C651-i-CABLE 651"/>
+              </span>
+              <span style="cursor: pointer;">
+               <img alt="C611-i-CABLE 611" src="/ContentServer/jcbw/images/icon_tv-C611.gif?CV=L3.05R1g" title="C611-i-CABLE 611"/>
+              </span>
+              <span style="cursor: pointer;">
+               <img alt="FOXP-FOX+" src="/ContentServer/jcbw/images/icon_tv-FOXP.gif?CV=L3.05R1g" title="FOXP-FOX+"/>
+              </span>
+             </span>
+            </span>
+            <img id="alluponly_icon" src="/football/info/images/remove_1.gif" style="display: none;"/>
+           </div>
+           <div>
+            <div class="esst left" id="headerEsst">
+             <span>
+              <input id="hsst195df00d-70ca-4522-a290-42d8efb2e456" type="hidden" value="secondhalf"/>
+              <span>
+               Match Status : 2nd Half In Progress
+              </span>
+              <span id="statemsg">
+               <span class="spntsinfo" id="ntsinfo">
+                <span class="space">
+                </span>
+                <a href="javascript:showNTSPanel();" title="Scoring team and sequence">
+                 Scoring Information
+                </a>
+                <div id="ntsinfo_panel" style="display: none;">
+                 <table>
+                  <tbody>
+                   <tr class="rhead">
+                    <td class="cgoal">
+                     Goal
+                    </td>
+                    <td class="cgoalteam">
+                     Scoring Team
+                    </td>
+                   </tr>
+                   <tr>
+                    <td colspan="2">
+                     No Goals
+                    </td>
+                   </tr>
+                  </tbody>
+                 </table>
+                </div>
+               </span>
+              </span>
+             </span>
+            </div>
+            <div class="ddlAllMatches right" id="ddlM">
+             <select class="ddlAllMatches poolDetails" id="MatchDropDownList" style="width: 296px;">
+              <option value="--">
+               Select another match
+              </option>
+              <option value="--coupon2">
+               ======Sunday Matches======
+              </option>
+              <option value="f042b876-46aa-4041-9f56-c406e3e23bde">
+               10/02 SUN 32 Inter Milan vs AC Milan
+              </option>
+              <option value="8f39f848-6337-4a60-b209-2c83a4a6cb0a">
+               10/02 SUN 33 Betis vs Barcelona
+              </option>
+              <option value="50409a6a-4de2-40aa-a213-14066036e6cb">
+               10/02 SUN 40 Queretaro vs CF America
+              </option>
+              <option value="--coupon3">
+               ======Monday Matches======
+              </option>
+              <option value="1decaed5-8fa8-4714-98dc-466ba49cf530">
+               11/02 MON 9 Lens vs Grenoble Foot
+              </option>
+              <option value="73413e48-b1c9-434d-b684-57b2ac3e0e5b">
+               11/02 MON 11 Sarandi Arsenal vs Talleres
+              </option>
+              <option value="52c5238d-2fdc-47a9-aac6-caaecfe7496e">
+               11/02 MON 13 Godoy Cruz vs Huracan
+              </option>
+             </select>
+            </div>
+            <div class="clear">
+            </div>
+           </div>
+          </div>
+          <div class="dMixSingleMatch" id="dMix_20200209SUN27">
+           <div id="dMixContent_20200209SUN27">
+            <div class="" style="display: block;">
+             <div id="dHAD20200209SUN27">
+              <div class="tgCoupon" id="dHADCoupon20200209SUN27">
+               <span class="spBtnMinus">
+               </span>
+               <!-- react-text: 122 -->
+               <!-- /react-text -->
+               <span id="litHADText20200209SUN27">
+                <span>
+                 <label class="btext">
+                  Home/Away/Draw
+                 </label>
+                 <!-- react-text: 126 -->
+                 <!-- /react-text -->
+                 <a>
+                  <span class="spicon sphelp">
+                   <img class="pointer icon" src="/football/info/images/icon_help.gif?CV=L3.05R1g" title="Betting Guide"/>
+                  </span>
+                 </a>
+                 <span>
+                  <!-- react-text: 131 -->
+                  <!-- /react-text -->
+                  <!-- react-text: 132 -->
+                  <!-- /react-text -->
+                 </span>
+                 <span style="display: inline;">
+                  <!-- react-text: 134 -->
+                  <!-- /react-text -->
+                  <!-- react-text: 135 -->
+                  <!-- /react-text -->
+                  <!-- react-text: 136 -->
+                  <!-- /react-text -->
+                 </span>
+                </span>
+               </span>
+              </div>
+              <div class="oddsHAD" id="hadHolder20200209SUN27">
+               <div class="betTypeAllOdds" id="dHADTable20200209SUN27">
+                <div class="table tOdds rBottomBorder">
+                 <span class="codds r2">
+                  <!-- react-text: 141 -->
+                  Bayern Munich
+                  <!-- /react-text -->
+                  <!-- react-text: 142 -->
+                  (
+                  <!-- /react-text -->
+                  <!-- react-text: 143 -->
+                  Home
+                  <!-- /react-text -->
+                  <!-- react-text: 144 -->
+                  )
+                  <!-- /react-text -->
+                 </span>
+                 <span class="codds r2">
+                  Draw
+                 </span>
+                 <span class="codds r2">
+                  <!-- react-text: 147 -->
+                  RB Leipzig
+                  <!-- /react-text -->
+                  <!-- react-text: 148 -->
+                  (
+                  <!-- /react-text -->
+                  <!-- react-text: 149 -->
+                  Away
+                  <!-- /react-text -->
+                  <!-- react-text: 150 -->
+                  )
+                  <!-- /react-text -->
+                 </span>
+                </div>
+                <div class="coddsSelections rAlt0">
+                 <div class="codds">
+                  <span class="s1">
+                   <input class="20200209SUN27_HAD_H_0_c" id="20200209SUN27_HAD_H_0_c" name="chkHAD" type="checkbox" value=""/>
+                   <span class="oddsLink">
+                    <span class="oddsVal" id="20200209SUN27_HAD_H">
+                     2.42
+                    </span>
+                    <!-- react-text: 157 -->
+                    <!-- /react-text -->
+                   </span>
+                  </span>
+                 </div>
+                 <div class="codds">
+                  <span class="s1">
+                   <input class="20200209SUN27_HAD_D_0_c" id="20200209SUN27_HAD_D_0_c" name="chkHAD" type="checkbox" value=""/>
+                   <span class="oddsLink">
+                    <span class="oddsVal" id="20200209SUN27_HAD_D">
+                     1.82
+                    </span>
+                    <!-- react-text: 163 -->
+                    <!-- /react-text -->
+                   </span>
+                  </span>
+                 </div>
+                 <div class="codds">
+                  <span class="s1">
+                   <input class="20200209SUN27_HAD_A_0_c" id="20200209SUN27_HAD_A_0_c" name="chkHAD" type="checkbox" value=""/>
+                   <span class="oddsLink">
+                    <span class="oddsVal" id="20200209SUN27_HAD_A">
+                     6.20
+                    </span>
+                    <!-- react-text: 169 -->
+                    <!-- /react-text -->
+                   </span>
+                  </span>
+                 </div>
+                </div>
+               </div>
+              </div>
+             </div>
+            </div>
+            <div class="" style="display: block;">
+             <div id="dHIL20200209SUN27">
+              <div class="tgCoupon" id="dHILCoupon20200209SUN27">
+               <span class="spBtnMinus">
+               </span>
+               <!-- react-text: 174 -->
+               <!-- /react-text -->
+               <span id="litHILText20200209SUN27">
+                <span>
+                 <label class="btext">
+                  HiLo
+                 </label>
+                 <!-- react-text: 178 -->
+                 <!-- /react-text -->
+                 <a>
+                  <span class="spicon sphelp">
+                   <img class="pointer icon" src="/football/info/images/icon_help.gif?CV=L3.05R1g" title="Betting Guide"/>
+                  </span>
+                 </a>
+                 <span>
+                  <!-- react-text: 183 -->
+                  <!-- /react-text -->
+                  <!-- react-text: 184 -->
+                  <!-- /react-text -->
+                 </span>
+                 <span style="display: inline;">
+                  <!-- react-text: 186 -->
+                  <!-- /react-text -->
+                  <!-- react-text: 187 -->
+                  <!-- /react-text -->
+                  <!-- react-text: 188 -->
+                  <!-- /react-text -->
+                 </span>
+                </span>
+               </span>
+              </div>
+              <div class="oddsHIL" id="hilHolder20200209SUN27">
+               <div class="betTypeAllOdds" id="dHILTable20200209SUN27">
+                <div class="table tOdds rBottomBorder">
+                 <span class="codds r2">
+                  Line
+                 </span>
+                 <span class="codds r2">
+                  High
+                 </span>
+                 <span class="codds r2">
+                  Low
+                 </span>
+                </div>
+                <div class="allSelections">
+                 <div class="coddsSelections rAlt0">
+                  <div class="cline">
+                   <div class="mlMainRow mainLineRow" style="display: block;">
+                    <span class="" id="20200209SUN27_HIL_LINE_1">
+                     [1.5]
+                    </span>
+                    <div class="emptyDiv" style="display: none;">
+                    </div>
+                   </div>
+                  </div>
+                  <div class="codds">
+                   <span class="s1">
+                    <input class="20200209SUN27_HIL_H_1_c" id="20200209SUN27_HIL_H_1_c" name="chkHIL" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_HIL_H_1">
+                      4.10
+                     </span>
+                     <!-- react-text: 206 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                  <div class="codds">
+                   <span class="s1">
+                    <input class="20200209SUN27_HIL_L_1_c" id="20200209SUN27_HIL_L_1_c" name="chkHIL" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_HIL_L_1">
+                      1.19
+                     </span>
+                     <!-- react-text: 212 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                 </div>
+                 <div class="coddsSelections rAlt1">
+                  <div class="cline">
+                   <div class="mlMainRow otherLineRow" style="display: block;">
+                    <span class="" id="20200209SUN27_HIL_LINE_2">
+                     [0.5/1]
+                    </span>
+                    <div class="emptyDiv" style="display: none;">
+                    </div>
+                   </div>
+                  </div>
+                  <div class="codds">
+                   <span class="s1">
+                    <input class="20200209SUN27_HIL_H_2_c" id="20200209SUN27_HIL_H_2_c" name="chkHIL" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_HIL_H_2">
+                      1.85
+                     </span>
+                     <!-- react-text: 223 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                  <div class="codds">
+                   <span class="s1">
+                    <input class="20200209SUN27_HIL_L_2_c" id="20200209SUN27_HIL_L_2_c" name="chkHIL" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_HIL_L_2">
+                      1.85
+                     </span>
+                     <!-- react-text: 229 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                 </div>
+                 <div class="coddsSelections rAlt0">
+                  <div class="cline">
+                   <div class="mlMainRow otherLineRow" style="display: block;">
+                    <span class="" id="20200209SUN27_HIL_LINE_3">
+                     [1/1.5]
+                    </span>
+                    <div class="emptyDiv" style="display: none;">
+                    </div>
+                   </div>
+                  </div>
+                  <div class="codds">
+                   <span class="s1">
+                    <input class="20200209SUN27_HIL_H_3_c" id="20200209SUN27_HIL_H_3_c" name="chkHIL" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_HIL_H_3">
+                      3.30
+                     </span>
+                     <!-- react-text: 240 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                  <div class="codds">
+                   <span class="s1">
+                    <input class="20200209SUN27_HIL_L_3_c" id="20200209SUN27_HIL_L_3_c" name="chkHIL" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_HIL_L_3">
+                      1.28
+                     </span>
+                     <!-- react-text: 246 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                 </div>
+                </div>
+               </div>
+              </div>
+             </div>
+            </div>
+            <div class="" style="display: block;">
+             <div id="dCHL20200209SUN27">
+              <div class="tgCoupon" id="dCHLCoupon20200209SUN27">
+               <span class="spBtnMinus">
+               </span>
+               <!-- react-text: 251 -->
+               <!-- /react-text -->
+               <span id="litCHLText20200209SUN27">
+                <span>
+                 <label class="btext">
+                  Corner HiLo
+                 </label>
+                 <!-- react-text: 255 -->
+                 <!-- /react-text -->
+                 <a>
+                  <span class="spicon sphelp">
+                   <img class="pointer icon" src="/football/info/images/icon_help.gif?CV=L3.05R1g" title="Betting Guide"/>
+                  </span>
+                 </a>
+                 <span>
+                  <!-- react-text: 260 -->
+                  <!-- /react-text -->
+                  <!-- react-text: 261 -->
+                  <!-- /react-text -->
+                  <span class="litTotalCorner">
+                   <span class="btext spTotalCornerWrapper" style="display: inline-block;">
+                    <!-- react-text: 264 -->
+                    <!-- /react-text -->
+                    <!-- react-text: 265 -->
+                    <!-- /react-text -->
+                    <img alt="Corners So Far" src="/football/info/images/icon_corner.gif?CV=L3.05R1g" title="Corners So Far"/>
+                    <span class="spTotalCorner">
+                     <!-- react-text: 268 -->
+                     <!-- /react-text -->
+                     <!-- react-text: 269 -->
+                     12
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </span>
+                 </span>
+                 <span style="display: inline;">
+                  <!-- react-text: 271 -->
+                  <!-- /react-text -->
+                  <!-- react-text: 272 -->
+                  <!-- /react-text -->
+                  <!-- react-text: 273 -->
+                  <!-- /react-text -->
+                 </span>
+                </span>
+               </span>
+              </div>
+              <div class="oddsCHL" id="chlHolder20200209SUN27">
+               <div class="betTypeAllOdds" id="dCHLTable20200209SUN27">
+                <div class="table tOdds rBottomBorder">
+                 <span class="codds r2">
+                  Line
+                 </span>
+                 <span class="codds r2">
+                  High
+                 </span>
+                 <span class="codds r2">
+                  Low
+                 </span>
+                </div>
+                <div class="allSelections">
+                 <div class="coddsSelections rAlt0">
+                  <div class="cline">
+                   <div class="mlMainRow mainLineRow" style="display: block;">
+                    <span class="" id="20200209SUN27_CHL_LINE_1">
+                     [14.5]
+                    </span>
+                    <div class="emptyDiv" style="display: none;">
+                    </div>
+                   </div>
+                  </div>
+                  <div class="codds">
+                   <span class="s1">
+                    <input class="20200209SUN27_CHL_H_1_c" id="20200209SUN27_CHL_H_1_c" name="chkCHL" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_CHL_H_1">
+                      2.07
+                     </span>
+                     <!-- react-text: 291 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                  <div class="codds">
+                   <span class="s1">
+                    <input class="20200209SUN27_CHL_L_1_c" id="20200209SUN27_CHL_L_1_c" name="chkCHL" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_CHL_L_1">
+                      1.67
+                     </span>
+                     <!-- react-text: 297 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                 </div>
+                 <div class="coddsSelections rAlt1">
+                  <div class="cline">
+                   <div class="mlMainRow otherLineRow" style="display: block;">
+                    <span class="" id="20200209SUN27_CHL_LINE_2">
+                     [15.5]
+                    </span>
+                    <div class="emptyDiv" style="display: none;">
+                    </div>
+                   </div>
+                  </div>
+                  <div class="codds">
+                   <span class="s1">
+                    <input class="20200209SUN27_CHL_H_2_c" id="20200209SUN27_CHL_H_2_c" name="chkCHL" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_CHL_H_2">
+                      3.70
+                     </span>
+                     <!-- react-text: 308 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                  <div class="codds">
+                   <span class="s1">
+                    <input class="20200209SUN27_CHL_L_2_c" id="20200209SUN27_CHL_L_2_c" name="chkCHL" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_CHL_L_2">
+                      1.23
+                     </span>
+                     <!-- react-text: 314 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                 </div>
+                </div>
+               </div>
+              </div>
+             </div>
+            </div>
+            <div class="" style="display: block;">
+             <div id="dNTS20200209SUN27">
+              <div class="tgCoupon" id="dNTSCoupon20200209SUN27">
+               <span class="spBtnMinus">
+               </span>
+               <!-- react-text: 319 -->
+               <!-- /react-text -->
+               <span id="litNTSText20200209SUN27">
+                <span>
+                 <label class="btext">
+                  Next Team To Score
+                 </label>
+                 <!-- react-text: 323 -->
+                 <!-- /react-text -->
+                 <a>
+                  <span class="spicon sphelp">
+                   <img class="pointer icon" src="/football/info/images/icon_help.gif?CV=L3.05R1g" title="Betting Guide"/>
+                  </span>
+                 </a>
+                 <span>
+                  <!-- react-text: 328 -->
+                  <!-- /react-text -->
+                  <!-- react-text: 329 -->
+                  <!-- /react-text -->
+                  <input id="20200209SUN27_NTS_isETS" type="hidden" value="false"/>
+                  <span class="btext">
+                   <!-- react-text: 332 -->
+                   (
+                   <!-- /react-text -->
+                   <span id="ntspart_20200209SUN27">
+                    1
+                   </span>
+                   <label class="lblSup">
+                    st
+                   </label>
+                   <!-- react-text: 335 -->
+                   Goal
+                   <!-- /react-text -->
+                   <!-- react-text: 336 -->
+                   )
+                   <!-- /react-text -->
+                   <!-- react-text: 337 -->
+                   <!-- /react-text -->
+                  </span>
+                 </span>
+                 <span style="display: inline;">
+                  <!-- react-text: 339 -->
+                  <!-- /react-text -->
+                  <!-- react-text: 340 -->
+                  <!-- /react-text -->
+                  <!-- react-text: 341 -->
+                  <!-- /react-text -->
+                 </span>
+                </span>
+               </span>
+              </div>
+              <div class="oddsNTS" id="ntsHolder20200209SUN27">
+               <div class="betTypeAllOdds" id="dNTSTable20200209SUN27">
+                <div class="table rBottomBorder">
+                 <span class="codds r2">
+                  <!-- react-text: 346 -->
+                  Bayern Munich
+                  <!-- /react-text -->
+                  <!-- react-text: 347 -->
+                  (
+                  <!-- /react-text -->
+                  <!-- react-text: 348 -->
+                  Home
+                  <!-- /react-text -->
+                  <!-- react-text: 349 -->
+                  )
+                  <!-- /react-text -->
+                 </span>
+                 <span class="codds r2">
+                  No Goals
+                 </span>
+                 <span class="codds r2">
+                  <!-- react-text: 352 -->
+                  RB Leipzig
+                  <!-- /react-text -->
+                  <!-- react-text: 353 -->
+                  (
+                  <!-- /react-text -->
+                  <!-- react-text: 354 -->
+                  Away
+                  <!-- /react-text -->
+                  <!-- react-text: 355 -->
+                  )
+                  <!-- /react-text -->
+                 </span>
+                </div>
+                <div class="coddsSelections rAlt0">
+                 <div class="codds">
+                  <span class="s1">
+                   <input class="20200209SUN27_NTS_H_0_c" id="20200209SUN27_NTS_H_0_c" name="chkNTS" type="checkbox" value=""/>
+                   <span class="oddsLink">
+                    <span class="oddsVal" id="20200209SUN27_NTS_H">
+                     2.22
+                    </span>
+                    <!-- react-text: 362 -->
+                    <!-- /react-text -->
+                   </span>
+                  </span>
+                 </div>
+                 <div class="codds">
+                  <span class="s1">
+                   <input class="20200209SUN27_NTS_N_0_c" id="20200209SUN27_NTS_N_0_c" name="chkNTS" type="checkbox" value=""/>
+                   <span class="oddsLink">
+                    <span class="oddsVal" id="20200209SUN27_NTS_N">
+                     2.13
+                    </span>
+                    <!-- react-text: 368 -->
+                    <!-- /react-text -->
+                   </span>
+                  </span>
+                 </div>
+                 <div class="codds">
+                  <span class="s1">
+                   <input class="20200209SUN27_NTS_A_0_c" id="20200209SUN27_NTS_A_0_c" name="chkNTS" type="checkbox" value=""/>
+                   <span class="oddsLink">
+                    <span class="oddsVal" id="20200209SUN27_NTS_A">
+                     4.70
+                    </span>
+                    <!-- react-text: 374 -->
+                    <!-- /react-text -->
+                   </span>
+                  </span>
+                 </div>
+                </div>
+               </div>
+              </div>
+             </div>
+            </div>
+            <div class="" style="display: block;">
+             <div id="dCRS20200209SUN27">
+              <div class="tgCoupon" id="dCRSCoupon20200209SUN27">
+               <span class="spBtnMinus">
+               </span>
+               <!-- react-text: 379 -->
+               <!-- /react-text -->
+               <span id="litCRSText20200209SUN27">
+                <span>
+                 <label class="btext">
+                  Correct Score
+                 </label>
+                 <!-- react-text: 383 -->
+                 <!-- /react-text -->
+                 <a>
+                  <span class="spicon sphelp">
+                   <img class="pointer icon" src="/football/info/images/icon_help.gif?CV=L3.05R1g" title="Betting Guide"/>
+                  </span>
+                 </a>
+                 <span>
+                  <!-- react-text: 388 -->
+                  <!-- /react-text -->
+                  <!-- react-text: 389 -->
+                  <!-- /react-text -->
+                 </span>
+                 <span style="display: inline;">
+                  <!-- react-text: 391 -->
+                  <!-- /react-text -->
+                  <!-- react-text: 392 -->
+                  <!-- /react-text -->
+                  <!-- react-text: 393 -->
+                  <!-- /react-text -->
+                 </span>
+                </span>
+               </span>
+              </div>
+              <div class="oddsCRS" id="crsHolder20200209SUN27">
+               <div class="betTypeAllOdds" id="dCRSTable20200209SUN27">
+                <div class="table tOdds rTopBorder rBottomBorder">
+                 <span class="codds r2">
+                  <!-- react-text: 398 -->
+                  Bayern Munich
+                  <!-- /react-text -->
+                  <!-- react-text: 399 -->
+                  (
+                  <!-- /react-text -->
+                  <!-- react-text: 400 -->
+                  Home
+                  <!-- /react-text -->
+                  <!-- react-text: 401 -->
+                  )
+                  <!-- /react-text -->
+                 </span>
+                 <span class="codds r2">
+                  Draw
+                 </span>
+                 <span class="codds r2">
+                  <!-- react-text: 404 -->
+                  RB Leipzig
+                  <!-- /react-text -->
+                  <!-- react-text: 405 -->
+                  (
+                  <!-- /react-text -->
+                  <!-- react-text: 406 -->
+                  Away
+                  <!-- /react-text -->
+                  <!-- react-text: 407 -->
+                  )
+                  <!-- /react-text -->
+                 </span>
+                </div>
+                <div class="allSelections">
+                 <div class="coddsSelections rAlt0">
+                  <div class="codds cCRSSel 20200209SUN27_CRS_S0100_0_c">
+                   <span id="s20200209SUN27_CRS_S0100">
+                    1 : 0
+                   </span>
+                  </div>
+                  <div class="codds coddsAlign">
+                   <span class="s1">
+                    <input class="20200209SUN27_CRS_S0100_0_c" id="20200209SUN27_CRS_S0100_0_c" name="chkCRS" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_CRS_S0100">
+                      3.30
+                     </span>
+                     <!-- react-text: 417 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                  <div class="codds cCRSSel 20200209SUN27_CRS_S0000_0_c">
+                   <span id="s20200209SUN27_CRS_S0000">
+                    0 : 0
+                   </span>
+                  </div>
+                  <div class="codds coddsAlign">
+                   <span class="s1">
+                    <input class="20200209SUN27_CRS_S0000_0_c" id="20200209SUN27_CRS_S0000_0_c" name="chkCRS" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_CRS_S0000">
+                      2.13
+                     </span>
+                     <!-- react-text: 425 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                  <div class="codds cCRSSel 20200209SUN27_CRS_S0001_0_c">
+                   <span id="s20200209SUN27_CRS_S0001">
+                    0 : 1
+                   </span>
+                  </div>
+                  <div class="codds coddsAlign">
+                   <span class="s1">
+                    <input class="20200209SUN27_CRS_S0001_0_c" id="20200209SUN27_CRS_S0001_0_c" name="chkCRS" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_CRS_S0001">
+                      7.40
+                     </span>
+                     <!-- react-text: 433 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                 </div>
+                 <div class="coddsSelections rAlt1">
+                  <div class="codds cCRSSel 20200209SUN27_CRS_S0200_0_c">
+                   <span id="s20200209SUN27_CRS_S0200">
+                    2 : 0
+                   </span>
+                  </div>
+                  <div class="codds coddsAlign">
+                   <span class="s1">
+                    <input class="20200209SUN27_CRS_S0200_0_c" id="20200209SUN27_CRS_S0200_0_c" name="chkCRS" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_CRS_S0200">
+                      10.50
+                     </span>
+                     <!-- react-text: 442 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                  <div class="codds cCRSSel 20200209SUN27_CRS_S0101_0_c">
+                   <span id="s20200209SUN27_CRS_S0101">
+                    1 : 1
+                   </span>
+                  </div>
+                  <div class="codds coddsAlign">
+                   <span class="s1">
+                    <input class="20200209SUN27_CRS_S0101_0_c" id="20200209SUN27_CRS_S0101_0_c" name="chkCRS" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_CRS_S0101">
+                      8.25
+                     </span>
+                     <!-- react-text: 450 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                  <div class="codds cCRSSel 20200209SUN27_CRS_S0002_0_c">
+                   <span id="s20200209SUN27_CRS_S0002">
+                    0 : 2
+                   </span>
+                  </div>
+                  <div class="codds coddsAlign">
+                   <span class="s1">
+                    <input class="20200209SUN27_CRS_S0002_0_c" id="20200209SUN27_CRS_S0002_0_c" name="chkCRS" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_CRS_S0002">
+                      50.00
+                     </span>
+                     <!-- react-text: 458 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                 </div>
+                 <div class="coddsSelections rAlt0">
+                  <div class="codds cCRSSel 20200209SUN27_CRS_S0201_0_c">
+                   <span id="s20200209SUN27_CRS_S0201">
+                    2 : 1
+                   </span>
+                  </div>
+                  <div class="codds coddsAlign">
+                   <span class="s1">
+                    <input class="20200209SUN27_CRS_S0201_0_c" id="20200209SUN27_CRS_S0201_0_c" name="chkCRS" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_CRS_S0201">
+                      35.00
+                     </span>
+                     <!-- react-text: 467 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                  <div class="codds cCRSSel 20200209SUN27_CRS_S0202_0_c">
+                   <span id="s20200209SUN27_CRS_S0202">
+                    2 : 2
+                   </span>
+                  </div>
+                  <div class="codds coddsAlign">
+                   <span class="s1">
+                    <input class="20200209SUN27_CRS_S0202_0_c" id="20200209SUN27_CRS_S0202_0_c" name="chkCRS" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_CRS_S0202">
+                      200.0
+                     </span>
+                     <!-- react-text: 475 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                  <div class="codds cCRSSel 20200209SUN27_CRS_S0102_0_c">
+                   <span id="s20200209SUN27_CRS_S0102">
+                    1 : 2
+                   </span>
+                  </div>
+                  <div class="codds coddsAlign">
+                   <span class="s1">
+                    <input class="20200209SUN27_CRS_S0102_0_c" id="20200209SUN27_CRS_S0102_0_c" name="chkCRS" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_CRS_S0102">
+                      80.00
+                     </span>
+                     <!-- react-text: 483 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                 </div>
+                 <div class="coddsSelections rAlt1">
+                  <div class="codds cCRSSel 20200209SUN27_CRS_S0300_0_c">
+                   <span id="s20200209SUN27_CRS_S0300">
+                    3 : 0
+                   </span>
+                  </div>
+                  <div class="codds coddsAlign">
+                   <span class="s1">
+                    <input class="20200209SUN27_CRS_S0300_0_c" id="20200209SUN27_CRS_S0300_0_c" name="chkCRS" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_CRS_S0300">
+                      60.00
+                     </span>
+                     <!-- react-text: 492 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                  <div class="codds cCRSSel 20200209SUN27_CRS_S0303_0_c">
+                   <span id="s20200209SUN27_CRS_S0303">
+                    3 : 3
+                   </span>
+                  </div>
+                  <div class="codds coddsAlign">
+                   <span class="s1">
+                    <input class="20200209SUN27_CRS_S0303_0_c" id="20200209SUN27_CRS_S0303_0_c" name="chkCRS" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_CRS_S0303">
+                      1000
+                     </span>
+                     <!-- react-text: 500 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                  <div class="codds cCRSSel 20200209SUN27_CRS_S0003_0_c">
+                   <span id="s20200209SUN27_CRS_S0003">
+                    0 : 3
+                   </span>
+                  </div>
+                  <div class="codds coddsAlign">
+                   <span class="s1">
+                    <input class="20200209SUN27_CRS_S0003_0_c" id="20200209SUN27_CRS_S0003_0_c" name="chkCRS" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_CRS_S0003">
+                      600.0
+                     </span>
+                     <!-- react-text: 508 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                 </div>
+                 <div class="coddsSelections rAlt0">
+                  <div class="codds cCRSSel 20200209SUN27_CRS_S0301_0_c">
+                   <span id="s20200209SUN27_CRS_S0301">
+                    3 : 1
+                   </span>
+                  </div>
+                  <div class="codds coddsAlign">
+                   <span class="s1">
+                    <input class="20200209SUN27_CRS_S0301_0_c" id="20200209SUN27_CRS_S0301_0_c" name="chkCRS" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_CRS_S0301">
+                      200.0
+                     </span>
+                     <!-- react-text: 517 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                  <div class="codds">
+                  </div>
+                  <div class="codds">
+                  </div>
+                  <div class="codds cCRSSel 20200209SUN27_CRS_S0103_0_c">
+                   <span id="s20200209SUN27_CRS_S0103">
+                    1 : 3
+                   </span>
+                  </div>
+                  <div class="codds coddsAlign">
+                   <span class="s1">
+                    <input class="20200209SUN27_CRS_S0103_0_c" id="20200209SUN27_CRS_S0103_0_c" name="chkCRS" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_CRS_S0103">
+                      900.0
+                     </span>
+                     <!-- react-text: 527 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                 </div>
+                 <div class="coddsSelections rAlt1">
+                  <div class="codds cCRSSel 20200209SUN27_CRS_S0302_0_c">
+                   <span id="s20200209SUN27_CRS_S0302">
+                    3 : 2
+                   </span>
+                  </div>
+                  <div class="codds coddsAlign">
+                   <span class="s1">
+                    <input class="20200209SUN27_CRS_S0302_0_c" id="20200209SUN27_CRS_S0302_0_c" name="chkCRS" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_CRS_S0302">
+                      1000
+                     </span>
+                     <!-- react-text: 536 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                  <div class="codds">
+                  </div>
+                  <div class="codds">
+                  </div>
+                  <div class="codds cCRSSel 20200209SUN27_CRS_S0203_0_c">
+                   <span id="s20200209SUN27_CRS_S0203">
+                    2 : 3
+                   </span>
+                  </div>
+                  <div class="codds coddsAlign">
+                   <span class="s1">
+                    <input class="20200209SUN27_CRS_S0203_0_c" id="20200209SUN27_CRS_S0203_0_c" name="chkCRS" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_CRS_S0203">
+                      1000
+                     </span>
+                     <!-- react-text: 546 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                 </div>
+                 <div class="coddsSelections rAlt0">
+                  <div class="codds cCRSSel 20200209SUN27_CRS_S0400_0_c">
+                   <span id="s20200209SUN27_CRS_S0400">
+                    4 : 0
+                   </span>
+                  </div>
+                  <div class="codds coddsAlign">
+                   <span class="s1">
+                    <input class="20200209SUN27_CRS_S0400_0_c" id="20200209SUN27_CRS_S0400_0_c" name="chkCRS" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_CRS_S0400">
+                      450.0
+                     </span>
+                     <!-- react-text: 555 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                  <div class="codds">
+                  </div>
+                  <div class="codds">
+                  </div>
+                  <div class="codds cCRSSel 20200209SUN27_CRS_S0004_0_c">
+                   <span id="s20200209SUN27_CRS_S0004">
+                    0 : 4
+                   </span>
+                  </div>
+                  <div class="codds coddsAlign">
+                   <span class="s1">
+                    <input class="20200209SUN27_CRS_S0004_0_c" id="20200209SUN27_CRS_S0004_0_c" name="chkCRS" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_CRS_S0004">
+                      1000
+                     </span>
+                     <!-- react-text: 565 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                 </div>
+                 <div class="coddsSelections rAlt1">
+                  <div class="codds cCRSSel 20200209SUN27_CRS_S0401_0_c">
+                   <span id="s20200209SUN27_CRS_S0401">
+                    4 : 1
+                   </span>
+                  </div>
+                  <div class="codds coddsAlign">
+                   <span class="s1">
+                    <input class="20200209SUN27_CRS_S0401_0_c" id="20200209SUN27_CRS_S0401_0_c" name="chkCRS" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_CRS_S0401">
+                      1000
+                     </span>
+                     <!-- react-text: 574 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                  <div class="codds">
+                  </div>
+                  <div class="codds">
+                  </div>
+                  <div class="codds cCRSSel 20200209SUN27_CRS_S0104_0_c">
+                   <span id="s20200209SUN27_CRS_S0104">
+                    1 : 4
+                   </span>
+                  </div>
+                  <div class="codds coddsAlign">
+                   <span class="s1">
+                    <input class="20200209SUN27_CRS_S0104_0_c" id="20200209SUN27_CRS_S0104_0_c" name="chkCRS" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_CRS_S0104">
+                      1000
+                     </span>
+                     <!-- react-text: 584 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                 </div>
+                 <div class="coddsSelections rAlt0">
+                  <div class="codds cCRSSel 20200209SUN27_CRS_S0402_0_c">
+                   <span id="s20200209SUN27_CRS_S0402">
+                    4 : 2
+                   </span>
+                  </div>
+                  <div class="codds coddsAlign">
+                   <span class="s1">
+                    <input class="20200209SUN27_CRS_S0402_0_c" id="20200209SUN27_CRS_S0402_0_c" name="chkCRS" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_CRS_S0402">
+                      1000
+                     </span>
+                     <!-- react-text: 593 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                  <div class="codds">
+                  </div>
+                  <div class="codds">
+                  </div>
+                  <div class="codds cCRSSel 20200209SUN27_CRS_S0204_0_c">
+                   <span id="s20200209SUN27_CRS_S0204">
+                    2 : 4
+                   </span>
+                  </div>
+                  <div class="codds coddsAlign">
+                   <span class="s1">
+                    <input class="20200209SUN27_CRS_S0204_0_c" id="20200209SUN27_CRS_S0204_0_c" name="chkCRS" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_CRS_S0204">
+                      1000
+                     </span>
+                     <!-- react-text: 603 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                 </div>
+                 <div class="coddsSelections rAlt1">
+                  <div class="codds cCRSSel 20200209SUN27_CRS_S0500_0_c">
+                   <span id="s20200209SUN27_CRS_S0500">
+                    5 : 0
+                   </span>
+                  </div>
+                  <div class="codds coddsAlign">
+                   <span class="s1">
+                    <input class="20200209SUN27_CRS_S0500_0_c" id="20200209SUN27_CRS_S0500_0_c" name="chkCRS" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_CRS_S0500">
+                      1000
+                     </span>
+                     <!-- react-text: 612 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                  <div class="codds">
+                  </div>
+                  <div class="codds">
+                  </div>
+                  <div class="codds cCRSSel 20200209SUN27_CRS_S0005_0_c">
+                   <span id="s20200209SUN27_CRS_S0005">
+                    0 : 5
+                   </span>
+                  </div>
+                  <div class="codds coddsAlign">
+                   <span class="s1">
+                    <input class="20200209SUN27_CRS_S0005_0_c" id="20200209SUN27_CRS_S0005_0_c" name="chkCRS" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_CRS_S0005">
+                      1000
+                     </span>
+                     <!-- react-text: 622 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                 </div>
+                 <div class="coddsSelections rAlt0">
+                  <div class="codds cCRSSel 20200209SUN27_CRS_S0501_0_c">
+                   <span id="s20200209SUN27_CRS_S0501">
+                    5 : 1
+                   </span>
+                  </div>
+                  <div class="codds coddsAlign">
+                   <span class="s1">
+                    <input class="20200209SUN27_CRS_S0501_0_c" id="20200209SUN27_CRS_S0501_0_c" name="chkCRS" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_CRS_S0501">
+                      1000
+                     </span>
+                     <!-- react-text: 631 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                  <div class="codds">
+                  </div>
+                  <div class="codds">
+                  </div>
+                  <div class="codds cCRSSel 20200209SUN27_CRS_S0105_0_c">
+                   <span id="s20200209SUN27_CRS_S0105">
+                    1 : 5
+                   </span>
+                  </div>
+                  <div class="codds coddsAlign">
+                   <span class="s1">
+                    <input class="20200209SUN27_CRS_S0105_0_c" id="20200209SUN27_CRS_S0105_0_c" name="chkCRS" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_CRS_S0105">
+                      1000
+                     </span>
+                     <!-- react-text: 641 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                 </div>
+                 <div class="coddsSelections rAlt1">
+                  <div class="codds cCRSSel 20200209SUN27_CRS_S0502_0_c">
+                   <span id="s20200209SUN27_CRS_S0502">
+                    5 : 2
+                   </span>
+                  </div>
+                  <div class="codds coddsAlign">
+                   <span class="s1">
+                    <input class="20200209SUN27_CRS_S0502_0_c" id="20200209SUN27_CRS_S0502_0_c" name="chkCRS" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_CRS_S0502">
+                      1000
+                     </span>
+                     <!-- react-text: 650 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                  <div class="codds">
+                  </div>
+                  <div class="codds">
+                  </div>
+                  <div class="codds cCRSSel 20200209SUN27_CRS_S0205_0_c">
+                   <span id="s20200209SUN27_CRS_S0205">
+                    2 : 5
+                   </span>
+                  </div>
+                  <div class="codds coddsAlign">
+                   <span class="s1">
+                    <input class="20200209SUN27_CRS_S0205_0_c" id="20200209SUN27_CRS_S0205_0_c" name="chkCRS" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_CRS_S0205">
+                      1000
+                     </span>
+                     <!-- react-text: 660 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                 </div>
+                 <div class="coddsSelections rAlt0">
+                  <div class="codds cCRSSel 20200209SUN27_CRS_SM1MH_0_c">
+                   <span id="s20200209SUN27_CRS_SM1MH">
+                    Home Others
+                   </span>
+                  </div>
+                  <div class="codds coddsAlign">
+                   <span class="s1">
+                    <input class="20200209SUN27_CRS_SM1MH_0_c" id="20200209SUN27_CRS_SM1MH_0_c" name="chkCRS" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_CRS_SM1MH">
+                      1000
+                     </span>
+                     <!-- react-text: 669 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                  <div class="codds cCRSSel 20200209SUN27_CRS_SM1MD_0_c">
+                   <span id="s20200209SUN27_CRS_SM1MD">
+                    Draw Others
+                   </span>
+                  </div>
+                  <div class="codds coddsAlign">
+                   <span class="s1">
+                    <input class="20200209SUN27_CRS_SM1MD_0_c" id="20200209SUN27_CRS_SM1MD_0_c" name="chkCRS" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_CRS_SM1MD">
+                      1000
+                     </span>
+                     <!-- react-text: 677 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                  <div class="codds cCRSSel 20200209SUN27_CRS_SM1MA_0_c">
+                   <span id="s20200209SUN27_CRS_SM1MA">
+                    Away Others
+                   </span>
+                  </div>
+                  <div class="codds coddsAlign">
+                   <span class="s1">
+                    <input class="20200209SUN27_CRS_SM1MA_0_c" id="20200209SUN27_CRS_SM1MA_0_c" name="chkCRS" type="checkbox" value=""/>
+                    <span class="oddsLink">
+                     <span class="oddsVal" id="20200209SUN27_CRS_SM1MA">
+                      1000
+                     </span>
+                     <!-- react-text: 685 -->
+                     <!-- /react-text -->
+                    </span>
+                   </span>
+                  </div>
+                 </div>
+                </div>
+               </div>
+              </div>
+             </div>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div id="dFooterAddBet">
+         <div class="footerAddBet" data-reactroot="">
+          <div class="addBet" title="Add to Slip">
+          </div>
+          <div class="clear">
+          </div>
+         </div>
+        </div>
+        <!-- odds table ends -->
+        <div class="divRemarks" style="">
+         <div id="disclaimerNormal">
+          Important Notice:
+          <span class="hdcwarning" id="cm_ucfoot_lblMsg">
+          </span>
+          The odds shown are for reference only. Final odds will be confirmed once bets are accepted. The data, articles, links to third party websites and other information shown on this page are provided on an “as is “ basis for information purposes only. Your use of such information is subject to the following
+          <a href="javascript:NewWindow('//www.hkjc.com/english/corporate/corp_disclaimer.asp','',1020,500,1,0);" style="color:blue;">
+           disclaimer
+          </a>
+          .
+         </div>
+         <div id="disclaimerShortCut" style="display:none;">
+          Important Notice:
+          <span class="hdcwarning" id="cm_ucfoot_lblShortCutMsg">
+          </span>
+          <br/>
+          1. Only selective matches and bet types are shown on this page.
+          <br/>
+          2. The odds shown are for reference only. Final odds will be confirmed once bets are accepted. The data, articles, links to third party websites and other information shown on this page are provided on an “as is “ basis for information purposes only. Your use of such information is subject to the following
+          <a href="javascript:NewWindow('//www.hkjc.com/english/corporate/corp_disclaimer.asp','',1020,500,1,0);" style="color:blue;">
+           disclaimer
+          </a>
+          .
+         </div>
+         <br/>
+        </div>
+        <br/>
+       </div>
+      </div>
+      <script type="text/javascript">
+       function fbInit() {
+pageName = 'INPLAYALL';
+schema = 'odds_allodds_aspx';
+matches = '195df00d-70ca-4522-a290-42d8efb2e456';
+pools = jsDefaultInplayAllOddsOrder;
+allOddsType = pools.split(',');
+oddsType = pools;
+tMatchID = '';
+setTopBannerFrame('football', 'odds/odds_inplay_all', curLang);
+}
+      </script>
+     </div>
+    </div>
+   </div>
+   <div class="bottomMenu" id="bottomBannerDiv" style="display: none;">
+    <div class="emptyDiv" style="display: none;">
+    </div>
+   </div>
+   <div id="rgpDiv" style="width:744px; background-color:#ffffff;margin:5px 6px 0px 6px;padding:10px 10px 10px 10px;">
+    <div id="rgpImage">
+     <img border="0" height="103" src="/info/include/rgp/rgp_text_710_eng.gif" usemap="#Map" width="710"/>
+     <map id="Map" name="Map">
+      <area coords="640,2,708,43" href="//www.hkjc.com/responsible-gambling/en/index.aspx" shape="rect" target="_blank"/>
+     </map>
+    </div>
+    <div style="padding:9px 2px 0px 2px;">
+     <div id="rgpLinks" style="float:left">
+      <a class="footer" href="//www.hkjc.com/infomenu/en/contact/feedback.aspx" target="_blank">
+       Contact Us
+      </a>
+      |
+      <a class="footer" href="//www.hkjc.com/home/english/sitemap.aspx" target="_blank">
+       Site Map
+      </a>
+      |
+      <a class="footer" href="//www.hkjc.com/english/betting/betting_rule_en.htm" target="_blank">
+       Rules
+      </a>
+      |
+      <a class="footer" href="//www.hkjc.com/responsible-gambling/en/index.aspx" target="_blank">
+       Responsible Gambling Policy
+      </a>
+      |
+      <a class="footer" href="//www.hkjc.com/home/english/corporate/corp_privacy.aspx" target="_blank">
+       Privacy
+      </a>
+      |
+      <a class="footer" href="//special.hkjc.com/root/info/en/disclaimer.asp" target="_blank">
+       Disclaimer
+      </a>
+      |
+      <a class="footer" href="//www.hkjc.com/home/english/corporate/security-tips.aspx" target="_blank">
+       Security Tips
+      </a>
+     </div>
+     <div id="rgpCopyRight" style="float:right">
+      <a class="footer" href="//www.hkjc.com/english/copyright.htm" target="_blank">
+       Copyright
+      </a>
+      <span class="footer">
+       © 2006-2020 HKJC Football Betting Limited. All rights reserved.
+      </span>
+     </div>
+     <div style="clear:both">
+     </div>
+    </div>
+   </div>
+  </div>
+  <div class="noPrint" id="betslipDiv">
+   <div id="betslipDisableDiv">
+   </div>
+   <div id="betslipDimmedDiv">
+   </div>
+   <div id="betslipDimmedText">
+   </div>
+   <div id="betslipSound" style="display:none">
+   </div>
+   <div id="divBetSlipMinimize" onclick="OnClickRestore()" style="display:none" title="Maximize">
+    <div id="divBetSlipMinimizeText">
+    </div>
+   </div>
+   <div id="divBetSlipNormal">
+    <div id="divAccInfo" onkeydown="return onKeyDown(event, true, 'accInfo');">
+     <div id="errormsg" onclick="javascript:HideError(1)">
+     </div>
+     <div class="topYellowBar">
+     </div>
+     <div class="accInfoBg" id="divAccInfoLogout">
+      <div class="accInfoTable">
+       <div class="betslipRow">
+        <div class="accInfoCellLogo" onmouseover="ShowServerId(this)">
+        </div>
+        <div class="accInfoCellInput">
+         <div>
+          <input autocomplete="off" class="inputField1" id="account" maxlength="15" name="account" style="width:98px; height:16px;" tabindex="1" type="text" value=""/>
+         </div>
+         <div style="padding-top:3px">
+          <input class="inputField1" id="passwordInput1" name="passwordInput1" style="width: 98px; height: 16px; display: block;" tabindex="2" type="text" value=""/>
+          <input class="inputField1" id="password" maxlength="20" name="password" onblur="if ( $(this).val()=='' ) { $(this).hide(); $('#passwordInput1').show(); }" style="width:98px; height:16px; display:none;" tabindex="-1" type="password"/>
+         </div>
+        </div>
+        <div class="accInfoCellButton">
+         <div class="minimizeButton" id="minimizeButton" onclick="OnClickMinimize()" title="Minimize">
+         </div>
+         <div class="topHelpButton" id="topHelpButton" onclick="OnClickHelp()" title="eWin User Guide">
+         </div>
+         <div class="loginButton" id="loginButton" onclick="OnClickLogin()" tabindex="3" title="Login">
+         </div>
+         <div class="loginSSONextButton" id="loginSSONextButton" onclick="OnClickNext()" style="display: none;" tabindex="4" title="Next">
+          <div class="emptyDiv" style="display: none;">
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="accInfoTable2">
+       <div class="betslipRow">
+        <div class="accInfoCell regDropdown" id="linkAccInfoRegister" onclick="OnClickRegisterNow()" style="visibility: visible;">
+         Register Now
+        </div>
+        <div class="accInfoCellStroke">
+        </div>
+        <div class="accInfoCell" id="linkPersonalSettings" onclick="OnClickPersonalSettings()">
+         Settings
+        </div>
+        <div class="accInfoCellStroke">
+        </div>
+        <div class="accInfoCell" id="linkCannotLogin" onclick="OnClickCannotLogin()">
+         Cannot Login
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="accInfoBg" id="divAccInfoLogin" style="display:none">
+      <div class="accInfoTable">
+       <div class="betslipRow">
+        <div class="accInfoCellLogo" onmouseover="ShowServerId(this)">
+        </div>
+        <div style="display:table-cell">
+         <div class="accInfoCellNo">
+          <div id="txtAccNo">
+          </div>
+          <div id="valueAccNo">
+          </div>
+         </div>
+         <div class="accInfoCellButton">
+          <div class="minimizeButton" id="minimizeButtonLogin" onclick="OnClickMinimize()" title="Minimize">
+          </div>
+          <div class="topHelpButton" id="topHelpButtonLogin" onclick="OnClickHelp()" title="eWin User Guide">
+          </div>
+          <div class="logoutButton" id="logoutButton" onclick="OnClickLogout()">
+          </div>
+         </div>
+        </div>
+       </div>
+       <div class="betslipRow">
+        <div style="display:table-cell">
+        </div>
+        <div class="accInfoCellName">
+         <div style="width:151px">
+          <div id="valueAccName">
+          </div>
+          <div>
+           <div id="valueAccBal" style="display:inline-block;vertical-align:top">
+           </div>
+           <div id="buttonAccBal" onclick="OnClickRefreshBalance()">
+           </div>
+          </div>
+         </div>
+        </div>
+        <div style="display:table-cell; width:1px">
+        </div>
+       </div>
+      </div>
+      <div class="accInfoTable2">
+       <div class="betslipRow">
+        <div class="accInfoCell" id="linkAccStmt" onclick="OnClickAccountRecord()">
+         Betting A/C
+         <br/>
+         Records
+        </div>
+        <div class="accInfoCellStroke">
+        </div>
+        <div class="accInfoCell regDropdown" id="linkPersonalSettingsLogin" onclick="OnClickPersonalSettingsLogin()">
+         Settings
+        </div>
+        <div class="accInfoCellStroke">
+        </div>
+        <div class="accInfoCell" id="linkFundsTransfer" onclick="OnClickFundTransfer()">
+         Funds Transfer
+        </div>
+       </div>
+      </div>
+      <div class="emptyDiv" style="display: none;">
+      </div>
+     </div>
+    </div>
+    <div id="divSlip">
+     <div id="errormsgMiddle" onclick="javascript:HideError(2)">
+      <div class="errorMsgClodeButton">
+      </div>
+      <div style="clear: both">
+      </div>
+      <div id="errMsgMiddleTxt">
+      </div>
+     </div>
+     <div class="betslipRow">
+      <div class="middleYellowBar">
+      </div>
+      <div class="middleYellowBar">
+      </div>
+     </div>
+     <div class="betslipRow">
+      <div class="slipExpand" id="slipToggleButton" onclick="slipToogle();" title="Click to expand/collapse">
+      </div>
+      <div class="slipBetTable">
+       <div id="multiplePanel" style="display:none">
+        <div class="betslipRow">
+         <div class="slipActivePanel">
+          A
+         </div>
+         <div class="slipInactivePanel">
+          B
+         </div>
+         <div class="slipInactivePanel">
+          C
+         </div>
+         <div class="slipInactivePanel">
+          D
+         </div>
+         <div style="width:1px">
+         </div>
+        </div>
+       </div>
+       <div id="divBetLayer" onscroll="collapseUnitBetDropdown();">
+       </div>
+       <div class="slipBetPanel">
+        <div class="slipBetPanelRow">
+         <div class="slipStrokeOrange">
+         </div>
+         <div class="slipBottomCellLeft" id="divAlupFormulaLabel">
+          Formula
+         </div>
+         <div class="bottomHelpButton" id="bottomHelpButton" onclick="OnClickAllupHelp()" title="All Up betting demo">
+         </div>
+         <div class="clear">
+         </div>
+        </div>
+        <div class="slipBetPanelRow">
+         <div class="slipAddBet" id="bsAddBetButton" onclick="CreateAndAddAllUp()" title="Add All Up Bet">
+         </div>
+         <div class="slipAlupUpDown">
+          <div class="slipAlupUp" onclick="inputAllUpValueChanged(10)">
+          </div>
+          <div class="slipAlupDown" onclick="inputAllUpValueChanged(-10)">
+          </div>
+         </div>
+         <div class="slipBottomCellRight" style="padding-left:1px">
+          <input class="inputField1" disabled="" id="inputAllUp" onblur="CheckAlupBoxUnitBet(this);" style="width:45px; height:19px; background-color: #FFFFFF" type="text"/>
+         </div>
+         <div class="slipBottomCellRight">
+          <select class="select1" disabled="" id="sel_formula" name="selFormula" style="width:60px">
+          </select>
+         </div>
+         <div class="clear">
+         </div>
+        </div>
+        <div class="slipDottedLine">
+        </div>
+        <div class="slipBetPanelRow">
+         <div class="slipBottomAmountLeft" id="fldTotalNoOfBets">
+          Total No. of Bets
+         </div>
+         <div class="slipBottomAmountRight" id="total_no_of_bets">
+          0
+         </div>
+         <div class="clear">
+         </div>
+        </div>
+        <div class="slipBetPanelRow">
+         <div class="slipBottomAmountLeft" id="fldTotalAmount">
+          Total Amount
+         </div>
+         <div class="slipBottomAmountRight" id="fld_total_bet_amount">
+          $ 0.00
+         </div>
+         <div class="clear">
+         </div>
+        </div>
+        <div class="slipBetPanelRow">
+         <div class="slipSendPreview" id="bsSendPreviewButton" onclick="OnClickPreview()" title="Send Bet">
+         </div>
+         <div class="slipDeleteBet" id="bsDeleteBetButton" onclick="OnClickReset()" title="Clear Slip">
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="betslipRow">
+      <div class="bottomYellowBar">
+      </div>
+      <div class="bottomYellowBar">
+      </div>
+     </div>
+     <div id="divEKBA" onkeydown="return onKeyDown(event, true, 'ekba');">
+      <div class="topYellowBar">
+      </div>
+      <div class="ekbaGrayBar">
+      </div>
+      <div class="ekbaContainer">
+       <div id="ekbaDivTitle">
+        Login Question
+       </div>
+       <div id="ekbaSeqQuestion">
+       </div>
+       <div class="ekbaFields">
+        <input autocomplete="off" class="text" id="ekbaDivInput" maxlength="50" name="ekbaDivInput" tabindex="4" type="text"/>
+        <span id="txtForgetWebPass" onclick="OnClickCannotLogin()">
+         Forgot your Login Answer?
+        </span>
+        <div id="ekbaDivError">
+        </div>
+       </div>
+       <div class="ekbaFooter" id="divEKBADefaultButton" style="display:block">
+        <div class="cancelButton" id="pic_cancel" onclick="OnClickLoginEKBACancel()" title="Cancel">
+        </div>
+        <div class="confirmButton" id="pic_confirm" onclick="OnClickLoginEKBA()" tabindex="5" title="Confirm">
+        </div>
+       </div>
+       <div class="ekbaFooter" id="divEKBASSOButton" style="display:none">
+        <div class="backButton" id="pic_backSSO" onclick="OnClickLoginEKBABack()" title="Back">
+        </div>
+        <div class="logoutEKBAButton" id="pic_logoutSSO" onclick="OnClickLoginEKBALogout()" title="Logout">
+        </div>
+        <div class="confirmButton" id="pic_confirmSSO" onclick="OnClickLoginEKBA()" tabindex="6" title="Confirm">
+        </div>
+       </div>
+      </div>
+      <div class="ekbaGrayBar">
+      </div>
+      <div class="topYellowBar">
+      </div>
+     </div>
+     <div id="divEWallet" style="display:none; border-left: 1px solid #a3a3a3;">
+      <div class="topYellowBar">
+      </div>
+      <div class="ekbaGrayBar">
+      </div>
+      <div class="container">
+       <h2>
+        <div id="eWalletDivTitle">
+        </div>
+       </h2>
+       <p>
+       </p>
+       <div id="eWalletMsg">
+       </div>
+       <p>
+       </p>
+       <div class="BLfooter" id="divEWalletLaterButton" style="display:block">
+        <span style="float:left; margin-left:280px; margin-right:10px; display:inline;">
+         <a class="eWalletLater" href="#" onclick="OnClickEWalletCancel();return false;">
+         </a>
+        </span>
+        <span style="float:right; margin-left:10px; margin-right:10px; display:inline;">
+         <a class="eWalletUpgrade" href="#" onclick="OnClickEWalletUpgrade();return false;">
+         </a>
+        </span>
+       </div>
+      </div>
+      <div class="ekbaGrayBar">
+      </div>
+      <div class="topYellowBar">
+      </div>
+     </div>
+     <div id="divDisclaimer">
+      <div class="topYellowBar">
+      </div>
+      <div class="ekbaGrayBar">
+      </div>
+      <div id="disclaimerHeader">
+       Terms &amp; Conditions
+      </div>
+      <div id="disclaimerText">
+      </div>
+      <div class="disclaimerEnterButton" id="disclaimerProceed" onclick="ShowDisclaimer(false, true)" title="Proceed">
+      </div>
+      <div style="clear:both">
+      </div>
+      <div class="ekbaGrayBar">
+      </div>
+      <div class="topYellowBar">
+      </div>
+     </div>
+     <div id="divIdleAlert">
+      <div id="divIdleAlertLogoutTips">
+      </div>
+      <div id="divIdleAlertLogoutTimeTips">
+      </div>
+      <div id="divIdleAlertStay" onclick="idleAlertClose()">
+      </div>
+      <div id="divIdleAlertLogout" onclick="idleAlertLogout(false)">
+      </div>
+      <div id="divIdleAlertSound" style="height:0">
+      </div>
+     </div>
+     <div id="divBetPreview">
+      <div class="topYellowBar">
+      </div>
+      <div class="ekbaGrayBar">
+      </div>
+      <div class="divBetTable">
+       <div class="betHeader">
+        <div id="betHeaderCell1">
+        </div>
+        <div id="betHeaderCell2">
+        </div>
+        <div id="betHeaderCell3">
+        </div>
+        <div id="betHeaderPrint" onclick="betReplyPrint()">
+        </div>
+        <div style="clear:both">
+        </div>
+       </div>
+       <div id="betSubHeader">
+       </div>
+       <div id="previewTable">
+       </div>
+       <div id="replyTable">
+       </div>
+      </div>
+      <div id="divPreviewBottom">
+       <div class="previewDeleteDiv">
+        <div class="previewDeleteDimButton" id="previewDel" onclick="OnClickDeleteBet()">
+        </div>
+       </div>
+       <div class="previewInplayMsgDiv">
+        <div id="inplayMsgTxt">
+        </div>
+       </div>
+       <div class="previewSendDiv">
+        <div>
+         <div class="previewSendCell" id="txtBetTotal">
+         </div>
+         <div class="previewSendCell" id="valueBetTotal">
+         </div>
+         <div style="clear:both">
+         </div>
+        </div>
+        <div>
+         <div class="previewCloseButton previewSendCell" id="previewClose" onclick="OnClickClosePreview()">
+         </div>
+         <div class="previewSendButton previewSendCell" id="previewSend" onclick="OnClickConfirmBet()">
+         </div>
+        </div>
+       </div>
+       <div style="clear:both">
+       </div>
+      </div>
+      <div id="divReplyBottom">
+       <div class="replyBottomDiv">
+        <div class="replyBottomRow">
+         <div id="txtBetTotalReply">
+         </div>
+         <div id="valueBetTotalReply">
+         </div>
+         <div style="clear:both">
+         </div>
+        </div>
+        <div>
+         <div class="replyRecallButton" id="replyRecall" onclick="OnClickCloseAndRecall()">
+         </div>
+         <div class="replyCloseButton" id="replyClose" onclick="OnClickClose()">
+         </div>
+        </div>
+        <div style="clear:both">
+        </div>
+       </div>
+      </div>
+      <div class="ekbaGrayBar">
+      </div>
+      <div class="topYellowBar">
+      </div>
+     </div>
+    </div>
+    <div class="regDropdown tDisplayNone" id="divRegDropdownMenu">
+     <ul>
+      <li>
+       <a class="content" href="javascript:onClickRegonline();">
+        <span id="regOnline">
+         I already have a betting account
+        </span>
+       </a>
+      </li>
+      <li>
+       <a class="content" href="javascript:onClickApplybet();">
+        <span id="regApply">
+         I do not have a betting account
+        </span>
+       </a>
+      </li>
+     </ul>
+    </div>
+    <div class="regDropdown tDisplayNone" id="divSettingsMenu">
+     <ul>
+      <li>
+       <a class="content" href="javascript:OnClickChgWebPassword();">
+        <span id="txtChgWebPassword">
+         Change Password
+        </span>
+       </a>
+      </li>
+      <li>
+       <a class="content" href="javascript:OnClickChgSecQuestion();">
+        <span id="txtChgSecQuestion">
+         Change Login Answers
+        </span>
+       </a>
+      </li>
+      <li>
+       <a class="content" href="javascript:OnClickChgWebProfile();">
+        <span id="txtChgWebProfile">
+         Change Profile
+        </span>
+       </a>
+      </li>
+      <li>
+       <a class="content" href="javascript:OnClickPersonalSettings();">
+        <span id="txtPersonalSettings">
+         Personal Settings in eWin
+        </span>
+       </a>
+      </li>
+      <li style="display:none">
+       <a class="content" href="javascript:OnClickFootballLive();">
+        <span id="txtFootballLive">
+         Football Live
+        </span>
+       </a>
+      </li>
+     </ul>
+    </div>
+   </div>
+  </div>
+  <div id="divBetSlipOverlay">
+   <div id="divStmtYellowNote">
+   </div>
+   <div id="divPersonalSetting">
+    <div class="topYellowBar">
+    </div>
+    <div class="boCenter">
+     <div class="boHeader" id="txtSettingHeader">
+     </div>
+     <div id="divSettingTable">
+      <div id="settingTable">
+       <div class="settingHeaderOpen" id="settingHeader1" onclick="settingToggleTable(1)">
+       </div>
+       <div class="settingTable" id="settingBody1">
+       </div>
+       <div class="settingHeaderOpen" id="settingHeader2" onclick="settingToggleTable(2)">
+       </div>
+       <div class="settingTable" id="settingBody2">
+       </div>
+       <div class="settingHeaderOpen" id="settingHeader3" onclick="settingToggleTable(3)">
+       </div>
+       <div class="settingTable" id="settingBody3">
+       </div>
+       <div class="settingHeaderOpen" id="settingHeader4" onclick="settingToggleTable(4)">
+       </div>
+       <div class="settingTable" id="settingBody4">
+       </div>
+       <div class="settingHeaderOpen" id="settingHeader5" onclick="settingToggleTable(5)">
+       </div>
+       <div class="settingTable" id="settingBody5">
+       </div>
+      </div>
+      <div id="divSettingBottom">
+       <div class="stmtCloseButton" id="settingClose" onclick="closeAllBetSlipOverlay()">
+       </div>
+       <div class="settingDefaultButton" id="settingDefault" onclick="setDefaultAmt()">
+       </div>
+       <div class="settingSaveButton" id="settingSave" onclick="saveAmt()" onmouseout="showDiv(this, '', false);" onmouseover="showDiv(this, 'setting', true);">
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="topYellowBar">
+    </div>
+   </div>
+   <div id="divStatement">
+    <div id="DivReceipt" onclick="CloseReceipt()" style="background:rgba(0,0,0,0.5); width:100%;height:100%;position:absolute;text-align:center;z-index:10;display:none;top:0; left:0;">
+     <div style="margin-top:20px;color:white;">
+      <a class="btnGray" id="btnDownload" onclick="downloadReceipt()" style="width:60px; padding:5px;">
+      </a>
+      <br/>
+      <img id="imgReceipt"/>
+      <canvas id="canReceipt" style="display:none">
+      </canvas>
+     </div>
+    </div>
+    <div class="topYellowBar">
+    </div>
+    <div class="boCenter">
+     <div class="boHeader" id="txtAccRecordHeader">
+     </div>
+     <div class="boSubheader">
+      <div class="boNav" id="linkAccountRecord" onclick="reloadAccountRecord()">
+      </div>
+      <div class="boHelpButton" id="helpAccountRecord" onclick="OnClickHelpAccountRecord()">
+       <img class="boHelpPic" src="/info/include/images/icon_help.gif"/>
+      </div>
+      <div class="strokeGray">
+      </div>
+      <div class="boNav" id="linkCurSession" onclick="reloadCurSession()">
+      </div>
+      <div class="boHelpButton" id="helpCurSession" onclick="OnClickHelpCurSession()">
+       <img class="boHelpPic" src="/info/include/images/icon_help.gif"/>
+      </div>
+      <div class="strokeGray">
+      </div>
+      <div class="boNav" id="linkRecall" onclick="reloadRecall()">
+      </div>
+      <div class="boHelpButton" id="helpRecall" onclick="OnClickHelpRecall()">
+       <img class="boHelpPic" src="/info/include/images/icon_help.gif"/>
+      </div>
+      <div style="clear:both">
+      </div>
+     </div>
+     <div id="divAccountRecord">
+      <div id="divStatementSearchBox">
+       <div id="divSearchBlock1">
+        <div class="betslipRow">
+         <div class="searchDateCell1">
+          <input checked="" id="radioToday" name="dateType" style="margin:0px" type="radio" value="0"/>
+         </div>
+         <div class="searchDateCell2">
+          <label for="radioToday" id="asToday">
+          </label>
+         </div>
+        </div>
+        <div class="betslipRow">
+         <div class="searchDateCell1" style="padding-top:7px;">
+          <input id="radioDateRange" name="dateType" style="margin:0px" type="radio" value="1"/>
+         </div>
+         <div class="searchDateCell3">
+          <div>
+           <label for="radioDateRange" id="asFrom">
+           </label>
+           :
+           <label for="radioDateRange" id="asFromDay">
+           </label>
+           <select class="select2" id="FromDay" onchange="resetDate('From', 0)" style="width:50px">
+           </select>
+           /
+           <label for="radioDateRange" id="asFromMonth">
+           </label>
+           <select class="select2" id="FromMonth" onchange="resetDate('From', 1)" style="width:50px">
+           </select>
+           /
+           <label for="radioDateRange" id="asFromYear">
+           </label>
+           <select class="select2" id="FromYear" onchange="resetDate('From', 2)" style="width:60px">
+           </select>
+          </div>
+          <div>
+           <label for="radioDateRange" id="asTo">
+           </label>
+           :
+           <label for="radioDateRange" id="asTo_Day">
+           </label>
+           <select class="select2" id="ToDay" onchange="resetDate('To', 0)" style="width:50px">
+           </select>
+           /
+           <label for="radioDateRange" id="asToMonth">
+           </label>
+           <select class="select2" id="ToMonth" onchange="resetDate('To', 1)" style="width:50px">
+           </select>
+           /
+           <label for="radioDateRange" id="asToYear">
+           </label>
+           <select class="select2" id="ToYear" onchange="resetDate('To', 2)" style="width:60px">
+           </select>
+          </div>
+         </div>
+        </div>
+        <div id="asSelDtRange">
+        </div>
+        <div class="betslipRow" id="lastDayOption">
+         <div class="searchDateCell1" style="padding-top:3px;">
+          <input id="radioLastDay" name="dateType" style="margin:0px" type="radio" value="2"/>
+         </div>
+         <div class="searchDateCell2">
+          <label for="radioLastDay" id="seekLastDay">
+          </label>
+          <select class="select2" id="last_days" onchange="$('#radioLastDay').prop('checked', 'true');" style="width:50px">
+          </select>
+          <label for="radioLastDay" id="seekUnit">
+          </label>
+         </div>
+        </div>
+       </div>
+       <div id="divSearchBlock2">
+        <div class="betslipRow">
+         <span id="asTxnType">
+         </span>
+         :
+         <select class="select2" id="betType" onchange="resetBetAndTxnOptions(false)" style="width:220px">
+         </select>
+        </div>
+        <div class="betslipRow">
+         <span id="asDisplayType">
+         </span>
+         :
+         <select class="select2" id="txnType" onchange="resetBetAndTxnOptions(false)" style="width:220px">
+         </select>
+        </div>
+        <div class="statementConfirmButton" id="stmtConfirmButton" onclick="OnClickStatementSearch()">
+        </div>
+       </div>
+      </div>
+      <div id="divStatementYellowHeader">
+       <div class="stmtMiddleHeader">
+        <div id="stmtPageNo">
+        </div>
+        <div id="stmtAccBal">
+        </div>
+        <div id="stmtAccNo">
+        </div>
+        <div id="stmtTime">
+        </div>
+        <div style="clear:both">
+        </div>
+       </div>
+      </div>
+      <div id="divStatementTable">
+       <div id="stmtMsg">
+       </div>
+       <div id="stmtHeader">
+       </div>
+       <div id="stmtTable">
+       </div>
+       <div id="divStmtBottom">
+        <div class="stmtCloseButton" id="stmtClose" onclick="closeAllBetSlipOverlay()">
+        </div>
+        <div class="stmtNextDimButton" id="stmtNext" onclick="stmtNextPage()">
+        </div>
+        <div class="stmtPrevDimButton" id="stmtPrev" onclick="stmtPrevPage()">
+        </div>
+        <div id="stmtExportMenu">
+         <div id="stmtExportHtml" onclick="fileExport('html')">
+         </div>
+         <div id="stmtExportText" onclick="fileExport('txt')">
+         </div>
+        </div>
+        <div class="stmtExportButton" id="stmtExport" onclick="onclickStmtExport(this)" onmouseout="showDiv(this, '', false);" onmouseover="showDiv(this, 'save', true);">
+        </div>
+        <div class="stmtPrintButton" id="stmtPrint" onclick="onclickStmtPrint()" onmouseout="showDiv(this, '', false);" onmouseover="showDiv(this, 'print', true);">
+        </div>
+        <div class="stmtNewSearchButton" id="stmtNewSearch" onclick="openSearchBox()">
+        </div>
+       </div>
+      </div>
+     </div>
+     <div id="divCurSession">
+      <div id="divCurSessionYellowHeader">
+       <div class="curSessionNote">
+        <div id="curSessionNote1">
+        </div>
+        <div id="curSessionNote2">
+        </div>
+       </div>
+       <div class="stmtMiddleHeader" id="curSessionYellowBar">
+        <div id="curSessionAccBal">
+        </div>
+       </div>
+      </div>
+      <div id="divCurSessionTable">
+       <div id="curSessionMsg">
+       </div>
+       <div id="curSessionHeader">
+       </div>
+       <div id="curSessionTable">
+       </div>
+       <div id="divCurSessionBottom">
+        <div class="stmtCloseButton" id="curSessionClose" onclick="closeAllBetSlipOverlay()">
+        </div>
+        <div class="stmtPrintButton" id="curSessionPrint" onclick="onclickCurSessionPrint()" onmouseout="showDiv('', false);" onmouseover="showDiv('print', true);">
+        </div>
+       </div>
+      </div>
+     </div>
+     <div id="divRecall">
+      <div id="divRecallYellowHeader">
+       <div class="stmtMiddleHeader">
+        <div id="recallPageNo">
+        </div>
+       </div>
+      </div>
+      <div id="divRecallTable">
+       <div id="recallMsg">
+       </div>
+       <div id="recallHeader">
+       </div>
+       <div id="recallTable">
+       </div>
+       <div id="divRecallBottom">
+        <div class="stmtCloseButton" id="recallClose" onclick="closeAllBetSlipOverlay()">
+        </div>
+        <div class="stmtNextDimButton" id="recallNext" onclick="recallNextPage()">
+        </div>
+        <div class="stmtPrevDimButton" id="recallPrev" onclick="recallPrevPage()">
+        </div>
+        <div class="stmtPrintButton" id="recallPrint" onclick="onclickRecallPrint()" onmouseout="showDiv(this, '', false);" onmouseover="showDiv(this, 'print', true);">
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="topYellowBar">
+    </div>
+   </div>
+   <div id="divFundTransfer">
+    <div class="eft_base">
+     <div id="popupHeader" style="float: left; width: 100%">
+      <div class="eft_topTitleBar" style="float:left; width:100%; padding:5px 0px 0px 0px">
+       <img src="/info/include/images/stroke_yellow.gif" style="padding-left:10px; vertical-align: middle"/>
+       <span class="titleWhite" id="asTitle" style="padding-left:10px; vertical-align: middle">
+       </span>
+       <a href="javascript:;" style="cursor:help; vertical-align: middle">
+        <img align="absmiddle" border="0" hspace="3" id="pic_help" onclick="EftOnClickHelp()" src="/info/include/images/icon_help.gif" style="margin-bottom:3px;"/>
+       </a>
+      </div>
+      <div style="float:left;width:100%; border-top:1px solid #E8E9EA; background-color:#FFFFFF; line-height:1px; margin-top:3px;">
+      </div>
+      <div style="background:url(/info/include/images/popup_nav_bg.gif) repeat-x; float:left; width:100%; padding-bottom: 3px;">
+       <input class="popupNav eftMenu" id="eftMenuBtn0" onclick="EftOnLoad(0)" type="button"/>
+       <img height="14" src="/info/include/images/popuo_stroke_gray.gif" style="vertical-align: middle" width="1"/>
+       <input class="popupNav eftMenu" id="eftMenuBtn1" onclick="EftOnLoad(1)" type="button"/>
+       <img height="14" id="eftMenuBtn2Stoke" src="/info/include/images/popuo_stroke_gray.gif" style="vertical-align: middle" width="1"/>
+       <input class="popupNav eftMenu" id="eftMenuBtn2" onclick="EftOnLoad(2)" type="button"/>
+      </div>
+     </div>
+     <div id="DivNotice" style="display: none; width: 270px; height: 160px; z-index: 100; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); background-color: #FFFFFF; border: 1px solid #A6A6A6">
+      <div>
+       <h2 id="lblServiceNotice" style="text-align: center">
+       </h2>
+      </div>
+      <div id="lblServiceContent" style="padding: 10px; height: 60px; text-align: center;">
+      </div>
+      <div style="height: 30px; text-align: center; float: left; width: 100%">
+       <input class="btnServiceConfirm btnGray" onclick="UpdateNotification();" type="button"/>
+      </div>
+     </div>
+     <!-- **************** DivRequest BEGIN **************** -->
+     <div id="DivRequest" style="float: left;width:100%;">
+      <div id="RequestYellowBar" style="background-color:#FCF7B2;display:none;">
+       <div style="float:left;width:610px;padding:10px 15px 10px 15px;">
+        <span id="lblRequestNoNba">
+        </span>
+       </div>
+       <div id="DivLinkNow" style="float:left;width:100px;padding:10px 15px 10px 15px;text-align:right;display:none;">
+        <input class="btnLinkNow btnGray" onclick="EftOnLoad(2);" style="right:0;" type="button"/>
+       </div>
+      </div>
+      <div style="float: left; width: 100%; border-top: 2px solid #003B7F; background-color: #EEEEEE;">
+      </div>
+      <div id="DivDeposit" style="float: left; width: 100%; background-color: #EEEEEE; display:none">
+       <div style="padding: 15px 15px 15px 15px; float: left; width: 30%; position: relative; box-sizing: border-box;">
+        <span id="lblFrom">
+        </span>
+        :
+       </div>
+       <div style="padding: 15px 15px 0px 0px; float: left; width: 70%; position: relative; box-sizing: border-box;">
+        <div id="div_nba1" style="padding-bottom: 15px;">
+         <input checked="checked" id="rd_nba1" name="trans_from_to" onclick="OnChangeTransFrom();" style="vertical-align:middle" type="radio" value="NBA1"/>
+         <label for="rd_nba1" id="lbl_bankname_1" style="vertical-align:middle">
+         </label>
+         <br/>
+         <span style="padding-left: 20px">
+          <label for="rd_nba1" id="lbl_bank_account_1">
+          </label>
+         </span>
+        </div>
+        <div id="div_nba2" style="padding-bottom: 15px;">
+         <input id="rd_nba2" name="trans_from_to" onclick="OnChangeTransFrom();" style="vertical-align:middle" type="radio" value="NBA2"/>
+         <label for="rd_nba2" id="lbl_bankname_2" style="vertical-align:middle">
+         </label>
+         <br/>
+         <span style="padding-left: 20px">
+          <label for="rd_nba2" id="lbl_bank_account_2">
+          </label>
+         </span>
+        </div>
+        <div id="div_pps" style="padding-bottom: 15px; border-bottom: 1px solid darkgrey">
+         <input id="rd_pps" name="trans_from_to" onclick="OnChangeTransFrom()" style="vertical-align:middle" type="radio" value="PPS"/>
+         <label for="rd_pps" id="lbl_pps" style="vertical-align:middle">
+         </label>
+         <br/>
+         <span style="padding-left: 20px">
+          <label for="rd_pps" id="lbl_pps2">
+          </label>
+         </span>
+        </div>
+       </div>
+      </div>
+      <div style="float: left; width: 100%; background-color: #EEEEEE">
+       <div style="padding: 15px 15px 15px 15px; float: left; width: 30%; position: relative; box-sizing: border-box;">
+        <span id="lblTo">
+        </span>
+        :
+       </div>
+       <div style="padding: 15px 15px 15px 0px; float: left; width: 70%; position: relative; box-sizing: border-box;">
+        <span id="txtAccount">
+        </span>
+        <br/>
+        <span id="txtBettingAcctNo">
+        </span>
+       </div>
+      </div>
+      <div id="DivWithdrawal" style="float: left; width: 100%; background-color: #EEEEEE; display:none">
+       <div style="background-color: #EEEEEE; ">
+        <div style="padding: 15px 15px 15px 15px; float: left; width: 30%; position: relative; box-sizing: border-box; ">
+         <span id="lblTo_withdrawal">
+         </span>
+         :
+        </div>
+        <div style="padding: 15px 15px 15px 0px; float: left; width: 70%; position: relative; box-sizing: border-box; border-top: 1px solid darkgrey">
+         <div id="div_nba1_withdrawal" style="padding-bottom: 15px;">
+          <label for="rd_nba1" id="lbl_bankname_1_withdrawal" style="vertical-align:middle">
+          </label>
+          <br/>
+          <span>
+           <label for="rd_nba1_withdrawal" id="lbl_bank_account_1_withdrawal">
+           </label>
+          </span>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div style="float: left; width: 100%; border-top: 3px solid white; background-color: #EEEEEE">
+       <div style="padding: 15px 15px 15px 15px; float: left; width: 30%; position: relative; box-sizing: border-box;">
+        <span id="lblTransAmount">
+        </span>
+        ($):
+       </div>
+       <div style="padding: 15px 15px 15px 0px; float: left; width: 70%; position: relative; box-sizing: border-box;">
+        <input class="inputField4" id="trans_amount" name="trans_amount" style="margin-bottom:5px;" type="text"/>
+        <br/>
+        <span id="lbl_eftnote" style="display: none; padding: 10px 0px 0px 0px">
+        </span>
+       </div>
+      </div>
+      <div id="DivBanner" style="float: left; background-color: white; width: 100%; text-align: center; margin-top:10px; display: none">
+       <a id="aBanner">
+        <img id="imgBanner" style="max-height:85px;max-width:472px;"/>
+       </a>
+      </div>
+      <!-- DivRequestButton BEGIN -->
+      <div class="eft_bottom">
+       <div class="eft_bottom_l">
+        <input class="btnClose btnGray" onclick="closeAllBetSlipOverlay()" style="margin-left: 15px" type="button"/>
+        <input class="btnReset btnGray" onclick="OnClickEftReset()" style="margin-left: 5px" type="button"/>
+       </div>
+       <div class="eft_bottom_r">
+        <input class="btnNext btnGray" onclick="OnClickEftNext()" style="margin-right: 15px;" type="button"/>
+       </div>
+      </div>
+      <!-- DivRequestButton END -->
+     </div>
+     <!-- **************** DivNoNba BEGIN **************** -->
+     <div id="DivNoNba" style="display:none; float: left; width: 100%; border-top: 2px solid #003B7F; background-color: #EEEEEE;">
+      <div class="eft_item">
+       <div style="padding:20px">
+        <span id="lbl_NoNba">
+        </span>
+        <span id="lbl_NoNba_Link">
+        </span>
+       </div>
+      </div>
+      <div class="eft_bottom">
+       <div class="eft_bottom_l">
+        <input class="btnClose btnGray" onclick="closeAllBetSlipOverlay()" style="margin-left: 15px" type="button"/>
+       </div>
+       <div class="eft_bottom_r">
+       </div>
+      </div>
+     </div>
+     <!-- **************** DivConfirmCharge BEGIN **************** -->
+     <div id="DivConfirmCharge" style="display:none; float: left; width: 100%; border-top: 2px solid #003B7F; background-color: #EEEEEE;">
+      <div style="overflow-x: hidden; background-color: #D8E2EC; width: vm100%; padding: 10px 20px 10px 20px;">
+       <span id="lbl_ConfirmCharge" style="color: #05378E; font-weight: bold;">
+       </span>
+      </div>
+      <div class="eft_item">
+       <div id="lblConfirmChargeText" style="padding:20px">
+       </div>
+      </div>
+      <div class="eft_bottom">
+       <div class="eft_bottom_l">
+        <input class="btnCancel btnGray" onclick="OnClickEftBack2()" style="margin-left: 15px" type="button"/>
+       </div>
+       <div class="eft_bottom_r">
+        <input class="btnContinue btnGray" onclick="OnClickEftSubmit();" style="margin-right: 15px;" type="button"/>
+       </div>
+      </div>
+     </div>
+     <!-- **************** DivConfirm BEGIN **************** -->
+     <div id="DivConfirm" style="float: left; display: none; width: 100%; border-top: 2px solid #003B7F; background-color: #EEEEEE;">
+      <div style="overflow-x: hidden; background-color: #D8E2EC; width: 100%; padding: 15px 0px 15px 0px;">
+       <span id="lbl_preview" style="padding-left:15px; color: #05378E; font-weight: bold;">
+       </span>
+       <br/>
+       <span id="lbl_preview2" style="padding-left:15px">
+       </span>
+      </div>
+      <div class="eft_item" id="DivConfirmBank">
+       <div class="eft_item_l">
+        <span id="lblPreviewFrom">
+        </span>
+        :
+       </div>
+       <div class="eft_item_r">
+        <span id="lblPreviewBankName">
+        </span>
+        <br/>
+        <span id="lblPreviewBankAcc">
+        </span>
+       </div>
+      </div>
+      <div class="eft_item" id="DivConfirmBet">
+       <div class="eft_item_l">
+        <span id="lblPreviewTo">
+        </span>
+        :
+       </div>
+       <div class="eft_item_r">
+        <span id="lblPreviewBet">
+        </span>
+        <br/>
+        <span id="lblPreviewBetAcc">
+        </span>
+       </div>
+      </div>
+      <div class="eft_item">
+       <div class="eft_item_l">
+        <span id="lblPreviewAmount">
+        </span>
+        :
+       </div>
+       <div class="eft_item_r">
+        $
+        <span id="lblPreviewAmountValue">
+        </span>
+       </div>
+      </div>
+      <div class="eft_item">
+       <div class="eft_item_l">
+        <span id="lblPreviewTransType">
+        </span>
+        :
+       </div>
+       <div class="eft_item_r">
+        <span id="lblPreviewTransTypeValue">
+        </span>
+       </div>
+      </div>
+      <div class="eft_item" id="DivPreviewCharge" style="display: none">
+       <div class="eft_item_l">
+        <span id="lblPreviewCharge">
+        </span>
+        :
+       </div>
+       <div class="eft_item_r">
+        $
+        <span id="lblPreviewChargeValue">
+        </span>
+       </div>
+      </div>
+      <div id="DivBankPin" style="display: none; background-color: #FFF5B0; border-top: solid 3px white; padding-top: 5px;">
+       <!-- DivBankPin BEGIN -->
+       <table border="0" cellpadding="0" cellspacing="0" id="BankPin" style="width:715px">
+        <tbody>
+         <tr>
+          <td class="yellowBarEft" style="padding: 3px 10px 3px 15px;">
+           <table border="0" cellpadding="0" cellspacing="0">
+            <tbody>
+             <tr>
+              <td class="content" colspan="3" style="padding: 0px 0px 0px 0px;">
+               <span id="txtEFTNotice">
+               </span>
+              </td>
+             </tr>
+             <tr>
+              <td colspan="3">
+               <img height="3px" src="/info/include/images/spacer.gif"/>
+              </td>
+             </tr>
+             <tr>
+              <td class="content" style="padding: 0px 0px 0px 0px;" width="">
+               <span id="txtServicePin">
+               </span>
+               :
+              </td>
+              <td class="content" style="padding: 0px 0px 0px 5px;" width="317px">
+               <input class="inputField4" id="pin" maxlength="8" name="pin" readonly="" style="width:100%" type="password"/>
+              </td>
+              <td class="content" style="padding: 0px 0px 0px 10px;">
+               <input class="btnGray" id="btnDeletePin" onclick="Backspace()" style="font-size: 20px; font-weight: bold; line-height:21px;" type="button" value=" ← "/>
+              </td>
+             </tr>
+             <tr>
+              <td colspan="3">
+               <img height="5px" src="/info/include/images/spacer.gif"/>
+              </td>
+             </tr>
+             <tr>
+              <td class="content" style="padding: 0px 0px 0px 0px;">
+              </td>
+              <td class="content" style="padding: 0px 0px 0px 5px;">
+               <table border="0" cellpadding="0" cellspacing="0">
+                <tbody>
+                 <tr>
+                  <td style="padding: 0px 3px 0px 0px;" width="21">
+                   <img id="pinBtn0" onmousedown="inputPinDown(0)" onmouseout="inputPinOut(0)" onmouseup="inputPin(0)"/>
+                  </td>
+                  <td style="padding: 0px 3px 0px 0px;" width="21">
+                   <img id="pinBtn1" onmousedown="inputPinDown(1)" onmouseout="inputPinOut(1)" onmouseup="inputPin(1)"/>
+                  </td>
+                  <td style="padding: 0px 3px 0px 0px;" width="21">
+                   <img id="pinBtn2" onmousedown="inputPinDown(2)" onmouseout="inputPinOut(2)" onmouseup="inputPin(2)"/>
+                  </td>
+                  <td style="padding: 0px 3px 0px 0px;" width="21">
+                   <img id="pinBtn3" onmousedown="inputPinDown(3)" onmouseout="inputPinOut(3)" onmouseup="inputPin(3)"/>
+                  </td>
+                  <td style="padding: 0px 3px 0px 0px;" width="21">
+                   <img id="pinBtn4" onmousedown="inputPinDown(4)" onmouseout="inputPinOut(4)" onmouseup="inputPin(4)"/>
+                  </td>
+                  <td style="padding: 0px 3px 0px 0px;" width="21">
+                   <img id="pinBtn5" onmousedown="inputPinDown(5)" onmouseout="inputPinOut(5)" onmouseup="inputPin(5)"/>
+                  </td>
+                  <td style="padding: 0px 3px 0px 0px;" width="21">
+                   <img id="pinBtn6" onmousedown="inputPinDown(6)" onmouseout="inputPinOut(6)" onmouseup="inputPin(6)"/>
+                  </td>
+                  <td style="padding: 0px 3px 0px 0px;" width="21">
+                   <img id="pinBtn7" onmousedown="inputPinDown(7)" onmouseout="inputPinOut(7)" onmouseup="inputPin(7)"/>
+                  </td>
+                  <td style="padding: 0px 3px 0px 0px;" width="21">
+                   <img id="pinBtn8" onmousedown="inputPinDown(8)" onmouseout="inputPinOut(8)" onmouseup="inputPin(8)"/>
+                  </td>
+                  <td style="padding: 0px 0px 0px 0px;" width="21">
+                   <img id="pinBtn9" onmousedown="inputPinDown(9)" onmouseout="inputPinOut(9)" onmouseup="inputPin(9)"/>
+                  </td>
+                 </tr>
+                </tbody>
+               </table>
+              </td>
+              <td class="content" style="padding: 0px 0px 0px 10px;">
+               <input class="btnReinput btnGray" id="btnReinput" onclick="clrPin()" type="button"/>
+              </td>
+             </tr>
+            </tbody>
+           </table>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+       <!-- DivBankPin END-->
+      </div>
+      <div class="eft_item" id="DivPreviewReminder" style="display:none;background-color:#FFF;padding:10px 20px 5px 15px;">
+       <span id="lblPreviewNoPin">
+       </span>
+      </div>
+      <div class="eft_bottom">
+       <div class="eft_bottom_l">
+        <input class="btnBack btnGray" onclick="OnClickEftBack()" style="margin-left: 15px" type="button"/>
+       </div>
+       <div class="eft_bottom_r">
+        <input class="btnConfirm btnGray" id="btnPreviewSubmit" onclick="OnClickEftSubmit();" style="margin-right: 15px;" type="button"/>
+        <input class="btnConfirm btnGray" id="btnPreviewContinue" onclick="OnClickDisplayCharge();" style="margin-right: 15px;display:none;" type="button"/>
+       </div>
+      </div>
+     </div>
+     <!-- **************** DivProgress BEGIN **************** -->
+     <div id="DivProgress" style="float: left; width: 100%; border-top: 2px solid #003B7F; display: none">
+      <div style="height: 410px; padding: 10px; text-align: center;">
+       <img id="imgProgress" style="width: 50px; margin-top:170px"/>
+       <br/>
+       <span id="lblProgress" style="font-weight: bold;">
+       </span>
+      </div>
+     </div>
+     <div id="DivOtpProgress" style="float: left; width: 100%; border-top: 2px solid #003B7F; display: none">
+      <div style="height: 410px; padding: 10px; text-align: center;">
+       <img id="imgOtpProgress" style="width: 50px; margin-top:170px"/>
+      </div>
+     </div>
+     <div id="DivConfirmAutopay" style="float: left; width: 100%; border-top: 2px solid #003B7F; display: none">
+      <div style="overflow-x: hidden; background-color: #D8E2EC; width: vm100%; padding:10px 20px 10px 20px;">
+       <span id="lbl_ConfirmAutopay" style="color: #05378E; font-weight: bold;">
+        asdfsadf
+       </span>
+      </div>
+      <div style="height: 280px">
+       <div style="padding: 20px; background-color: #EEEEEE;">
+        <span class="content" id="txtConfirmAutopayMsg">
+        </span>
+       </div>
+      </div>
+      <div class="eft_bottom">
+       <div class="eft_bottom_l">
+        <input class="btnCancel btnGray" onclick="OnClickEftBack3()" style="margin-left: 15px" type="button"/>
+       </div>
+       <div class="eft_bottom_r">
+        <input class="btnContinue btnGray" id="btnConfirmAutopay" onclick="OnClickConfirmAutopay()" style="margin-right: 15px" type="button"/>
+       </div>
+      </div>
+     </div>
+     <!-- **************** DivReply START **************** -->
+     <div id="DivReply" style="display: none; float: left; width: 100%; border-top: 2px solid #003B7F;">
+      <div style="padding: 10px; text-align: center;">
+       <img id="imgResult" style="width: 35px; margin-bottom:5px;"/>
+       <br/>
+       <span id="lblResult" style="font-weight: bold;">
+       </span>
+      </div>
+      <div id="DivReplyResult" style="display: none">
+       <div style="overflow-x: hidden; background-color: #D8E2EC; width: 100%; padding: 5px 0px 5px 0px;">
+        <span id="lblSummary" style="padding-left:15px; color: #05378E; font-weight: bold;">
+         Online Deposit Summary
+        </span>
+       </div>
+       <div class="eft_item" id="DivReplyBank">
+        <div class="eft_item_l">
+         <span id="lblResultFrom">
+         </span>
+         :
+        </div>
+        <div class="eft_item_r">
+         <span id="lblResultBankName">
+         </span>
+         <br/>
+         <span id="lblResultBankAcc">
+         </span>
+        </div>
+       </div>
+       <div class="eft_item" id="DivReplyBet">
+        <div class="eft_item_l">
+         <span id="lblResultTo">
+         </span>
+         :
+        </div>
+        <div class="eft_item_r">
+         <span id="lblResultBet">
+         </span>
+         <br/>
+         <span id="lblResultBetAcc">
+         </span>
+        </div>
+       </div>
+       <div class="eft_item">
+        <div class="eft_item_l">
+         <span id="lblResultTransType">
+         </span>
+         :
+        </div>
+        <div class="eft_item_r">
+         <span id="lblResultTransTypeValue">
+         </span>
+        </div>
+       </div>
+       <div class="eft_item">
+        <div class="eft_item_l">
+         <span id="lblResultAmount">
+         </span>
+         :
+        </div>
+        <div class="eft_item_r">
+         $
+         <span id="lblResultAmountValue">
+         </span>
+        </div>
+       </div>
+       <div class="eft_item" id="DivResultFee" style="display: none;">
+        <div class="eft_item_l">
+         <span id="lblResultFee">
+         </span>
+         :
+        </div>
+        <div class="eft_item_r">
+         $
+         <span id="lblResultFeeValue">
+         </span>
+        </div>
+       </div>
+       <div class="eft_item" id="DivRejectReason" style="display: none;">
+        <div class="eft_item_l">
+         <span id="lblResultReject">
+         </span>
+         :
+        </div>
+        <div class="eft_item_r">
+         <span id="lblResultRejectReason">
+         </span>
+        </div>
+       </div>
+       <div class="eft_item" id="DivReference" style="display:none">
+        <div class="eft_item_l">
+         <span id="lblResultRef">
+         </span>
+         :
+        </div>
+        <div class="eft_item_r">
+         <span id="lblResultRefNo">
+          ---
+         </span>
+        </div>
+       </div>
+       <div class="eft_item" id="DivBalance" style="display: none; background-color: #FFF;">
+        <div class="eft_item_l">
+         <span id="lblResultBetAccBal">
+         </span>
+         :
+        </div>
+        <div class="eft_item_r">
+         $
+         <span id="lblResultBetAccBalVal">
+         </span>
+        </div>
+       </div>
+       <div class="eft_item" id="DivReminder" style="display: none; background-color: #FFF; padding: 10px 20px 5px 15px;">
+        <span id="lblResultReminder">
+        </span>
+       </div>
+       <div class="eft_bottom">
+        <div class="eft_bottom_l">
+        </div>
+        <div class="eft_bottom_r">
+         <input class="btnDone btnGray" onclick="EftCompleted()" style="margin-right: 15px" type="button"/>
+        </div>
+       </div>
+      </div>
+     </div>
+     <!-- **************** DivPPSRedirect START **************** -->
+     <div id="DivPPSRedirect" style="float: left; width: 100%; border-top: 2px solid #003B7F; display: none">
+      <div style="height: 280px">
+       <div style="padding: 60px 100px 7px 100px">
+        <span class="content" id="txtRedirectMsg">
+        </span>
+       </div>
+      </div>
+      <div class="eft_bottom">
+       <div class="eft_bottom_l">
+        <input class="btnBack btnGray" onclick="OnClickEftBack2();" style="margin-left: 15px" type="button"/>
+       </div>
+       <div class="eft_bottom_r">
+        <input class="btnRedirect btnGray" onclick="OnClickPPSRedirect()" style="margin-right: 15px" type="button"/>
+       </div>
+      </div>
+     </div>
+     <!-- **************** DivLink **************** -->
+     <div id="DivLink" style="float: left; width: 100%; border-top: 2px solid #003B7F; display: none">
+      <div style="float: left; width: 100%; background-color: #EEEEEE;">
+       <div style="padding: 10px">
+        <span class="content" id="lblLinkMsg">
+        </span>
+       </div>
+       <div id="DivLinkNba1Fps" style="width:335px; height:215px; margin:0px 5px 0px 10px; padding:10px; background-color:white; float:left; border-radius:5px;">
+        <div>
+         <span id="lblLinkingNba1">
+         </span>
+        </div>
+        <hr/>
+        <div style="padding:5px 10px">
+         <div style="padding-bottom:5px">
+          <span id="lblLinkingDepWit" style="color:#0096d6">
+          </span>
+         </div>
+         <div id="DivLinkNoNba1" style="display:none">
+          <span id="lblLinkNoNba1">
+          </span>
+         </div>
+         <div id="DivLinkNba1" style="display:none">
+          <div style="height:50px">
+           <div class="biggerFont">
+            <span id="lblLinkingBank1">
+            </span>
+           </div>
+           <div class="biggerFont" style="padding-bottom:5px">
+            <span id="lblLinkingBankAcc1">
+            </span>
+           </div>
+          </div>
+          <div class="biggerFont" id="DivLinkNba1Support" style="margin-top:5px">
+           <div class="eft_link_fps" id="DivLinkFps1" style="margin-bottom:5px; background-color:#EEEEEE; border-radius: 5px;  height:50px;">
+            <div style="float:left; width:245px; padding: 8px 10px 9px 10px;">
+             <span id="lblLinkFpsMethod">
+             </span>
+             <br/>
+             <span id="lblLinkFpsStatus">
+             </span>
+            </div>
+            <div style="float:left; padding: 13px 10px 0px 10px; ">
+             <img id="ImgLinkNba1Fps"/>
+            </div>
+           </div>
+           <div id="DivLinkNba1Epsco" style="margin-bottom:5px; background-color:#EEEEEE; border-radius:5px; height:50px;">
+            <div style="float:left; width:245px; padding: 8px 10px 9px 10px;">
+             <span id="lblLinkEpscoMethod">
+             </span>
+             <br/>
+             <span id="lblLinkEpscoStatus">
+             </span>
+            </div>
+            <div style="float:left; padding: 13px 10px 0px 10px; ">
+             <img id="ImgLinkNba1Epsco"/>
+            </div>
+           </div>
+          </div>
+          <div id="DivLinkNba1NotSupport" style="display:none;padding-top:10px;">
+           <span id="lblLinkNba1NotSupport">
+           </span>
+          </div>
+         </div>
+        </div>
+       </div>
+       <div id="DivLinkNba2Fps" style="width:335px; height:215px; margin:0px 10px 0px 5px; padding:10px; background-color:white; float:left; border-radius:5px;">
+        <div>
+         <span id="lblLinkingNba2">
+         </span>
+        </div>
+        <hr/>
+        <div style="padding:5px 10px">
+         <div style="padding-bottom:5px">
+          <span id="lblLinkingDep" style="color:#0096d6">
+          </span>
+         </div>
+         <div id="DivLinkNoNba2" style="display:none">
+          <span id="lblLinkNoNba2">
+          </span>
+         </div>
+         <div id="DivLinkNba2" style="display:none">
+          <div style="height:50px">
+           <div class="biggerFont">
+            <span id="lblLinkingBank2">
+            </span>
+           </div>
+           <div class="biggerFont" style="margin-bottom:5px;">
+            <span id="lblLinkingBankAcc2">
+            </span>
+           </div>
+          </div>
+          <div class="biggerFont" id="DivLinkNba2Support" style="margin-top:5px">
+           <div class="eft_link_fps" id="DivLinkFps2" style="margin-bottom:5px; background-color:#EEEEEE; border-radius:5px; height:50px;">
+            <div style="float:left; width:245px; padding: 8px 10px 9px 10px;">
+             <span id="lblLinkFpsMethod2">
+             </span>
+             <br/>
+             <span id="lblLinkFpsStatus2">
+             </span>
+            </div>
+            <div style="float:left; padding: 13px 10px 0px 10px;">
+             <img id="ImgLinkNba2Fps"/>
+            </div>
+           </div>
+           <div id="DivLinkNba2Epsco" style="margin-bottom:5px; background-color:#EEEEEE; border-radius:5px; height:50px;">
+            <div style="float:left; width:245px; padding: 8px 10px 9px 10px;">
+             <span id="lblLinkEpscoMethod2">
+             </span>
+             <br/>
+             <span id="lblLinkEpscoStatus2">
+             </span>
+            </div>
+            <div style="float:left; padding: 13px 10px 0px 10px;">
+             <img id="ImgLinkNba2Epsco"/>
+            </div>
+           </div>
+          </div>
+          <div id="DivLinkNba2NotSupport" style="display:none;padding-top:10px;">
+           <span id="lblLinkNba2NotSupport">
+           </span>
+          </div>
+         </div>
+        </div>
+       </div>
+       <div style="clear:both; padding:10px;">
+        <span id="lblLinkMsg2">
+        </span>
+       </div>
+      </div>
+      <div id="DivBannerLink" style="float: left; background-color: white; width: 100%; text-align: center; margin-top:10px; display: none">
+       <a id="aBannerLink">
+        <img id="imgBannerLink" style="max-height:85px;max-width:472px;"/>
+       </a>
+      </div>
+      <div class="eft_bottom">
+       <div class="eft_bottom_l">
+        <input class="btnClose btnGray" onclick="closeAllBetSlipOverlay()" style="margin-left: 15px" type="button"/>
+       </div>
+       <div class="eft_bottom_r">
+        <input class="btnNext btnGray" disabled="disabled" id="btnLinkNext" onclick="OnClickLinkNext()" style="margin-right: 15px" type="button"/>
+       </div>
+      </div>
+     </div>
+     <div id="DivLinkSummary" style="display: none; float: left; width: 100%; border-top: 2px solid #003B7F;">
+      <div style="padding: 10px; text-align: left;">
+       <span id="lblLinkSummaryResult">
+       </span>
+      </div>
+      <div>
+       <div class="eft_item">
+        <div class="eft_item_l">
+         <span id="lblLinkSummaryName">
+         </span>
+         :
+        </div>
+        <div class="eft_item_r">
+         <span id="lblLinkSummaryResultName">
+         </span>
+        </div>
+       </div>
+       <div class="eft_item">
+        <div class="eft_item_l">
+         <span id="lblLinkSummaryBankName">
+         </span>
+         :
+        </div>
+        <div class="eft_item_r">
+         <span id="lblLinkSummaryResultBankName">
+         </span>
+        </div>
+       </div>
+       <div class="eft_item">
+        <div class="eft_item_l">
+         <span id="lblLinkSummaryBankAc">
+         </span>
+         :
+        </div>
+        <div class="eft_item_r">
+         <span id="lblLinkSummaryResultBankAc">
+         </span>
+        </div>
+       </div>
+       <div class="eft_item">
+        <div class="eft_item_l">
+         <span id="lblLinkSummaryPhone">
+         </span>
+         :
+        </div>
+        <div class="eft_item_r">
+         <span id="lblLinkSummaryResultPhone">
+         </span>
+        </div>
+       </div>
+       <div class="eft_item" id="DivLinkSummaryReject" style="display:none">
+        <div class="eft_item_l">
+         <span id="lblLinkSummaryReject">
+         </span>
+         :
+        </div>
+        <div class="eft_item_r">
+         <span id="lblLinkSummaryResultReject">
+         </span>
+        </div>
+       </div>
+       <div class="eft_item" style="background-color: #FFF; padding: 10px 20px 5px 15px;">
+        <span id="lblLinkSummaryResultReminder">
+        </span>
+       </div>
+       <div class="eft_bottom">
+        <div class="eft_bottom_l">
+        </div>
+        <div class="eft_bottom_r">
+         <input class="btnDone btnGray" onclick="EftOnLoad(2)" style="margin-right: 15px" type="button"/>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div id="DivLinkTandC" style="float: left; width: 100%; border-top: 2px solid #003B7F; display: none">
+      <div>
+       <div class="eft_item">
+        <div class="eft_item_l">
+         <span id="lblLinkFullname">
+         </span>
+         :
+        </div>
+        <div class="eft_item_r">
+         <span id="lblLinkFullnameValue">
+         </span>
+        </div>
+       </div>
+       <div class="eft_item">
+        <div class="eft_item_l">
+         <span id="lblLinkBankname">
+         </span>
+         :
+        </div>
+        <div class="eft_item_r">
+         <span id="lblLinkBanknameValue">
+         </span>
+        </div>
+       </div>
+       <div class="eft_item">
+        <div class="eft_item_l">
+         <span id="lblLinkBankac">
+         </span>
+         :
+        </div>
+        <div class="eft_item_r">
+         <span id="lblLinkBankacValue">
+         </span>
+        </div>
+       </div>
+       <div class="eft_item">
+        <div class="eft_item_l">
+         <span id="lblLinkMobile">
+         </span>
+         :
+        </div>
+        <div class="eft_item_r">
+         <span id="lblLinkMobileValue">
+         </span>
+        </div>
+       </div>
+      </div>
+      <div class="eft_item" style="margin-top:5px;padding:10px;">
+       <div id="lblLinkTandC" style="height:241px;overflow-y:auto; padding:10px 10px 20px 10px; box-shadow: 0 0 0pt 1px grey; background-color:white;">
+        <strong>
+         <span id="lblTandC">
+         </span>
+        </strong>
+        <hr/>
+        <span id="lblTandCMsg">
+        </span>
+       </div>
+       <div style="margin-top:5px">
+        <input id="chkTandC" onchange="OnClickLinkTandCCheckbox()" type="checkbox"/>
+        <label for="chkTandC" id="lblLinkTandCCheck">
+        </label>
+       </div>
+      </div>
+      <div class="eft_bottom">
+       <div class="eft_bottom_l">
+        <input class="btnBack btnGray" onclick="OnClickLinkBack()" style="margin-left: 15px" type="button"/>
+       </div>
+       <div class="eft_bottom_r">
+        <input class="btnNext btnGray" id="btnLinkTandC" onclick="OnClickLinkTandC()" style="margin-right: 15px" type="button"/>
+       </div>
+      </div>
+     </div>
+     <div id="DivLinkOtpFailed" style="float: left; width: 100%; border-top: 2px solid #003B7F; display: none">
+      <div style="padding: 10px; text-align: center;">
+       <img id="imgOtpFailed" style="width: 35px; margin-bottom:5px;"/>
+       <br/>
+       <span id="lblOtpFailed" style="font-weight: bold;">
+       </span>
+      </div>
+      <div style="height:20px;margin-bottom:2px;background-color: #D8E2EE">
+      </div>
+      <div style="background-color:#EFF0F1;padding:20px;">
+       <span id="lblOtpFailedMsg">
+       </span>
+      </div>
+      <div class="eft_bottom">
+       <div class="eft_bottom_l">
+       </div>
+       <div class="eft_bottom_r">
+        <input class="btnClose btnGray" onclick="closeAllBetSlipOverlay()" style="margin-right: 15px" type="button"/>
+       </div>
+      </div>
+     </div>
+     <div id="DivLinkOtpValidate" style="float: left; width: 100%; border-top: 2px solid #003B7F; background-color: #EEEEEE; display: none; height:442px;">
+      <div id="divOtpResent" style="width: 100%; background-color: #1B96D4; display: none; padding: 5px 0px 5px 0px; text-align: center; color: white; float: left;">
+       <span id="lblOtpResent">
+       </span>
+      </div>
+      <div id="divOtpInvalid" style="width: 100%; background-color: #FAD3D8; display: none; padding: 5px 0px 5px 0px; text-align: center; color: #D42027; float: left;">
+       <span id="lblOtpInvalid">
+       </span>
+      </div>
+      <div style="margin:50px auto 50px auto; width:400px; padding:15px;background-color: #FFFFFF;">
+       <div class="biggerFont" style="text-align: center; padding:5px;">
+        <span id="lblOtpsent">
+        </span>
+       </div>
+       <div style="text-align: center; padding:5px; color: #9c9999">
+        <span id="lblOtpsentIncorrect">
+        </span>
+       </div>
+       <div class="biggerFont" style="text-align: center; padding:15px 5px 10px 5px">
+        <span id="lblOtpInput">
+        </span>
+       </div>
+       <div style="text-align: center">
+        <input class="otpCode" id="otpInput0" maxlength="1"/>
+        <input class="otpCode" id="otpInput1" maxlength="1"/>
+        <input class="otpCode" id="otpInput2" maxlength="1"/>
+        <input class="otpCode" id="otpInput3" maxlength="1"/>
+        <input class="otpCode" id="otpInput4" maxlength="1"/>
+        <input class="otpCode" id="otpInput5" maxlength="1"/>
+       </div>
+       <div class="biggerFont" style="text-align: center; padding:30px 0px 0px 5px;">
+        <span id="lblNoOtp">
+        </span>
+       </div>
+       <div style="text-align: center; padding:5px;">
+        <a class="urlDisabled" id="lnkOtpResend">
+        </a>
+        <span id="bracketLeft">
+         (
+        </span>
+        <span id="otpTimer">
+        </span>
+        <span id="bracketRight">
+         )
+        </span>
+       </div>
+      </div>
+      <div class="eft_bottom">
+       <div class="eft_bottom_l">
+        <input class="btnBack btnGray" onclick="OnClickLinkBack()" style="margin-left: 15px" type="button"/>
+       </div>
+       <div class="eft_bottom_r">
+        <input class="btnNext btnGray" disabled="disabled" id="btnOtpValidate" onclick="OtpCodeConfirm()" style="margin-right: 15px" type="button"/>
+       </div>
+      </div>
+     </div>
+     <div id="DivLinkReply" style="display: none; float: left; width: 100%; border-top: 2px solid #003B7F;">
+      <div style="padding: 10px; text-align: center;">
+       <img id="imgLinkResult" style="width: 35px; margin-bottom:5px;"/>
+       <br/>
+       <span id="lblLinkResult" style="font-weight: bold;">
+       </span>
+      </div>
+      <div style="padding:5px;text-align: center;">
+       <span id="lblLinkReplyMsg">
+       </span>
+      </div>
+      <div id="DivLinkReplyResult" style="display: none">
+       <div class="eft_item">
+        <div class="eft_item_l">
+         <span id="lblLinkReplyName">
+         </span>
+         :
+        </div>
+        <div class="eft_item_r">
+         <span id="lblLinkResultName">
+         </span>
+        </div>
+       </div>
+       <div class="eft_item">
+        <div class="eft_item_l">
+         <span id="lblLinkReplyBankName">
+         </span>
+         :
+        </div>
+        <div class="eft_item_r">
+         <span id="lblLinkResultBankName">
+         </span>
+        </div>
+       </div>
+       <div class="eft_item">
+        <div class="eft_item_l">
+         <span id="lblLinkReplyBankAc">
+         </span>
+         :
+        </div>
+        <div class="eft_item_r">
+         <span id="lblLinkResultBankAc">
+         </span>
+        </div>
+       </div>
+       <div class="eft_item">
+        <div class="eft_item_l">
+         <span id="lblLinkReplyPhone">
+         </span>
+         :
+        </div>
+        <div class="eft_item_r">
+         <span id="lblLinkResultPhone">
+         </span>
+        </div>
+       </div>
+       <div class="eft_item" id="DivLinkDefaultDeposit" style="display:none;">
+        <div class="eft_item_l">
+         <span id="lblLinkReplyDefaultDeposit">
+         </span>
+         :
+        </div>
+        <div class="eft_item_r">
+         $
+         <span id="lblLinkResultDefaultDeposit">
+         </span>
+        </div>
+       </div>
+       <div class="eft_item" id="DivLinkRejectReason" style="display: none;">
+        <div class="eft_item_l">
+         <span id="lblLinkReplyReject">
+         </span>
+         :
+        </div>
+        <div class="eft_item_r">
+         <span id="lblLinkResultReject">
+         </span>
+        </div>
+       </div>
+       <div class="eft_item" id="DivLinkReminder" style="display: none; background-color: #FFF; padding: 10px 20px 5px 15px;">
+        <span id="lblLinkResultReminder">
+        </span>
+       </div>
+       <div class="eft_bottom">
+        <div class="eft_bottom_l">
+        </div>
+        <div class="eft_bottom_r">
+         <input class="btnDone btnGray" onclick="EftOnLoad(2)" style="margin-right: 15px" type="button"/>
+        </div>
+       </div>
+      </div>
+      <div id="DivLinkContent" style="display:none; background-color: #EEEEEE;">
+       <div style="padding:10px;">
+        <span id="lblLinkContent">
+        </span>
+       </div>
+       <div class="eft_bottom">
+        <div class="eft_bottom_l">
+        </div>
+        <div class="eft_bottom_r">
+         <input class="btnDone btnGray" onclick="EftOnLoad(0)" style="margin-right: 15px" type="button"/>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div id="DivFpsBankList" style="float: left; width: 100%; border-top: 2px solid #003B7F; display: none">
+      <div class="eft_item">
+       <div style="padding:10px">
+        <span id="lbl_banklist_title">
+        </span>
+       </div>
+      </div>
+      <div style="padding:0px 10px 10px 10px; height:390px; overflow-y:auto;">
+       <table id="dgBanklist" style="width:100%; border-spacing: 0px;">
+        <tbody>
+         <tr>
+          <td class="eft_banklist_header" id="lblBankCode" style="text-align: center;">
+          </td>
+          <td class="eft_banklist_header" id="lblBankName">
+          </td>
+         </tr>
+        </tbody>
+       </table>
+      </div>
+      <div class="eft_bottom">
+       <div class="eft_bottom_l">
+        <input class="btnBack btnGray" onclick="BackFpsBankList()" style="margin-left: 15px" type="button"/>
+       </div>
+       <div class="eft_bottom_r">
+       </div>
+      </div>
+     </div>
+     <div id="DivPpsResult" style="float: left; width: 100%; border-top: 2px solid #003B7F; display: none">
+      <div style="padding: 10px; text-align: center;">
+       <img id="imgPpsResult" style="width: 40px;"/>
+       <br/>
+       <span id="lblPpsResult" style="font-weight: bold;">
+       </span>
+      </div>
+      <div id="DivReplyPpsResult">
+       <div style="overflow-x: hidden; background-color: #D8E2EC; width: 100%; padding: 5px 0px 5px 0px;">
+        <span id="lblPpsResultSummary" style="padding-left: 15px; color: #05378E; font-weight: bold;">
+         Online Deposit Summary
+        </span>
+       </div>
+       <div class="eft_item">
+        <div class="eft_item_l">
+         <span id="lbl_ppsResult_txn_date">
+         </span>
+         :
+        </div>
+        <div class="eft_item_r">
+         <span id="lbl_ppsResult_txn_date_text">
+         </span>
+        </div>
+       </div>
+       <div class="eft_item">
+        <div class="eft_item_l">
+         <span id="lbl_ppsResult_ref_no">
+         </span>
+         :
+        </div>
+        <div class="eft_item_r">
+         <span id="lbl_ppsResult_ref_no_text">
+         </span>
+        </div>
+       </div>
+       <div class="eft_item">
+        <div class="eft_item_l">
+         <span id="lbl_ppsResult_payment_no">
+         </span>
+         :
+        </div>
+        <div class="eft_item_r">
+         <span id="lbl_ppsResult_payment_no_text">
+         </span>
+        </div>
+       </div>
+       <div class="eft_item">
+        <div class="eft_item_l">
+         <span id="lbl_ppsResult_trans_amount">
+         </span>
+         :
+        </div>
+        <div class="eft_item_r">
+         $
+         <span id="lbl_ppsResult_trans_amount_text">
+         </span>
+        </div>
+       </div>
+       <div class="eft_item">
+        <div class="eft_item_l">
+         <span id="lbl_ppsResult_result_msg">
+         </span>
+         :
+        </div>
+        <div class="eft_item_r">
+         <span id="lbl_ppsResult_result_msg_text">
+         </span>
+        </div>
+       </div>
+      </div>
+      <div class="eft_bottom">
+       <div class="eft_bottom_l">
+       </div>
+       <div class="eft_bottom_r">
+        <input class="btnDone btnGray" onclick="EftOnLoad(0)" style="margin-right: 15px" type="button"/>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div id="divLogout">
+   <div style="background-color:#FFFFFF">
+    <iframe border="0" frameborder="0" id="logoutFrame" marginheight="0" marginwidth="0" scrolling="no" src="" style="width:758px; height:358px;">
+    </iframe>
+   </div>
+   <div id="logoutCloseDiv">
+    <div id="logoutClose" onclick="CloseLogoutPopup();">
+    </div>
+   </div>
+  </div>
+  <iframe class="aamIframeLoaded" id="destination_publishing_iframe_hkjcweb_0" name="destination_publishing_iframe_hkjcweb_0_name" sandbox="allow-scripts allow-same-origin" src="https://hkjcweb.demdex.net/dest5.html?d_nsid=0#https%3A%2F%2Fbet.hkjc.com%2Ffootball%2Fodds%2Fodds_inplay_all.aspx%3Flang%3DEN%26tmatchid%3D195df00d-70ca-4522-a290-42d8efb2e456" style="display: none; width: 0px; height: 0px;" title="Adobe ID Syncing iFrame">
+  </iframe>
+  <script src="/common/wa_tracker.js" type="text/javascript">
+  </script>
+  <script src="/info/include/wa/wa_tracker_config.js" type="text/javascript">
+  </script>
+  <div id="div_engine" style="position:absolute">
+  </div>
+  <iframe id="tFrame" style="display: none">
+  </iframe>
+ </body>
+</html>
