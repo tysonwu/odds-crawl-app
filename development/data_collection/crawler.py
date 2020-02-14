@@ -15,130 +15,186 @@ import pandas as pd
 import os
 import time
 import sys
+import re
 from datetime import datetime, timedelta
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
+
 # game_info.py
 from game_info import game_data
 
-def parse_web(driver, event_id, game_starting_time):
-    # odds table div id name
-    chl_id = 'dCHLTable'+event_id
-    
+
+def parse_scrap_event_id(driver, game_starting_time):
     try:
-        chlodds = driver.find_element_by_xpath("//div[@id='"+chl_id+"'"+"and @class='betTypeAllOdds']")
-        chlodds_content = chlodds.get_attribute('innerHTML')
+        game_info = driver.find_element_by_id("litMDay")
 
-    except:
-        print('No Corner HiLow content found.')
-        return None
-
-    soup = BeautifulSoup(chlodds_content, 'html.parser')
-    return soup
-
-
-def parse_scrape_event_id(driver, game_starting_time):
-    try:
-        game_info = driver.find_element_by_id('litMDay')
-    
     except:
         driver.quit()
-        print('Error finding weekday and game number. Program will now terminate.')
+        print("Error finding weekday and game number. Program will now terminate.")
         sys.exit()
-    
-    print('Found weekday and game number.')
-    game_info_content = game_info.get_attribute('innerHTML')
-    
-    # getting a content such as 12/02 18:30    
-    game_info_content = game_info_content.replace(' ','') # get eg. WED1, FRI30
+
+    print("Found weekday and game number.")
+    game_info_content = game_info.get_attribute("innerHTML")
+
+    # getting a content such as 12/02 18:30
+    game_info_content = game_info_content.replace(" ", "")  # get eg. WED1, FRI30
     start_date, start_time = game_starting_time.split()[0], game_starting_time.split()[1]
-    start_date = datetime.strptime(start_date, '%Y-%m-%d') # str to datetime
-    start_time = datetime.strptime(start_time, '%H:%M:%S').strftime('%H:%M') # str to datetime to str
-    if start_time <= '12:00': # because of timezone diff, if before 12:00 then still count as yesterday's game
+    start_date = datetime.strptime(start_date, "%Y-%m-%d")  # str to datetime
+    # str to datetime to str
+    start_time = datetime.strptime(start_time, "%H:%M:%S").strftime("%H:%M") 
+    if (start_time <= "12:00"):  
+        # because of timezone diff, if before 12:00 then still count as yesterday's game
         start_date = start_date - timedelta(days=1)
-    start_date = datetime.strftime(start_date, '%Y%m%d') # datetime to str
-    return (start_date+game_info_content)
+    start_date = datetime.strftime(start_date, "%Y%m%d")  # datetime to str
+    return start_date + game_info_content
 
-def scrape_team_names():
-    pass
-    return None
 
-def scrape_odds(soup, event_id):
-    entry = '1'
-    line_list = []
+def parse_scrap_team_names(driver):  # returns a dict {home: xxx, away: yyy}
+    try:
+        home_name = driver.find_element_by_xpath('//*[@id="litTeamsStr"]/span/span[1]')
+        away_name = driver.find_element_by_xpath('//*[@id="litTeamsStr"]/span/span[3]')
+
+    except:
+        driver.quit()
+        print("Error finding team names. Program will now terminate.")
+        sys.exit()
+
+    print("Found team names.")
+    # home team
+    home_name_content = BeautifulSoup(home_name.get_attribute('innerHTML'), 'html.parser').text
+    home_name_content = re.search('(.*)\(Home\)',home_name_content).group(1).strip()
+    
+    # away team
+    away_name_content = BeautifulSoup(away_name.get_attribute('innerHTML'), 'html.parser').text
+    away_name_content = re.search('(.*)\(Away\)',away_name_content).group(1).strip()
+    return dict(home=home_name_content, away=away_name_content)
+
+
+def scrap_odds(driver, event_id):  #  returns a dict
+    try:
+        chl_id = "dCHLTable" + event_id
+        driver.find_element_by_xpath(
+            "//div[@id='" + chl_id + "'" + "and @class='betTypeAllOdds']")
+
+    except:
+        driver.quit()
+        print("Error finding Corner hilow odds. Program will now terminate.")
+        sys.exit()
+
+    entry = "1"
+    chl_line_list = []
     chl_hi_list = []
     chl_low_list = []
-    if soup.find('span', id = event_id+"_CHL_LINE_"+entry).text == '---': # suspend time
-        return dict(line_list=line_list, 
-                    chl_hi_list=chl_hi_list, 
-                    chl_low_list=chl_low_list) 
-    while (soup.find('span', id = event_id+"_CHL_LINE_"+entry)): # exit when return None
-        # get text content from a specific span id
-        line = soup.find('span', id = event_id+"_CHL_LINE_"+entry).text.strip('[]')
-        chl_hi = soup.find('span', id = event_id+"_CHL_H_"+entry).text
-        chl_low = soup.find('span', id = event_id+"_CHL_L_"+entry).text
-        line_list.append(line)
-        chl_hi_list.append(chl_hi)
-        chl_low_list.append(chl_low)
-        entry = str(int(entry)+1)
-    return dict(line_list=line_list, 
-                chl_hi_list=chl_hi_list, 
-                chl_low_list=chl_low_list) # return a dict
 
-def data_manipulation(odd_dict, game_starting_time):
+    # skip suspended time "---" entry
+    if (driver.find_element_by_id(event_id+'_CHL_H_'+entry).get_attribute('innerHTML') == "---"):
+        return dict(chl_line=chl_line_list, chl_hi=chl_hi_list, chl_low=chl_low_list)
+
+    while (True):
+        try:
+            chl_line_list.append(
+                driver.find_element_by_id(event_id+'_CHL_LINE_'+entry).get_attribute(
+                    'innerHTML').strip("[]"))
+            chl_hi_list.append(
+                driver.find_element_by_id(event_id+'_CHL_H_'+entry).get_attribute(
+                    'innerHTML'))
+            chl_low_list.append(
+                driver.find_element_by_id(event_id+'_CHL_L_'+entry).get_attribute(
+                    'innerHTML'))
+            entry = str(int(entry) + 1)
+        except:
+            # return things when error
+            return dict(chl_line=chl_line_list, chl_hi=chl_hi_list, chl_low=chl_low_list)
+
+
+def scrap_live_score(driver):  # return a dict eg. {home_score: 1, away_score: 2}
+    try:
+        live_score = driver.find_element_by_class_name('matchresult').get_attribute('innerHTML')
+    except:
+        driver.quit()
+        print("Error finding live score. Program will now terminate.")
+        sys.exit()
+    
+    score_list = [score.strip() for score in live_score.split(':')]  # [home, away]
+    # when score is not live yet (eg. before start of game), the attribute reutrns 'vs'
+    # so the return dict would be {home_score: vs, away_score: vs}
+    return dict(home_score=score_list[0], away_score=score_list[-1])
+
+
+def data_manipulation(odd_dict, team_name_dict, live_score_dict, event_id, game_starting_time):
     # add timestamp
     timestamp = datetime.now()
-    timestamp = datetime.strptime(datetime.strftime(timestamp, '%Y-%m-%d %H:%M:%S'), 
-                                  '%Y-%m-%d %H:%M:%S')
+    timestamp = datetime.strptime(datetime.strftime(timestamp, "%Y-%m-%d %H:%M:%S"), 
+                                  "%Y-%m-%d %H:%M:%S")
 
-    odds = pd.DataFrame({'timestamp': timestamp,
-                         'line': odd_dict['line_list'],
-                         'corner_hi':odd_dict['chl_hi_list'],
-                         'corner_low': odd_dict['chl_low_list']})
+    game_starting_time = datetime.strptime(game_starting_time, "%Y-%m-%d %H:%M:%S")
+    minutes = str(max((timestamp - game_starting_time), 
+                      timedelta(seconds=0))) # truncate for time before game starts
+
+    time_data = pd.DataFrame({"event_id": event_id,
+                              "timestamp": timestamp,
+                              "game_starting_time": game_starting_time,
+                              "minutes": minutes},index=[0])
+
+    # append team name data
+    odds = pd.concat([time_data, pd.DataFrame(team_name_dict, index=[0])], axis=1)
     
-    odds['game_starting_time'] = game_starting_time
-    odds['game_starting_time'] = odds['game_starting_time'].apply(
-        lambda x: datetime.strptime(x, '%Y-%m-%d %H:%M:%S'))
-    odds['minutes'] = odds.timestamp - odds.game_starting_time
-    odds['minutes'] = odds['minutes'].apply(
-        lambda x: datetime.strptime(str(x), '0 days %H:%M:%S').strftime('%H:%M:%S'))
-    
+    # append live_score data
+    odds = pd.concat([odds, pd.DataFrame(live_score_dict, index=[0])], axis=1)
+
+    # append corner hilow odds data
+    odds = pd.concat([odds, pd.DataFrame(odd_dict)], axis=1).fillna(method="ffill")
     return odds
 
+
 def store_data(odds, event_id, path_dir):
-    path_file = path_dir+event_id+'.csv'
-    
+    path_file = path_dir + event_id + ".csv"
+
     # if file exists, write line; if file does not exist, create one and write line
     if os.path.exists(path_file) == True:
-        odds.to_csv(path_file, index=False, mode='a', header=False)
+        odds.to_csv(path_file, index=False, mode="a", header=False)
     else:
-        odds.to_csv(path_file, index=False, mode='w', header=True)
+        odds.to_csv(path_file, index=False, mode="w", header=True)
 
-def main(load_sleep=15, crawl_interval=10):
-    print('Start running crawl script...')
-    
-    game = game_data()
+
+def initialize(url, load_sleep=7):
     driver = webdriver.Chrome(ChromeDriverManager().install())
-    driver.get(game.url)
-    
-    time.sleep(load_sleep) # to let the HTML load
+    driver.get(url)
+    time.sleep(load_sleep)  # to let the HTML load
+    return driver
+
+
+def main(crawl_interval=10):
+    print("Start running crawl script...")
+
+    game = game_data()
+    driver = initialize(game.url)
     
     # get event_id
-    event_id = parse_scrape_event_id(driver, game.game_starting_time)
-    
-    while(True):
-        soup = parse_web(driver, event_id, game.game_starting_time)
-        if soup is not None:
-            odds_dict = scrape_odds(soup, event_id)
-            odds = data_manipulation(odds_dict, game.game_starting_time)
+    event_id = parse_scrap_event_id(driver, game.game_starting_time)
+
+    # get team info
+    team_name_dict = parse_scrap_team_names(driver)
+
+    while True:
+        live_score_dict = scrap_live_score(driver)
+        odds_dict = scrap_odds(driver, event_id)
+        odds = data_manipulation(odds_dict, 
+                                 team_name_dict, 
+                                 live_score_dict,
+                                 event_id, 
+                                 game.game_starting_time)
+        if not odds.chl_line.isnull().values.any():
             store_data(odds, event_id, game.path_dir)
-        
-        print('Done crawling on {}. Wait {} seconds for another crawl...'.format(datetime.now(), crawl_interval))
+
+        print("Done crawling on {}. Wait {} seconds for another crawl...".format(
+            datetime.now(), crawl_interval))
         time.sleep(crawl_interval)
-        print('Refresh, start crawling again...')
+        print("Refresh, start crawling again...")
 
-    print('Crawling done. Termination of script.')
+    print("Crawling done. Termination of script.")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

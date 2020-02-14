@@ -19,20 +19,22 @@ import plotly
 from dash.dependencies import Input, Output
 
 from game_info import game_data
-# from crawler import get_event_id
+from crawler import initialize, parse_scrap_event_id
+
+#-------------
+event_id = '20200213THU7'
+#-------------
 
 def data_pipeline(data_path):
     data = pd.read_csv(data_path)
 
     # split data to data_dict by line
-    lines = list(set(data.line))
+    lines = list(set(data.chl_line))
     data_dict = {}
     time_list = sorted(list(set(data.minutes)))
-    # time_range = [data['minutes'].values.min(), data['minutes'].values.max()]
-    # odd_range = [data[['corner_hi','corner_low']].min().min(), 
-    #              data[['corner_hi','corner_low']].max().max()]
+
     for line in lines:
-        filtered_data = data[data.line==line][['minutes', 'corner_hi', 'corner_low']].sort_values(
+        filtered_data = data[data.chl_line==line][['minutes', 'chl_hi', 'chl_low']].sort_values(
             by=['minutes'])
         data_dict[line] = pd.DataFrame({'minutes': time_list})
         data_dict[line] = data_dict[line].merge(filtered_data, 
@@ -44,8 +46,8 @@ def graph_data_dict(data_dict, lines):
     for line in lines:
         for hilow in ['hi','low']:
             feed_list.append({'x':data_dict[line]['minutes'], 
-                              'y':data_dict[line]['corner_{}'.format(hilow)],
-                              'mode':'lines+markers', 
+                              'y':data_dict[line]['chl_{}'.format(hilow)],
+                              'mode':'lines', 
                               'name':'{} - {}'.format(line, hilow)})
     return feed_list
 
@@ -65,6 +67,8 @@ app.layout = html.Div(children=[
 
     dcc.Graph(id='chl-graph', animate=False),
     
+    dcc.Graph(id='chl-graph-inverse', animate=False),
+    
     dcc.Interval(id='interval-component', 
                  interval=10*1000, 
                  n_intervals=0)
@@ -74,7 +78,7 @@ app.layout = html.Div(children=[
               [Input('interval-component', 'n_intervals')])
 
 def update_graph(n):
-    data_dict, lines= data_pipeline(data_path)
+    data_dict, lines = data_pipeline(data_path)
     feed_dict = graph_data_dict(data_dict, lines)
     traces = list()
     for feed in feed_dict:
@@ -83,21 +87,52 @@ def update_graph(n):
             y=feed['y'],
             name=feed['name'],
             mode=feed['mode'],
-            line=dict(width=1.2),
-            marker=dict(size=3),
+            line=dict(width=1.3)
             ))
 
     layout = plotly.graph_objs.Layout(
         title='Live Corner HiLow Odds',
-        height=720,
+        height=420,
         xaxis={'title': 'Time Since Start of Game', 
                'autorange': True},
         yaxis={'title': 'Odds', 
                'autorange': True}
     )
     return {'data': traces, 'layout': layout}
-    
+
+
+@app.callback(Output('chl-graph-inverse', 'figure'), 
+              [Input('interval-component', 'n_intervals')])
+
+def update_graph(n):
+    data_dict, lines = data_pipeline(data_path)
+    feed_dict = graph_data_dict(data_dict, lines)
+    traces = list()
+    for feed in feed_dict:
+        traces.append(plotly.graph_objs.Scatter(
+            x=feed['x'],
+            y=1/feed['y'],
+            name=feed['name'],
+            mode=feed['mode'],
+            line=dict(width=1.3)
+            ))
+
+    layout = plotly.graph_objs.Layout(
+        title='Live Corner HiLow - Implied Probability',
+        height=420,
+        xaxis={'title': 'Time Since Start of Game', 
+               'autorange': True},
+        yaxis={'title': 'Probability', 
+               'autorange': True}
+    )
+    return {'data': traces, 'layout': layout}
+        
 if __name__ == '__main__':
-    game = game_data()
-    data_path = 'data/'+game.event_id+'.csv'
+    # game = game_data()
+    # driver = None
+    # if driver is None:
+    #     driver = initialize(game.url)
+    #     event_id = parse_scrap_event_id(driver, game.game_starting_time)
+    #     driver.quit()
+    data_path = 'data/'+event_id+'.csv'
     app.run_server(debug=True)
