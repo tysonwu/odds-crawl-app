@@ -13,63 +13,64 @@ https://stackoverflow.com/questions/29858752/error-message-chromedriver-executab
 
 import pandas as pd
 import os
+import argparse
 import time
 import sys
-import re
 import uuid
 from datetime import datetime, timedelta
-from bs4 import BeautifulSoup
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 
-# game_info.py
-from game_info import game_data
+
+#--------------------------
+path_dir = '/Users/TysonWu/dev/odds-crawl-app/odds-crawl-app/development/data_collection/data/'
+#--------------------------
 
 
-def parse_scrap_event_id(driver, game_starting_time):
-    try:
-        game_info = driver.find_element_by_id("litMDay")
+# def parse_scrap_event_id(driver, game_starting_time):
+#     try:
+#         game_info = driver.find_element_by_id("litMDay")
 
-    except:
-        driver.quit()
-        print("Error finding weekday and game number. Program will now terminate.")
-        sys.exit()
+#     except:
+#         driver.quit()
+#         print("Error finding weekday and game number. Program will now terminate.")
+#         sys.exit()
 
-    print("Found weekday and game number.")
-    game_info_content = game_info.get_attribute("innerHTML")
+#     print("Found weekday and game number.")
+#     game_info_content = game_info.get_attribute("innerHTML")
 
-    # getting a content such as 12/02 18:30
-    game_info_content = game_info_content.replace(" ", "")  # get eg. WED1, FRI30
-    start_date, start_time = game_starting_time.split()[0], game_starting_time.split()[1]
-    start_date = datetime.strptime(start_date, "%Y-%m-%d")  # str to datetime
-    # str to datetime to str
-    start_time = datetime.strptime(start_time, "%H:%M:%S").strftime("%H:%M") 
-    if (start_time <= "12:00"):  
-        # because of timezone diff, if before 12:00 then still count as yesterday's game
-        start_date = start_date - timedelta(days=1)
-    start_date = datetime.strftime(start_date, "%Y%m%d")  # datetime to str
-    return start_date + game_info_content
+#     # getting a content such as 12/02 18:30
+#     game_info_content = game_info_content.replace(" ", "")  # get eg. WED1, FRI30
+#     start_date, start_time = game_starting_time.split()[0], game_starting_time.split()[1]
+#     start_date = datetime.strptime(start_date, "%Y-%m-%d")  # str to datetime
+#     # str to datetime to str
+#     start_time = datetime.strptime(start_time, "%H:%M:%S").strftime("%H:%M") 
+#     if (start_time <= "12:00"):  
+#         # because of timezone diff, if before 12:00 then still count as yesterday's game
+#         start_date = start_date - timedelta(days=1)
+#     start_date = datetime.strftime(start_date, "%Y%m%d")  # datetime to str
+#     return start_date + game_info_content
 
 
-def parse_scrap_team_names(driver):  # returns a dict {home: xxx, away: yyy}
-    try:
-        home_name = driver.find_element_by_xpath('//*[@id="litTeamsStr"]/span/span[1]')
-        away_name = driver.find_element_by_xpath('//*[@id="litTeamsStr"]/span/span[3]')
+# def parse_scrap_team_names(driver):  # returns a dict {home: xxx, away: yyy}
+#     try:
+#         home_name = driver.find_element_by_xpath('//*[@id="litTeamsStr"]/span/span[1]')
+#         away_name = driver.find_element_by_xpath('//*[@id="litTeamsStr"]/span/span[3]')
 
-    except:
-        driver.quit()
-        print("Error finding team names. Program will now terminate.")
-        sys.exit()
+#     except:
+#         driver.quit()
+#         print("Error finding team names. Program will now terminate.")
+#         sys.exit()
 
-    print("Found team names.")
-    # home team
-    home_name_content = BeautifulSoup(home_name.get_attribute('innerHTML'), 'html.parser').text
-    home_name_content = re.search('(.*)\(Home\)',home_name_content).group(1).strip()
+#     print("Found team names.")
+#     # home team
+#     home_name_content = BeautifulSoup(home_name.get_attribute('innerHTML'), 'html.parser').text
+#     home_name_content = re.search('(.*)\(Home\)',home_name_content).group(1).strip()
     
-    # away team
-    away_name_content = BeautifulSoup(away_name.get_attribute('innerHTML'), 'html.parser').text
-    away_name_content = re.search('(.*)\(Away\)',away_name_content).group(1).strip()
-    return dict(home=home_name_content, away=away_name_content)
+#     # away team
+#     away_name_content = BeautifulSoup(away_name.get_attribute('innerHTML'), 'html.parser').text
+#     away_name_content = re.search('(.*)\(Away\)',away_name_content).group(1).strip()
+#     return dict(home=home_name_content, away=away_name_content)
 
 
 def check_odds_availability(driver, odd_type, event_id):
@@ -215,25 +216,40 @@ def initialize(url, load_sleep=7):
 
 def main(crawl_interval=10):
     print("Start running crawl script...")
-
-    game = game_data()
-    driver = initialize(game.url)
     
-    # get event_id
-    event_id = parse_scrap_event_id(driver, game.game_starting_time)
+    # read html from command line argument
+    parser = argparse.ArgumentParser(description='Web url as an argument')
+    parser.add_argument("--url")
+    args = parser.parse_args()
+    web_url = args.url
+    print(web_url)
+    
+    # read schedule
+    schedule = pd.read_csv(path_dir+"schedule.csv")
+    # returns latest row in case there are duplicates
+    # if it is empty then something gone wrong
+    try: 
+        game_info = schedule[schedule['game_url'] == web_url].iloc[-1,]
+    except:
+        print("Found no such URL in schedule.csv. Program will now terminate.")
+        sys.exit()        
+    
+    url = game_info['game_url']
+    event_id = game_info['event_id']
+    game_starting_time = game_info['time']
+    team_name_dict = dict(home=game_info['home'], away=game_info['away'])
+    
+    driver = initialize(url)
     
     # record job history
-    record_job_history_csv(event_id, game.path_dir)
+    record_job_history_csv(event_id, path_dir)
 
-    # get team info
-    team_name_dict = parse_scrap_team_names(driver)
-    
     # check odd content availability; if no corner hilow odds then terminate program
     check_odds_availability(driver=driver, odd_type='chl', event_id=event_id)
     
     # make and export match information
-    match_data = make_match_data(event_id, team_name_dict, game.game_starting_time)
-    export_match_csv(match_data, game.path_dir)
+    match_data = make_match_data(event_id, team_name_dict, game_starting_time)
+    export_match_csv(match_data, path_dir)
 
     while True:
         # check odd content availability; if no corner hilow odds then terminate program
@@ -244,9 +260,9 @@ def main(crawl_interval=10):
         odds = make_odds_data(odds_dict, 
                               live_score_dict,
                               event_id, 
-                              game.game_starting_time)
+                              game_starting_time)
         if not odds.chl_line.isnull().values.any():
-            export_odds_csv(odds, event_id, game.path_dir)
+            export_odds_csv(odds, event_id, path_dir)
 
         print("Done crawling on {}. Wait {} seconds for another crawl...".format(
             datetime.now(), crawl_interval))
