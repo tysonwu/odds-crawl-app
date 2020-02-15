@@ -82,8 +82,7 @@ app.layout = html.Div(children=[
 color_list = [
     '#FFA65A',
     '#E86146',
-    '#FF5D59',
-    '#E85DE2',
+    '#E8469A',
     '#B574FF',
     '#54C3C7',
     '#5D69E8',
@@ -128,7 +127,8 @@ def update_graph(n):
 
 
     layout = plotly.graph_objs.Layout(
-        title={'text':'Live Corner HiLow Odds'},
+        title={'text':'Live Corner HiLow Odds - {}'.format(
+            current_job_event_id)},
         font={'color': font_color},
         height=300,
         xaxis={'title': 'Time Since Start of Game',
@@ -168,7 +168,8 @@ def update_graph(n):
             ))
 
     layout = plotly.graph_objs.Layout(
-        title={'text': 'Live Corner HiLow - Implied Probability'},
+        title={'text': 'Live Corner HiLow - Implied Probability - {}'.format(
+            current_job_event_id)},
         font={'color': font_color},
         height=540,
         xaxis={'title': 'Time Since Start of Game',
