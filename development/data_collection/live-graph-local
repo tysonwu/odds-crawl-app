@@ -22,7 +22,7 @@ from game_info import game_data
 from crawler import initialize, parse_scrap_event_id
 
 #-------------
-event_id = '20200213THU7'
+event_id = '20200214FRI1'
 #-------------
 
 def data_pipeline(data_path):
@@ -92,7 +92,7 @@ def update_graph(n):
 
     layout = plotly.graph_objs.Layout(
         title='Live Corner HiLow Odds',
-        height=420,
+        height=540,
         xaxis={'title': 'Time Since Start of Game', 
                'autorange': True},
         yaxis={'title': 'Odds', 
@@ -119,7 +119,7 @@ def update_graph(n):
 
     layout = plotly.graph_objs.Layout(
         title='Live Corner HiLow - Implied Probability',
-        height=420,
+        height=540,
         xaxis={'title': 'Time Since Start of Game', 
                'autorange': True},
         yaxis={'title': 'Probability', 
@@ -128,11 +128,8 @@ def update_graph(n):
     return {'data': traces, 'layout': layout}
         
 if __name__ == '__main__':
-    # game = game_data()
-    # driver = None
-    # if driver is None:
-    #     driver = initialize(game.url)
-    #     event_id = parse_scrap_event_id(driver, game.game_starting_time)
-    #     driver.quit()
-    data_path = 'data/'+event_id+'.csv'
-    app.run_server(debug=True)
+    job_history = pd.read_csv('data/job_history.csv')
+    current_job = job_history.iloc[-1,]
+    current_job_id, current_job_event_id = current_job['job_id'], current_job['event_id']
+    data_path = 'data/'+current_job_event_id+'.csv'
+    app.run_server(debug=True, use_reloader=False)
