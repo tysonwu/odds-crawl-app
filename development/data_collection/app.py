@@ -157,7 +157,7 @@ def update_graph(n, source):
         title={'text':'Live Corner HiLow Odds - {}'.format(
             source)},
         font={'color': font_color},
-        height=400,
+        height=300,
         xaxis={'title': 'Time Since Start of Game',
                'autorange': True,
                'gridcolor': grid_color},
