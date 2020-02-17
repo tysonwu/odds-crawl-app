@@ -130,9 +130,10 @@ def scrap_live_score(driver):  # return a dict eg. {home_score: 1, away_score: 2
     return dict(home_score=score_list[0], away_score=score_list[-1])
 
 
-def make_match_data(event_id, team_name_dict, game_starting_time):
+def make_match_data(event_id, league, team_name_dict, game_starting_time):
     match_data = pd.DataFrame({'event_id': event_id,
                                'game_starting_time': game_starting_time,
+                               'league': league,
                                'home': team_name_dict['home'],
                                'away': team_name_dict['away']}, index=[0])
     return match_data
@@ -236,6 +237,7 @@ def main(crawl_interval=10):
     
     url = game_info['game_url']
     event_id = game_info['event_id']
+    league = game_info['league']
     game_starting_time = game_info['time']
     team_name_dict = dict(home=game_info['home'], away=game_info['away'])
     
@@ -248,7 +250,7 @@ def main(crawl_interval=10):
     check_odds_availability(driver=driver, odd_type='chl', event_id=event_id)
     
     # make and export match information
-    match_data = make_match_data(event_id, team_name_dict, game_starting_time)
+    match_data = make_match_data(event_id, league, team_name_dict, game_starting_time)
     export_match_csv(match_data, path_dir)
 
     while True:

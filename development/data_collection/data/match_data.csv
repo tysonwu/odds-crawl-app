@@ -1,7 +1,9 @@
-event_id,game_starting_time,home,away
-20200214FRI29,2020-02-15 08:10:00,Colon,Racing Club
-20200215SAT3,2020-02-15 20:00:00,Mallorca,Alaves
-20200215SAT48,2020-02-16 01:30:00,Norwich,Liverpool
-20200215SAT60,2020-02-16 03:45:00,Atalanta,Roma
-20200216SUN37,2020-02-17 00:30:00,Arsenal,Newcastle
-20200216SUN50,2020-02-17 06:40:00,Lanus,Newell's Old Boys
+﻿event_id,game_starting_time,league,home,away
+20200213THU7,14/2/2020 06:15,League,Zamora FC,Plaza Colonia
+20200214FRI1,14/2/2020 16:30,League,Adelaide Utd,Central Coast Mariners
+20200214FRI29,15/2/2020 08:10,League,Colon,Racing Club
+20200215SAT3,15/2/2020 20:00,League,Mallorca,Alaves
+20200215SAT48,16/2/2020 01:30,League,Norwich,Liverpool
+20200215SAT60,16/2/2020 03:45,League,Atalanta,Roma
+20200216SUN37,17/2/2020 00:30,League,Arsenal,Newcastle
+20200216SUN50,17/2/2020 06:40,League,Lanus,Newell's Old Boys

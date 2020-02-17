@@ -10,9 +10,13 @@ https://dash.plot.ly/getting-started
 https://dash.plot.ly/live-updates
 https://dash.plot.ly/deployment
 https://stackoverflow.com/questions/46075960/live-updating-only-the-data-in-dash-plotly
+
+Multiple input output:
+https://dash.plot.ly/getting-started-part-2
 """
 
 import pandas as pd
+import os
 from datetime import datetime
 import dash
 import dash_core_components as dcc
@@ -21,7 +25,13 @@ import plotly
 from dash.dependencies import Input, Output
 
 
-def data_pipeline(data_path, game_date):
+match_data = pd.read_csv('data/match_data.csv')
+current_match = match_data.iloc[-1,]
+current_match_event_id = current_match['event_id']
+game_date = current_match_event_id[:8] # a string YYYYmmdd
+
+def data_pipeline(game_date, source):
+    data_path = 'data/'+source
     data = pd.read_csv(data_path)
 
     # split data to data_dict by line
@@ -61,43 +71,51 @@ def data_pipeline(data_path, game_date):
 app = dash.Dash(__name__)
 server = app.server
 
-app.layout = html.Div(children=[
-    # html.H1(children='Corner HiLow Visualisation'),
+matches = [file for file in os.listdir('data/') if '202' in file]
 
-    # html.Div(children='''
-    #     A live plot for corner hilow odds trends.
-    # '''),
-    html.Link(
-        rel='stylesheet',
-        href='/assets/stylesheet.css'
-    ),
-    
-    dcc.Graph(id='chl-graph', animate=False),
-
-    dcc.Graph(id='chl-graph-inverse', animate=False),
-
-    dcc.Interval(id='interval-component',
-                 interval=10*1000,
-                 n_intervals=0)
-])
-
-# color_list = ['#a50026','#d73027',
-#               '#f46d43','#fdae61',
-#               '#fee090','#ffffbf',
-#               '#e0f3f8','#abd9e9',
-#               '#74add1','#4575b4',
-#               '#313695']
+app.layout = html.Div(className='app__container', children=
+                      [
+                      html.Div(children=
+                          [
+                              html.H1("Live Odds Visualisation")
+                              ]),
+                      html.Div(className='two columns', children=
+                               [
+                                   html.Link(rel='stylesheet',
+                                             href='/assets/stylesheet.css'
+                                             ),                                      
+                                   dcc.Dropdown(id='matches-dropdown',
+                                                options=[{'label': i, 'value': i} for i in matches],
+                                                value=current_match_event_id+'.csv',
+                                                style={'width': '200px'}
+                                                ),
+                                   html.Table([
+                                       html.Tr([html.Td(['Game Starting Time:']), html.Td(id='match-game-starting-time')]),
+                                       html.Tr([html.Td(['League:']), html.Td(id='match-league')]),
+                                       html.Tr([html.Td(['Home:']), html.Td(id='match-home')]),
+                                       html.Tr([html.Td(['Away:']), html.Td(id='match-away')])
+                                       ])
+                                   ]), 
+                      html.Div(className='ten columns', children=
+                               [
+                                   dcc.Graph(id='chl-graph', animate=False),
+                                   dcc.Graph(id='chl-graph-inverse', animate=False),
+                                   dcc.Interval(id='interval-component',
+                                                interval=10*1000,
+                                                n_intervals=0)
+                                   ])
+                      ])
 
 color_list = [
     '#FFA65A',
     '#E86146',
     '#E8469A',
     '#B574FF',
-    '#54C3C7',
     '#5D69E8',
-    '#68FFF3',
-    '#54E886',
-    '#8DFF5C'
+    '#54C3C7',
+    '#61FFB0',
+    '#8DFF5C',
+    '#E6E856'
     ]
 
 font_color = '#c5c5c5'
@@ -106,16 +124,16 @@ paper_bgcolor = 'rgba(0,0,0,0)'
 plot_bgcolor='rgba(0,0,0,0)'
 
 @app.callback(Output('chl-graph', 'figure'),
-              [Input('interval-component', 'n_intervals')])
+              [Input('interval-component', 'n_intervals'),
+               Input('matches-dropdown', 'value')])
 
-
-def update_graph(n):
+def update_graph(n, source):
     # color_list = ['#1f77b4','#ff7f0e',
     #               '#2ca02c','#d62728',
     #               '#9467bd','#8c564b',
     #               '#e377c2','#7f7f7f',
     #               '#bcbd22','#17becf']
-    feed_list_hi, feed_list_low = data_pipeline(data_path, game_date)
+    feed_list_hi, feed_list_low = data_pipeline(game_date, source)
     traces = list()
     for (feed, color_code) in zip(feed_list_hi, color_list):
         traces.append(plotly.graph_objs.Scatter(
@@ -137,9 +155,9 @@ def update_graph(n):
 
     layout = plotly.graph_objs.Layout(
         title={'text':'Live Corner HiLow Odds - {}'.format(
-            current_job_event_id)},
+            source)},
         font={'color': font_color},
-        height=300,
+        height=400,
         xaxis={'title': 'Time Since Start of Game',
                'autorange': True,
                'gridcolor': grid_color},
@@ -154,10 +172,11 @@ def update_graph(n):
 
 
 @app.callback(Output('chl-graph-inverse', 'figure'),
-              [Input('interval-component', 'n_intervals')])
+              [Input('interval-component', 'n_intervals'),
+              Input('matches-dropdown', 'value')])
 
-def update_graph(n):
-    feed_list_hi, feed_list_low = data_pipeline(data_path, game_date)
+def update_graph(n, source):
+    feed_list_hi, feed_list_low = data_pipeline(game_date, source)
     traces = list()
     for (feed, color_code) in zip(feed_list_hi, color_list):
         traces.append(plotly.graph_objs.Scatter(
@@ -178,7 +197,7 @@ def update_graph(n):
 
     layout = plotly.graph_objs.Layout(
         title={'text': 'Live Corner HiLow - Implied Probability - {}'.format(
-            current_job_event_id)},
+            source)},
         font={'color': font_color},
         height=540,
         xaxis={'title': 'Time Since Start of Game',
@@ -193,9 +212,18 @@ def update_graph(n):
     )
     return {'data': traces, 'layout': layout}
 
-job_history = pd.read_csv('data/job_history.csv')
-current_job = job_history.iloc[-1,]
-current_job_id, current_job_event_id = current_job['job_id'], current_job['event_id']
-game_date = current_job_event_id[:8] # a string YYYYmmdd
-data_path = 'data/'+current_job_event_id+'.csv'
-app.run_server(debug=True, use_reloader=False)
+
+@app.callback(
+    [Output('match-game-starting-time', 'children'),
+     Output('match-league', 'children'),
+     Output('match-home', 'children'),
+     Output('match-away', 'children')],
+    [Input('matches-dropdown', 'value')])
+
+def update_match_info(source):
+    match = match_data[match_data.event_id == source[:-4]] # minus '.csv'
+    return match.game_starting_time, match.league, match.home, match.away
+
+
+if __name__ == "__main__":
+    app.run_server(debug=True, use_reloader=False)
