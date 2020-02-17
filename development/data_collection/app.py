@@ -13,6 +13,7 @@ https://stackoverflow.com/questions/46075960/live-updating-only-the-data-in-dash
 """
 
 import pandas as pd
+from datetime import datetime
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
@@ -20,7 +21,7 @@ import plotly
 from dash.dependencies import Input, Output
 
 
-def data_pipeline(data_path):
+def data_pipeline(data_path, game_date):
     data = pd.read_csv(data_path)
 
     # split data to data_dict by line
@@ -29,31 +30,35 @@ def data_pipeline(data_path):
     time_list = sorted(list(set(data.minutes)))
 
     for line in lines:
-        filtered_data = data[data.chl_line==line][['minutes', 'chl_hi', 'chl_low']].sort_values(
+        filtered_data = data[data.chl_line==line][['minutes', 'chl_line', 'chl_hi', 'chl_low']].sort_values(
             by=['minutes'])
         data_dict[line] = pd.DataFrame({'minutes': time_list})
         data_dict[line] = data_dict[line].merge(filtered_data,
                                                 how='outer', on='minutes')
+        data_dict[line]['minutes'] = data_dict[line]['minutes'].apply(
+            lambda x: datetime.strptime(str(game_date+x), "%Y%m%d%H:%M:%S")) # convert to date
 
     feed_list_hi = []
     feed_list_low = []
     for line in lines:
         feed_list_hi.append({'x':data_dict[line]['minutes'],
                              'y':data_dict[line]['chl_hi'],
+                             'z':data_dict[line]['chl_line'],
                              'mode':'lines',
                              'name':'{} - hi'.format(line)})
         feed_list_low.append({'x':data_dict[line]['minutes'],
                               'y':data_dict[line]['chl_low'],
+                              'z':data_dict[line]['chl_line'],
                               'mode':'lines',
                               'name':'{} - low'.format(line)})
     return feed_list_hi, feed_list_low
 
 #----------------------------------
 
-external_stylesheets = ['https://codepen.io/chriddyp/pen/dZVMbK.css']
+# external_stylesheets = ['https://codepen.io/chriddyp/pen/dZVMbK.css']
 # external_stylesheets = ['https://unpkg.com/purecss@1.0.1/build/pure-min.css']
 
-app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+app = dash.Dash(__name__)
 server = app.server
 
 app.layout = html.Div(children=[
@@ -62,7 +67,11 @@ app.layout = html.Div(children=[
     # html.Div(children='''
     #     A live plot for corner hilow odds trends.
     # '''),
-
+    html.Link(
+        rel='stylesheet',
+        href='/assets/stylesheet.css'
+    ),
+    
     dcc.Graph(id='chl-graph', animate=False),
 
     dcc.Graph(id='chl-graph-inverse', animate=False),
@@ -106,7 +115,7 @@ def update_graph(n):
     #               '#9467bd','#8c564b',
     #               '#e377c2','#7f7f7f',
     #               '#bcbd22','#17becf']
-    feed_list_hi, feed_list_low = data_pipeline(data_path)
+    feed_list_hi, feed_list_low = data_pipeline(data_path, game_date)
     traces = list()
     for (feed, color_code) in zip(feed_list_hi, color_list):
         traces.append(plotly.graph_objs.Scatter(
@@ -122,7 +131,7 @@ def update_graph(n):
             y=feed['y'],
             name=feed['name'],
             mode=feed['mode'],
-            line=dict(width=1.3, dash='dash', color=color_code)
+            line=dict(width=1.3, dash='dot', color=color_code)
             ))
 
 
@@ -148,7 +157,7 @@ def update_graph(n):
               [Input('interval-component', 'n_intervals')])
 
 def update_graph(n):
-    feed_list_hi, feed_list_low = data_pipeline(data_path)
+    feed_list_hi, feed_list_low = data_pipeline(data_path, game_date)
     traces = list()
     for (feed, color_code) in zip(feed_list_hi, color_list):
         traces.append(plotly.graph_objs.Scatter(
@@ -164,7 +173,7 @@ def update_graph(n):
             y=1/feed['y'],
             name=feed['name'],
             mode=feed['mode'],
-            line=dict(width=1.3, dash='dash', color=color_code)
+            line=dict(width=1.3, dash='dot', color=color_code)
             ))
 
     layout = plotly.graph_objs.Layout(
@@ -184,9 +193,9 @@ def update_graph(n):
     )
     return {'data': traces, 'layout': layout}
 
-if __name__ == '__main__':
-    job_history = pd.read_csv('data/job_history.csv')
-    current_job = job_history.iloc[-1,]
-    current_job_id, current_job_event_id = current_job['job_id'], current_job['event_id']
-    data_path = 'data/'+current_job_event_id+'.csv'
-    app.run_server(debug=True, use_reloader=False)
+job_history = pd.read_csv('data/job_history.csv')
+current_job = job_history.iloc[-1,]
+current_job_id, current_job_event_id = current_job['job_id'], current_job['event_id']
+game_date = current_job_event_id[:8] # a string YYYYmmdd
+data_path = 'data/'+current_job_event_id+'.csv'
+app.run_server(debug=True, use_reloader=False)
