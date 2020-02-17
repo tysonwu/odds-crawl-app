@@ -93,7 +93,7 @@ https://www.youtube.com/watch?v=QZJ1drMQz1A
 
 ## Deployment
 
-### Off-line live graph
+### Off-line live graph![sceenshot](/Users/TysonWu/dev/odds-crawl-app/odds-crawl-app/sceenshot.png)
 
 An off-line live graph of odds visualisation is made with *Dash* in Python.
 
