@@ -19,59 +19,13 @@ import sys
 import uuid
 from datetime import datetime, timedelta
 from selenium import webdriver
+from bs4 import BeautifulSoup
 from webdriver_manager.chrome import ChromeDriverManager
 
 
 #--------------------------
 path_dir = '/Users/TysonWu/dev/odds-crawl-app/odds-crawl-app/development/data_collection/data/'
 #--------------------------
-
-
-# def parse_scrap_event_id(driver, game_starting_time):
-#     try:
-#         game_info = driver.find_element_by_id("litMDay")
-
-#     except:
-#         driver.quit()
-#         print("Error finding weekday and game number. Program will now terminate.")
-#         sys.exit()
-
-#     print("Found weekday and game number.")
-#     game_info_content = game_info.get_attribute("innerHTML")
-
-#     # getting a content such as 12/02 18:30
-#     game_info_content = game_info_content.replace(" ", "")  # get eg. WED1, FRI30
-#     start_date, start_time = game_starting_time.split()[0], game_starting_time.split()[1]
-#     start_date = datetime.strptime(start_date, "%Y-%m-%d")  # str to datetime
-#     # str to datetime to str
-#     start_time = datetime.strptime(start_time, "%H:%M:%S").strftime("%H:%M") 
-#     if (start_time <= "12:00"):  
-#         # because of timezone diff, if before 12:00 then still count as yesterday's game
-#         start_date = start_date - timedelta(days=1)
-#     start_date = datetime.strftime(start_date, "%Y%m%d")  # datetime to str
-#     return start_date + game_info_content
-
-
-# def parse_scrap_team_names(driver):  # returns a dict {home: xxx, away: yyy}
-#     try:
-#         home_name = driver.find_element_by_xpath('//*[@id="litTeamsStr"]/span/span[1]')
-#         away_name = driver.find_element_by_xpath('//*[@id="litTeamsStr"]/span/span[3]')
-
-#     except:
-#         driver.quit()
-#         print("Error finding team names. Program will now terminate.")
-#         sys.exit()
-
-#     print("Found team names.")
-#     # home team
-#     home_name_content = BeautifulSoup(home_name.get_attribute('innerHTML'), 'html.parser').text
-#     home_name_content = re.search('(.*)\(Home\)',home_name_content).group(1).strip()
-    
-#     # away team
-#     away_name_content = BeautifulSoup(away_name.get_attribute('innerHTML'), 'html.parser').text
-#     away_name_content = re.search('(.*)\(Away\)',away_name_content).group(1).strip()
-#     return dict(home=home_name_content, away=away_name_content)
-
 
 def check_odds_availability(driver, odd_type, event_id):
     if odd_type == 'chl':
@@ -80,9 +34,7 @@ def check_odds_availability(driver, odd_type, event_id):
         path_id = None
 
     try:
-        driver.find_element_by_xpath(
-            "//div[@id='" + path_id + "'" + "and @class='betTypeAllOdds']")
-
+        driver.find_element_by_xpath("//div[@id='" + path_id + "'" + "and @class='betTypeAllOdds']")
     except:
         driver.quit()
         print("Error finding corner hilow odds. Program will now terminate.")
@@ -114,7 +66,19 @@ def scrap_odds(driver, event_id):  #  returns a dict
         except:
             # return things when error
             return dict(chl_line=chl_line_list, chl_hi=chl_hi_list, chl_low=chl_low_list)
+        
 
+def scrap_total_corner(driver): # return a number
+    try:
+        total_corner = BeautifulSoup(driver.find_element_by_class_name('spTotalCorner').get_attribute('innerHTML'), 
+                                     'html.parser').text
+    except:
+        driver.quit()
+        print("Error finding live score. Program will now terminate.")
+        sys.exit()
+
+    return total_corner
+        
 
 def scrap_live_score(driver):  # return a dict eg. {home_score: 1, away_score: 2}
     try:
@@ -177,7 +141,7 @@ def record_job_history_csv(event_id, path_dir):
     print('Created job_id: {}'.format(job_data['job_id']))
 
 
-def make_odds_data(odd_dict, live_score_dict, event_id, game_starting_time):
+def make_odds_data(odd_dict, total_corner, live_score_dict, event_id, game_starting_time):
     # add timestamp
     timestamp = datetime.strptime(datetime.strftime(datetime.now(), "%Y-%m-%d %H:%M:%S"), 
                                   "%Y-%m-%d %H:%M:%S")
@@ -188,7 +152,8 @@ def make_odds_data(odd_dict, live_score_dict, event_id, game_starting_time):
 
     time_data = pd.DataFrame({"event_id": event_id,
                               "timestamp": timestamp,
-                              "minutes": minutes},index=[0])
+                              "minutes": minutes,
+                              "total_corner": total_corner},index=[0])
 
     # append live_score data
     odds = pd.concat([time_data, pd.DataFrame(live_score_dict, index=[0])], axis=1)
@@ -223,6 +188,9 @@ def main(crawl_interval=10):
     parser.add_argument("--url")
     args = parser.parse_args()
     web_url = args.url
+    
+    # # override
+    # web_url = 'https://bet.hkjc.com/football/odds/odds_inplay_all.aspx?lang=EN&tmatchid=17200c06-3d76-4756-8579-a69b2638ce2a'
     print(web_url)
     
     # read schedule
@@ -258,11 +226,13 @@ def main(crawl_interval=10):
         check_odds_availability(driver=driver, odd_type='chl', event_id=event_id)
         
         live_score_dict = scrap_live_score(driver)
+        total_corner = scrap_total_corner(driver)
         odds_dict = scrap_odds(driver, event_id)
-        odds = make_odds_data(odds_dict, 
-                              live_score_dict,
-                              event_id, 
-                              game_starting_time)
+        odds = make_odds_data(odds_dict, # dict
+                              total_corner, # number
+                              live_score_dict, # dict
+                              event_id, # string
+                              game_starting_time) # string
         if not odds.chl_line.isnull().values.any():
             export_odds_csv(odds, event_id, path_dir)
 

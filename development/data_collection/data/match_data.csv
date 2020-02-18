@@ -1,4 +1,4 @@
-﻿event_id,game_starting_time,league,home,away
+event_id,game_starting_time,league,home,away
 20200213THU7,14/2/2020 06:15,League,Zamora FC,Plaza Colonia
 20200214FRI1,14/2/2020 16:30,League,Adelaide Utd,Central Coast Mariners
 20200214FRI29,15/2/2020 08:10,League,Colon,Racing Club
@@ -7,3 +7,12 @@
 20200215SAT60,16/2/2020 03:45,League,Atalanta,Roma
 20200216SUN37,17/2/2020 00:30,League,Arsenal,Newcastle
 20200216SUN50,17/2/2020 06:40,League,Lanus,Newell's Old Boys
+20200217MON9,2020-02-18 04:00:00,Eng Premier,Chelsea,Manchester Utd
+20200217MON10,2020-02-18 06:00:00,Argentine Division 1,Estudiantes,Defensa y Justicia
+20200217MON12,2020-02-18 08:10:00,Argentine Division 1,Independiente,Sarandi Arsenal
+20200218TUE1,2020-02-18 18:00:00,Asian Champions League,FC Tokyo,Perth Glory
+20200218TUE2,2020-02-18 18:30:00,Asian Champions League,FC Seoul,Melbourne Victory
+20200218TUE3,2020-02-18 20:00:00,Asian Champions League,Chiangrai Utd,FC Beijing
+20200218TUE5,2020-02-18 23:35:00,Asian Champions League,Al Sadd,Sepaha
+20200218TUE14,2020-02-19 04:00:00,UE Champions,Dortmund,Paris Saint Germain
+20200218TUE13,2020-02-19 04:00:00,UE Champions,Atletico Madrid,Liverpool
