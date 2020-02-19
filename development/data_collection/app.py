@@ -35,7 +35,16 @@ game_date = current_match_event_id[:8] # a string YYYYmmdd
 def data_pipeline(game_date, source): # source is 'YYYYmmdd.csv'
     data_path = 'data/'+source
     data = pd.read_csv(data_path)
-    data = data[data.chl_low != '---']
+    
+    # remove rows with --- ie. suspensions of bets
+    
+    data = data[(data.chl_line != "---") & (~data.chl_line.isna())]
+    data = data[(data.chl_hi != "---") & (~data.chl_hi.isna())]
+    data = data[(data.chl_low != "---") & (~data.chl_low.isna())]
+
+    # change data to numeric as there will be arithmatic operations
+    data['chl_hi'] = data.chl_hi.apply(pd.to_numeric)
+    data['chl_low'] = data.chl_low.apply(pd.to_numeric)
 
     # split data to data_dict by line
     lines = list(set(data.chl_line))
@@ -43,7 +52,7 @@ def data_pipeline(game_date, source): # source is 'YYYYmmdd.csv'
     time_list = sorted(list(set(data.minutes)))
 
     for line in lines:
-        filtered_data = data[data.chl_line==line][['minutes', 'total_corner', 'chl_line', 'chl_hi', 'chl_low']].sort_values(
+        filtered_data = data[data.chl_line==line][['minutes', 'chl_line', 'chl_hi', 'chl_low']].sort_values(
             by=['minutes'])
         data_dict[line] = pd.DataFrame({'minutes': time_list})
         data_dict[line] = data_dict[line].merge(filtered_data,
@@ -56,16 +65,17 @@ def data_pipeline(game_date, source): # source is 'YYYYmmdd.csv'
     for line in lines:
         feed_list_hi.append({'x':data_dict[line]['minutes'],
                              'y':data_dict[line]['chl_hi'],
-                             'total_corner':data_dict[line]['total_corner'],
                              'mode':'lines',
                              'name':'{} - hi'.format(line)})
         feed_list_low.append({'x':data_dict[line]['minutes'],
                               'y':data_dict[line]['chl_low'],
-                              'total_corner':data_dict[line]['total_corner'],
                               'mode':'lines',
                               'name':'{} - low'.format(line)})
-        
+    
+    # data for # total corner
     total_corner = data[['minutes','total_corner']]
+    total_corner = total_corner[(total_corner.total_corner != "---") & (~total_corner.total_corner.isna())]
+    
     total_corner['minutes'] = total_corner['minutes'].apply(
             lambda x: datetime.strptime(str(game_date+x), "%Y%m%d%H:%M:%S")) # convert to date
     total_corner = total_corner.drop_duplicates(keep='first')
@@ -107,9 +117,9 @@ app.layout = html.Div(className='app__container', children=
                                    ]), 
                       html.Div(className='ten columns', children=
                                [
-                                   dcc.Graph(id='chl-graph', animate=False),
-                                   dcc.Graph(id='total-corner-graph', animate=False),
                                    dcc.Graph(id='chl-graph-inverse', animate=False),
+                                   dcc.Graph(id='total-corner-graph', animate=False),
+                                   dcc.Graph(id='chl-graph', animate=False),
                                    dcc.Interval(id='interval-component',
                                                 interval=10*1000,
                                                 n_intervals=0)
@@ -143,11 +153,6 @@ plot_bgcolor='rgba(0,0,0,0)'
                Input('matches-dropdown', 'value')])
 
 def update_graph(n, source):
-    # color_list = ['#1f77b4','#ff7f0e',
-    #               '#2ca02c','#d62728',
-    #               '#9467bd','#8c564b',
-    #               '#e377c2','#7f7f7f',
-    #               '#bcbd22','#17becf']
     _, feed_list_hi, feed_list_low = data_pipeline(game_date, source)
     traces = list()
     for (feed, color_code) in zip(feed_list_hi, color_list):
@@ -170,7 +175,7 @@ def update_graph(n, source):
 
     layout = plotly.graph_objs.Layout(
         title={'text':'Live Corner HiLow Odds - {}'.format(
-            source)},
+            source[:-4])},
         font={'color': font_color},
         height=420,
         xaxis={'title': 'Time Since Start of Game',
@@ -196,12 +201,13 @@ def update_graph(n, source):
     traces.append(plotly.graph_objs.Scatter(
         x=total_corner['minutes'],
         y=total_corner['total_corner'],
+        name='Corners',
         mode='lines',
         line=dict(width=1.3, dash='solid', color=color_list[-2])
         ))
     
     layout = plotly.graph_objs.Layout(
-        title={'text': 'Total corner'},
+        title={'text': 'Total corner - {}'.format(source[:-4])},
         font={'color': font_color},
         height=360,
         xaxis={'title': 'Time Since Start of Game',
@@ -212,7 +218,8 @@ def update_graph(n, source):
                 'gridcolor': grid_color},
         paper_bgcolor=paper_bgcolor,
         plot_bgcolor=plot_bgcolor,
-        template="plotly_dark"
+        template="plotly_dark",
+        showlegend=True
     )
     return {'data': traces, 'layout': layout}
 
@@ -243,7 +250,7 @@ def update_graph(n, source):
 
     layout = plotly.graph_objs.Layout(
         title={'text': 'Live Corner HiLow - Implied Probability - {}'.format(
-            source)},
+            source[:-4])},
         font={'color': font_color},
         height=540,
         xaxis={'title': 'Time Since Start of Game',
@@ -263,7 +270,7 @@ def update_graph(n, source):
     [Output('match-game-starting-time', 'children'),
      Output('match-league', 'children'),
      Output('match-home', 'children'),
-     Output('match-away', 'children')],
+     Output('match-away', 'children')], 
     [Input('matches-dropdown', 'value')])
 
 def update_match_info(source):

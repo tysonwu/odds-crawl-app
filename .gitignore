@@ -126,3 +126,8 @@ dmypy.json
 .DS_Store
 *.csv
 *.csv
+*.csv
+development/data_collection/data/job_history.csv
+development/data_collection/data/match_data.csv
+development/data_collection/data/schedule.csv
+development/data_collection/debug_log.ipynb

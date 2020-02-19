@@ -71,10 +71,10 @@ def scrap_odds(driver, event_id):  #  returns a dict
 def scrap_total_corner(driver): # return a number
     try:
         total_corner = BeautifulSoup(driver.find_element_by_class_name('spTotalCorner').get_attribute('innerHTML'), 
-                                     'html.parser').text
+                                     'html.parser').text.strip()
     except:
         driver.quit()
-        print("Error finding live score. Program will now terminate.")
+        print("Error finding total corner. Program will now terminate.")
         sys.exit()
 
     return total_corner
@@ -190,7 +190,7 @@ def main(crawl_interval=10):
     web_url = args.url
     
     # # override
-    # web_url = 'https://bet.hkjc.com/football/odds/odds_inplay_all.aspx?lang=EN&tmatchid=17200c06-3d76-4756-8579-a69b2638ce2a'
+    # web_url = 'https://bet.hkjc.com/football/odds/odds_inplay_all.aspx?lang=EN&tmatchid=09537faa-eb94-494f-9d33-5ed8da41139a'
     print(web_url)
     
     # read schedule
@@ -233,8 +233,8 @@ def main(crawl_interval=10):
                               live_score_dict, # dict
                               event_id, # string
                               game_starting_time) # string
-        if not odds.chl_line.isnull().values.any():
-            export_odds_csv(odds, event_id, path_dir)
+        # if not odds.total_corner.isnull().values.any():
+        export_odds_csv(odds, event_id, path_dir)
 
         print("Done crawling on {}. Wait {} seconds for another crawl...".format(
             datetime.now(), crawl_interval))
