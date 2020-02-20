@@ -23,6 +23,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 import plotly
 from dash.dependencies import Input, Output
+from poisson_graph import poisson_pipeline
 
 os.chdir('/Users/TysonWu/dev/odds-crawl-app/odds-crawl-app/development/data_collection/')
 
@@ -81,6 +82,30 @@ def data_pipeline(game_date, source): # source is 'YYYYmmdd.csv'
     total_corner = total_corner.drop_duplicates(keep='first')
     return total_corner, feed_list_hi, feed_list_low
 
+
+def data_pipeline_poisson(game_date, source):
+    data = poisson_pipeline(source)
+    
+    # split data to data_dict by line
+    lines = list(set(data.chl_line))
+    data_dict = {}
+    time_list = sorted(list(set(data.minutes)))
+    feed_list = []
+    
+    for line in lines:
+        filtered_data = data[data.chl_line==line].sort_values(by=['minutes'])
+        data_dict[line] = pd.DataFrame({'minutes': time_list})
+        data_dict[line] = data_dict[line].merge(filtered_data, how='outer', on='minutes')
+        data_dict[line]['minutes'] = data_dict[line]['minutes'].apply(
+            lambda x: datetime.strptime(str(game_date+x), "%Y%m%d%H:%M:%S")) # convert to date
+
+        
+        feed_list.append({'x':data_dict[line]['minutes'],
+                          'y':data_dict[line]['lower_prob'],
+                          'mode':'lines',
+                          'name':'lower than - {}'.format(line)})
+    
+    return feed_list
 #----------------------------------
 
 # external_stylesheets = ['https://codepen.io/chriddyp/pen/dZVMbK.css']
@@ -119,6 +144,7 @@ app.layout = html.Div(className='app__container', children=
                                [
                                    dcc.Graph(id='chl-graph-inverse', animate=False),
                                    dcc.Graph(id='total-corner-graph', animate=False),
+                                   dcc.Graph(id='poisson-prob', animate=False),
                                    dcc.Graph(id='chl-graph', animate=False),
                                    dcc.Interval(id='interval-component',
                                                 interval=10*1000,
@@ -209,7 +235,7 @@ def update_graph(n, source):
     layout = plotly.graph_objs.Layout(
         title={'text': 'Total corner - {}'.format(source[:-4])},
         font={'color': font_color},
-        height=360,
+        height=300,
         xaxis={'title': 'Time Since Start of Game',
                 'autorange': True,
                 'gridcolor': grid_color},
@@ -220,6 +246,40 @@ def update_graph(n, source):
         plot_bgcolor=plot_bgcolor,
         template="plotly_dark",
         showlegend=True
+    )
+    return {'data': traces, 'layout': layout}
+
+
+@app.callback(Output('poisson-prob', 'figure'),
+              [Input('interval-component', 'n_intervals'),
+              Input('matches-dropdown', 'value')])
+
+def update_graph(n, source):
+    feed_list = data_pipeline_poisson(game_date, source)
+    traces = list()
+    for (feed, color_code) in zip(feed_list, color_list):
+        traces.append(plotly.graph_objs.Scatter(
+            x=feed['x'],
+            y=feed['y'],
+            name=feed['name'],
+            mode=feed['mode'],
+            line=dict(width=1.3, dash='solid', color=color_code)
+            ))
+
+    layout = plotly.graph_objs.Layout(
+        title={'text': 'Live Poisson Probability'.format(
+            source[:-4])},
+        font={'color': font_color},
+        height=420,
+        xaxis={'title': 'Time Since Start of Game',
+                'autorange': True,
+                'gridcolor': grid_color},
+        yaxis={'title': 'Probability',
+                'autorange': True,
+                'gridcolor': grid_color},
+        paper_bgcolor=paper_bgcolor,
+        plot_bgcolor=plot_bgcolor,
+        template="plotly_dark"
     )
     return {'data': traces, 'layout': layout}
 
