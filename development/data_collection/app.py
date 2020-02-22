@@ -24,6 +24,7 @@ import dash_html_components as html
 import plotly
 from dash.dependencies import Input, Output
 from poisson_graph import poisson_pipeline
+from signals import signal_analysis
 
 os.chdir('/Users/TysonWu/dev/odds-crawl-app/odds-crawl-app/development/data_collection/')
 
@@ -103,19 +104,45 @@ def data_pipeline_poisson(game_date, source):
         feed_list.append({'x':data_dict[line]['minutes'],
                           'y':data_dict[line]['lower_prob'],
                           'mode':'lines',
-                          'name':'lower than - {}'.format(line)})
+                          'name':'< - {}'.format(line)})
     
     return feed_list
 #----------------------------------
-
-# external_stylesheets = ['https://codepen.io/chriddyp/pen/dZVMbK.css']
-# external_stylesheets = ['https://unpkg.com/purecss@1.0.1/build/pure-min.css']
 
 app = dash.Dash(__name__)
 server = app.server
 
 matches = sorted([file for file in os.listdir('data/') if '202' in file], 
                  reverse=True)
+
+signal_data = signal_analysis()
+signal_data = signal_data[signal_data['return'] != 0]
+signal_data = signal_data[~signal_data['result_corner'].isna()]
+signal_data = signal_data[['event_id','line','chl_low',
+                           'peak_change','signal','result_corner',
+                           'correct_prediction','return']]
+
+color_list = [
+    '#FFA65A',
+    '#E86146',
+    '#E8469A',
+    '#B574FF',
+    '#5D69E8',
+    '#54C3C7',
+    '#61FFB0',
+    '#8DFF5C',
+    '#EDF05D',
+    '#D43353',
+    '#8A66FF',
+    '#3E84ED',
+    '#3EEDC1',
+    '#D4D4D4',
+    ]
+
+font_color = '#c5c5c5'
+grid_color = '#2f373d'
+paper_bgcolor = 'rgba(0,0,0,0)'
+plot_bgcolor='rgba(0,0,0,0)'
 
 app.layout = html.Div(className='app__container', children=
                       [
@@ -148,31 +175,62 @@ app.layout = html.Div(className='app__container', children=
                                    dcc.Graph(id='chl-graph', animate=False),
                                    dcc.Interval(id='interval-component',
                                                 interval=10*1000,
-                                                n_intervals=0)
+                                                n_intervals=0),
+                                   html.H4(children='Signal Performance'),
+                                   dcc.Graph(id='performance',
+                                             figure={                    
+                                                 'data':[{
+                                                     'x': signal_data.index,
+                                                     'y': signal_data['return'].cumsum(),
+                                                     'mode':'lines+markers'
+                                                     }],
+                                                 'layout':{
+                                                     'font': {'color': font_color},
+                                                     'axis':{'title': 'Time Since Start of Game',
+                                                             'autorange': True,
+                                                             'gridcolor': grid_color},
+                                                     'yaxis':{'title': 'Odds',
+                                                              'autorange': True,
+                                                              'gridcolor': grid_color},
+                                                     'paper_bgcolor': paper_bgcolor,
+                                                     'plot_bgcolor': plot_bgcolor,
+                                                     'template': "plotly_dark"
+                                                     }
+                                                 }
+                                             ),
+                                   html.H4(children='Recent Game Results'),
+                                   html.Table(
+                                       # Header
+                                       [html.Tr([html.Th(col) for col in signal_data.columns])] +
+                                
+                                        # Body
+                                       [html.Tr([
+                                           html.Td(signal_data.iloc[i][col]) for col in signal_data.columns
+                                           ]) for i in range(-1,-16,-1)]
+                                       ),
+                                   html.H4(children=' ')
+                                   
+
+                                   # dcc.Tabs(id='tabs', value='tab-1', children=[
+                                   #     dcc.Tab(label='Live Graphs', value='tab-1'),
+                                   #     dcc.Tab(label='Performance Metrics', value='tab-2')
+                                   #     ]),
+                                   # html.Div(id='tabs-content')
                                    ])
                       ])
 
-color_list = [
-    '#FFA65A',
-    '#E86146',
-    '#E8469A',
-    '#B574FF',
-    '#5D69E8',
-    '#54C3C7',
-    '#61FFB0',
-    '#8DFF5C',
-    '#edf05d',
-    '#d43353',
-    '#8a66ff',
-    '#3e84ed',
-    '#3eedc1',
-    '#d4d4d4',
-    ]
 
-font_color = '#c5c5c5'
-grid_color = '#2f373d'
-paper_bgcolor = 'rgba(0,0,0,0)'
-plot_bgcolor='rgba(0,0,0,0)'
+# @app.callback(Output('tabs-content', 'children'),
+#               [Input('tabs', 'value')])
+
+# def render_content(tab):
+#     if tab == 'tab-1':
+#         return html.Div([
+#             ])
+#     elif tab == 'tab-2':
+#         return html.Div([
+#              ])
+   
 
 @app.callback(Output('chl-graph', 'figure'),
               [Input('interval-component', 'n_intervals'),
