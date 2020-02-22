@@ -2,3 +2,4 @@
 
 cd ~/dev/odds-crawl-app/odds-crawl-app/development/result_collection/
 python update_result.py
+open match_corner_result.csv
