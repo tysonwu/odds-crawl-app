@@ -41,7 +41,7 @@ def return_calc(signal_list):
                                  np.where(signals.signal == 0, 0,
                                          np.where(signals.correct_prediction == 1, signals.chl_hi-1, -1)))
     signals['return'] = signals['return'].apply(lambda x: round(x,2))
-    signals.sort_values(by='event_id').reset_index(drop=True)
+    signals = signals.sort_values(by='event_id').reset_index(drop=True)
     return signals
 
 
@@ -60,7 +60,7 @@ def signal_analysis(t=time(1,30,0), min_peak_change=0.98): # returns a df
                 signal_list = pd.concat([signal_list, peaks.iloc[[0]]], ignore_index=True)
 
     signals = return_calc(signal_list)
-    return signals
+    return signals.sort_values(by='event_id').reset_index(drop=True)
 
 
 def graph_profit(signal):

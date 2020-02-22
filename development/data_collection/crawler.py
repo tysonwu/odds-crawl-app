@@ -23,9 +23,9 @@ from bs4 import BeautifulSoup
 from webdriver_manager.chrome import ChromeDriverManager
 from signals import signal_check
 
-
+os.chdir('/Users/TysonWu/dev/odds-crawl-app/odds-crawl-app/development/data_collection/')
 #--------------------------
-path_dir = '/Users/TysonWu/dev/odds-crawl-app/odds-crawl-app/development/data_collection/data/'
+path_dir = '/Users/TysonWu/dev/odds-crawl-app/odds-crawl-app/development/data_collection/'
 #--------------------------
 
 def check_odds_availability(driver, odd_type, event_id):
@@ -105,7 +105,7 @@ def make_match_data(event_id, league, team_name_dict, game_starting_time):
 
 
 def export_match_csv(match_data, path_dir):
-    path_file = path_dir + "match_data.csv"
+    path_file = path_dir + "data/match_data.csv"
 
     match_data.set_index('event_id', inplace=True)
 
@@ -126,7 +126,7 @@ def export_match_csv(match_data, path_dir):
 
 
 def record_job_history_csv(event_id, path_dir):
-    path_file = path_dir + "job_history.csv"
+    path_file = path_dir + "data/job_history.csv"
     job_data = pd.DataFrame({'job_id': uuid.uuid1().hex,
                              'event_id': event_id,
                              'timestamp': datetime.strptime(
@@ -165,7 +165,7 @@ def make_odds_data(odd_dict, total_corner, live_score_dict, event_id, game_start
 
 
 def export_odds_csv(odds, event_id, path_dir):
-    path_file = path_dir + event_id + ".csv"
+    path_file = path_dir + "data/" + event_id + ".csv"
 
     # if file exists, write line; if file does not exist, create one and write line
     if os.path.exists(path_file) == True:
@@ -191,11 +191,11 @@ def main(crawl_interval=10):
     web_url = args.url
 
     # # override
-    # web_url = 'https://bet.hkjc.com/football/odds/odds_inplay_all.aspx?lang=EN&tmatchid=09537faa-eb94-494f-9d33-5ed8da41139a'
+    # web_url = 'https://bet.hkjc.com/football/odds/odds_inplay_all.aspx?lang=EN&tmatchid=fdc9ebc7-5597-4cdc-a03c-c62bc3b2ac83'
     print(web_url)
 
     # read schedule
-    schedule = pd.read_csv(path_dir+"schedule.csv")
+    schedule = pd.read_csv(path_dir+"data/schedule.csv")
     # returns latest row in case there are duplicates
     # if it is empty then something gone wrong
     try:

@@ -48,7 +48,7 @@ def lowest_odd(x): # x is a 2D list [[a,b,c],[a,b,c],[a,b,c]] 1-3 elements
 
 
 def signal_data_pipeline(event_id):
-    data = pd.read_csv(os.getcwd()+'/data/'+event_id+'.csv')
+    data = pd.read_csv('data/'+event_id+'.csv')
     data = data[['event_id','minutes','chl_line','chl_hi','chl_low']]
     data = remove_empty_rows(data)
     data['line_odds'] = data.apply(lambda x: [x.chl_line, x.chl_hi, x.chl_low], axis = 1)
@@ -67,7 +67,7 @@ def signal_data_pipeline(event_id):
 
 
 def separate_by_lines(event_id): # read event_id -> reads data file in crawled format
-    data = pd.read_csv(os.getcwd()+'/data/'+event_id+'.csv')
+    data = pd.read_csv('data/'+event_id+'.csv')
     data = remove_empty_rows(data)
 
     lines = list(set(data.chl_line))
