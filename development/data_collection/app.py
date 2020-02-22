@@ -25,42 +25,12 @@ import plotly
 from dash.dependencies import Input, Output
 from poisson_graph import poisson_pipeline
 from signals import signal_analysis
+import utils as u
 
-os.chdir('/Users/TysonWu/dev/odds-crawl-app/odds-crawl-app/development/data_collection/')
 
-match_data = pd.read_csv('data/match_data.csv')
-current_match = match_data.iloc[-1,]
-current_match_event_id = current_match['event_id']
-game_date = current_match_event_id[:8] # a string YYYYmmdd
-    
-
-def data_pipeline(game_date, source): # source is 'YYYYmmdd.csv'
-    data_path = 'data/'+source
-    data = pd.read_csv(data_path)
-    
-    # remove rows with --- ie. suspensions of bets
-    
-    data = data[(data.chl_line != "---") & (~data.chl_line.isna())]
-    data = data[(data.chl_hi != "---") & (~data.chl_hi.isna())]
-    data = data[(data.chl_low != "---") & (~data.chl_low.isna())]
-
-    # change data to numeric as there will be arithmatic operations
-    data['chl_hi'] = data.chl_hi.apply(pd.to_numeric)
-    data['chl_low'] = data.chl_low.apply(pd.to_numeric)
-
-    # split data to data_dict by line
-    lines = list(set(data.chl_line))
-    data_dict = {}
-    time_list = sorted(list(set(data.minutes)))
-
-    for line in lines:
-        filtered_data = data[data.chl_line==line][['minutes', 'chl_line', 'chl_hi', 'chl_low']].sort_values(
-            by=['minutes'])
-        data_dict[line] = pd.DataFrame({'minutes': time_list})
-        data_dict[line] = data_dict[line].merge(filtered_data,
-                                                how='outer', on='minutes')
-        data_dict[line]['minutes'] = data_dict[line]['minutes'].apply(
-            lambda x: datetime.strptime(str(game_date+x), "%Y%m%d%H:%M:%S")) # convert to date
+def data_pipeline(game_date, source): # source is 'YYYYmmddXXXn.csv'
+    event_id = source[:-4]
+    data_dict, lines = u.separate_by_lines(event_id)
 
     feed_list_hi = []
     feed_list_low = []
@@ -73,70 +43,75 @@ def data_pipeline(game_date, source): # source is 'YYYYmmdd.csv'
                               'y':data_dict[line]['chl_low'],
                               'mode':'lines',
                               'name':'{} - low'.format(line)})
-    
+
     # data for # total corner
+    data = pd.read_csv('data/'+event_id+'.csv')
     total_corner = data[['minutes','total_corner']]
+    # remove unuseful rows
     total_corner = total_corner[(total_corner.total_corner != "---") & (~total_corner.total_corner.isna())]
-    
     total_corner['minutes'] = total_corner['minutes'].apply(
             lambda x: datetime.strptime(str(game_date+x), "%Y%m%d%H:%M:%S")) # convert to date
     total_corner = total_corner.drop_duplicates(keep='first')
     return total_corner, feed_list_hi, feed_list_low
 
 
-def data_pipeline_poisson(game_date, source):
-    data = poisson_pipeline(source)
-    
-    # split data to data_dict by line
-    lines = list(set(data.chl_line))
-    data_dict = {}
-    time_list = sorted(list(set(data.minutes)))
-    feed_list = []
-    
-    for line in lines:
-        filtered_data = data[data.chl_line==line].sort_values(by=['minutes'])
-        data_dict[line] = pd.DataFrame({'minutes': time_list})
-        data_dict[line] = data_dict[line].merge(filtered_data, how='outer', on='minutes')
-        data_dict[line]['minutes'] = data_dict[line]['minutes'].apply(
-            lambda x: datetime.strptime(str(game_date+x), "%Y%m%d%H:%M:%S")) # convert to date
+# signal performance
+def display_signal_data():
+    signal_data = signal_analysis()
+    signal_data = signal_data[signal_data['return'] != 0]
+    signal_data = signal_data[~signal_data['result_corner'].isna()]
+    signal_data['date'] = signal_data.event_id.apply(lambda x: x[:8])
+    signal_data['number'] = signal_data.event_id.apply(lambda x: x[11:])
+    signal_data = signal_data.sort_values(by=['date','number']).reset_index(drop=True)
+    signal_data = signal_data[['event_id','line','chl_low',
+                               'peak_change','signal','result_corner',
+                               'correct_prediction','return']]
+    return signal_data
 
-        
-        feed_list.append({'x':data_dict[line]['minutes'],
-                          'y':data_dict[line]['lower_prob'],
-                          'mode':'lines',
-                          'name':'< - {}'.format(line)})
-    
-    return feed_list
+
+# def data_pipeline_poisson(game_date, source):
+#     data = poisson_pipeline(source)
+#
+#     # split data to data_dict by line
+#     lines = list(ssset(data.chl_line))
+#     data_dict = {}
+#     time_list = sorted(list(set(data.minutes)))
+#     feed_list = []
+#
+#     for line in lines:
+#         filtered_data = data[data.chl_line==line].sort_values(by=['minutes'])
+#         data_dict[line] = pd.DataFrame({'minutes': time_list})
+#         data_dict[line] = data_dict[line].merge(filtered_data, how='outer', on='minutes')
+#         data_dict[line]['minutes'] = data_dict[line]['minutes'].apply(
+#             lambda x: datetime.strptime(str(game_date+x), "%Y%m%d%H:%M:%S")) # convert to date
+#
+#
+#         feed_list.append({'x':data_dict[line]['minutes'],
+#                           'y':data_dict[line]['lower_prob'],
+#                           'mode':'lines',
+#                           'name':'< - {}'.format(line)})
+#
+#     return feed_list
 #----------------------------------
 
+os.chdir('/Users/TysonWu/dev/odds-crawl-app/odds-crawl-app/development/data_collection/')
+
+# initialize app
 app = dash.Dash(__name__)
 server = app.server
 
-matches = sorted([file for file in os.listdir('data/') if '202' in file], 
+match_data = pd.read_csv('data/match_data.csv')
+current_match = match_data.iloc[-1,]
+current_match_event_id = current_match['event_id']
+game_date = current_match_event_id[:8] # a string YYYYmmdd
+matches = sorted([file for file in os.listdir('data/') if '202' in file],
                  reverse=True)
+signal_data = display_signal_data()
 
-signal_data = signal_analysis()
-signal_data = signal_data[signal_data['return'] != 0]
-signal_data = signal_data[~signal_data['result_corner'].isna()]
-signal_data = signal_data[['event_id','line','chl_low',
-                           'peak_change','signal','result_corner',
-                           'correct_prediction','return']]
-
-color_list = [
-    '#FFA65A',
-    '#E86146',
-    '#E8469A',
-    '#B574FF',
-    '#5D69E8',
-    '#54C3C7',
-    '#61FFB0',
-    '#8DFF5C',
-    '#EDF05D',
-    '#D43353',
-    '#8A66FF',
-    '#3E84ED',
-    '#3EEDC1',
-    '#D4D4D4',
+# color codes
+color_list = ['#FFA65A', '#E86146', '#E8469A', '#B574FF', '#5D69E8', '#54C3C7',
+'#61FFB0', '#8DFF5C', '#EDF05D', '#D43353', '#8A66FF', '#3E84ED',
+'#3EEDC1', '#D4D4D4',
     ]
 
 font_color = '#c5c5c5'
@@ -154,9 +129,9 @@ app.layout = html.Div(className='app__container', children=
                                [
                                    html.Link(rel='stylesheet',
                                              href='/assets/stylesheet.css'
-                                             ),                                      
+                                             ),
                                    dcc.Dropdown(id='matches-dropdown',
-                                                options=[{'label': i, 'value': i} for i in matches],
+                                                # options=[{'label': i, 'value': i} for i in matches],
                                                 value=current_match_event_id+'.csv',
                                                 style={'width': '200px'}
                                                 ),
@@ -166,19 +141,19 @@ app.layout = html.Div(className='app__container', children=
                                        html.Tr([html.Td(['Home:']), html.Td(id='match-home')]),
                                        html.Tr([html.Td(['Away:']), html.Td(id='match-away')])
                                        ])
-                                   ]), 
+                                   ]),
                       html.Div(className='ten columns', children=
                                [
                                    dcc.Graph(id='chl-graph-inverse', animate=False),
                                    dcc.Graph(id='total-corner-graph', animate=False),
-                                   dcc.Graph(id='poisson-prob', animate=False),
+                                   # dcc.Graph(id='poisson-prob', animate=False),
                                    dcc.Graph(id='chl-graph', animate=False),
                                    dcc.Interval(id='interval-component',
                                                 interval=10*1000,
                                                 n_intervals=0),
                                    html.H4(children='Signal Performance'),
                                    dcc.Graph(id='performance',
-                                             figure={                    
+                                             figure={
                                                  'data':[{
                                                      'x': signal_data.index,
                                                      'y': signal_data['return'].cumsum(),
@@ -189,7 +164,7 @@ app.layout = html.Div(className='app__container', children=
                                                      'axis':{'title': 'Time Since Start of Game',
                                                              'autorange': True,
                                                              'gridcolor': grid_color},
-                                                     'yaxis':{'title': 'Odds',
+                                                     'yaxis':{'title': 'Return',
                                                               'autorange': True,
                                                               'gridcolor': grid_color},
                                                      'paper_bgcolor': paper_bgcolor,
@@ -202,14 +177,14 @@ app.layout = html.Div(className='app__container', children=
                                    html.Table(
                                        # Header
                                        [html.Tr([html.Th(col) for col in signal_data.columns])] +
-                                
+
                                         # Body
                                        [html.Tr([
                                            html.Td(signal_data.iloc[i][col]) for col in signal_data.columns
                                            ]) for i in range(-1,-16,-1)]
                                        ),
                                    html.H4(children=' ')
-                                   
+
 
                                    # dcc.Tabs(id='tabs', value='tab-1', children=[
                                    #     dcc.Tab(label='Live Graphs', value='tab-1'),
@@ -230,7 +205,15 @@ app.layout = html.Div(className='app__container', children=
 #     elif tab == 'tab-2':
 #         return html.Div([
 #              ])
-   
+@app.callback(Output('matches-dropdown', 'options'),
+              [Input('interval-component', 'n_intervals')])
+
+def update_dropdown(n):
+    match_info = sorted([file for file in os.listdir('data/') if '202' in file], 
+                     reverse=True)
+    options = [{'label': i, 'value': i} for i in match_info]
+    return options
+
 
 @app.callback(Output('chl-graph', 'figure'),
               [Input('interval-component', 'n_intervals'),
@@ -289,7 +272,7 @@ def update_graph(n, source):
         mode='lines',
         line=dict(width=1.3, dash='solid', color=color_list[-2])
         ))
-    
+
     layout = plotly.graph_objs.Layout(
         title={'text': 'Total corner - {}'.format(source[:-4])},
         font={'color': font_color},
@@ -308,38 +291,38 @@ def update_graph(n, source):
     return {'data': traces, 'layout': layout}
 
 
-@app.callback(Output('poisson-prob', 'figure'),
-              [Input('interval-component', 'n_intervals'),
-              Input('matches-dropdown', 'value')])
-
-def update_graph(n, source):
-    feed_list = data_pipeline_poisson(game_date, source)
-    traces = list()
-    for (feed, color_code) in zip(feed_list, color_list):
-        traces.append(plotly.graph_objs.Scatter(
-            x=feed['x'],
-            y=feed['y'],
-            name=feed['name'],
-            mode=feed['mode'],
-            line=dict(width=1.3, dash='solid', color=color_code)
-            ))
-
-    layout = plotly.graph_objs.Layout(
-        title={'text': 'Live Poisson Probability'.format(
-            source[:-4])},
-        font={'color': font_color},
-        height=420,
-        xaxis={'title': 'Time Since Start of Game',
-                'autorange': True,
-                'gridcolor': grid_color},
-        yaxis={'title': 'Probability',
-                'autorange': True,
-                'gridcolor': grid_color},
-        paper_bgcolor=paper_bgcolor,
-        plot_bgcolor=plot_bgcolor,
-        template="plotly_dark"
-    )
-    return {'data': traces, 'layout': layout}
+# @app.callback(Output('poisson-prob', 'figure'),
+#               [Input('interval-component', 'n_intervals'),
+#               Input('matches-dropdown', 'value')])
+#
+# def update_graph(n, source):
+#     feed_list = data_pipeline_poisson(game_date, source)
+#     traces = list()
+#     for (feed, color_code) in zip(feed_list, color_list):
+#         traces.append(plotly.graph_objs.Scatter(
+#             x=feed['x'],
+#             y=feed['y'],
+#             name=feed['name'],
+#             mode=feed['mode'],
+#             line=dict(width=1.3, dash='solid', color=color_code)
+#             ))
+#
+#     layout = plotly.graph_objs.Layout(
+#         title={'text': 'Live Poisson Probability'.format(
+#             source[:-4])},
+#         font={'color': font_color},
+#         height=420,
+#         xaxis={'title': 'Time Since Start of Game',
+#                 'autorange': True,
+#                 'gridcolor': grid_color},
+#         yaxis={'title': 'Probability',
+#                 'autorange': True,
+#                 'gridcolor': grid_color},
+#         paper_bgcolor=paper_bgcolor,
+#         plot_bgcolor=plot_bgcolor,
+#         template="plotly_dark"
+#     )
+#     return {'data': traces, 'layout': layout}
 
 
 @app.callback(Output('chl-graph-inverse', 'figure'),
@@ -388,7 +371,7 @@ def update_graph(n, source):
     [Output('match-game-starting-time', 'children'),
      Output('match-league', 'children'),
      Output('match-home', 'children'),
-     Output('match-away', 'children')], 
+     Output('match-away', 'children')],
     [Input('matches-dropdown', 'value')])
 
 def update_match_info(source):
