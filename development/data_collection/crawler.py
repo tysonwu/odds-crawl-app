@@ -21,6 +21,7 @@ from datetime import datetime, timedelta
 from selenium import webdriver
 from bs4 import BeautifulSoup
 from webdriver_manager.chrome import ChromeDriverManager
+from signals import signal_check
 
 
 #--------------------------
@@ -66,11 +67,11 @@ def scrap_odds(driver, event_id):  #  returns a dict
         except:
             # return things when error
             return dict(chl_line=chl_line_list, chl_hi=chl_hi_list, chl_low=chl_low_list)
-        
+
 
 def scrap_total_corner(driver): # return a number
     try:
-        total_corner = BeautifulSoup(driver.find_element_by_class_name('spTotalCorner').get_attribute('innerHTML'), 
+        total_corner = BeautifulSoup(driver.find_element_by_class_name('spTotalCorner').get_attribute('innerHTML'),
                                      'html.parser').text.strip()
     except:
         driver.quit()
@@ -78,7 +79,7 @@ def scrap_total_corner(driver): # return a number
         sys.exit()
 
     return total_corner
-        
+
 
 def scrap_live_score(driver):  # return a dict eg. {home_score: 1, away_score: 2}
     try:
@@ -87,7 +88,7 @@ def scrap_live_score(driver):  # return a dict eg. {home_score: 1, away_score: 2
         driver.quit()
         print("Error finding live score. Program will now terminate.")
         sys.exit()
-    
+
     score_list = [score.strip() for score in live_score.split(':')]  # [home, away]
     # when score is not live yet (eg. before start of game), the attribute reutrns 'vs'
     # so the return dict would be {home_score: vs, away_score: vs}
@@ -105,9 +106,9 @@ def make_match_data(event_id, league, team_name_dict, game_starting_time):
 
 def export_match_csv(match_data, path_dir):
     path_file = path_dir + "match_data.csv"
-    
+
     match_data.set_index('event_id', inplace=True)
-    
+
     # if file exists, if sentry also already exists then update it instead of append
     if os.path.exists(path_file) == True:
         match_history = pd.read_csv(path_file, index_col=['event_id'])
@@ -115,24 +116,24 @@ def export_match_csv(match_data, path_dir):
         if not match_history[match_history.index == match_data.index[0]].empty:
             match_history.update(match_data)
             match_history.to_csv(path_file, index=True, mode="w", header=True)
-        else: 
+        else:
             # match_history = pd.concat([match_history, match_data], axis=0)
             match_data.to_csv(path_file, mode="a", header=False)
     else:
         match_data.to_csv(path_file, index=True, mode="w", header=True)
-    
+
     print('Updated match data and exported to csv.')
-    
+
 
 def record_job_history_csv(event_id, path_dir):
     path_file = path_dir + "job_history.csv"
-    job_data = pd.DataFrame({'job_id': uuid.uuid1().hex, 
+    job_data = pd.DataFrame({'job_id': uuid.uuid1().hex,
                              'event_id': event_id,
                              'timestamp': datetime.strptime(
-                                 datetime.strftime(datetime.now(), 
-                                                   "%Y-%m-%d %H:%M:%S"), 
+                                 datetime.strftime(datetime.now(),
+                                                   "%Y-%m-%d %H:%M:%S"),
                                  "%Y-%m-%d %H:%M:%S")}, index=[0])
-    
+
     if os.path.exists(path_file) == True:
         job_data.to_csv(path_file, index=False, mode="a", header=False)
     else:
@@ -143,11 +144,11 @@ def record_job_history_csv(event_id, path_dir):
 
 def make_odds_data(odd_dict, total_corner, live_score_dict, event_id, game_starting_time):
     # add timestamp
-    timestamp = datetime.strptime(datetime.strftime(datetime.now(), "%Y-%m-%d %H:%M:%S"), 
+    timestamp = datetime.strptime(datetime.strftime(datetime.now(), "%Y-%m-%d %H:%M:%S"),
                                   "%Y-%m-%d %H:%M:%S")
 
     game_starting_time = datetime.strptime(game_starting_time, "%Y-%m-%d %H:%M:%S")
-    minutes = str(max((timestamp - game_starting_time), 
+    minutes = str(max((timestamp - game_starting_time),
                       timedelta(seconds=0))) # truncate for time before game starts
 
     time_data = pd.DataFrame({"event_id": event_id,
@@ -182,41 +183,41 @@ def initialize(url, load_sleep=7):
 
 def main(crawl_interval=10):
     print("Start running crawl script...")
-    
+
     # read html from command line argument
     parser = argparse.ArgumentParser(description='Web url as an argument')
     parser.add_argument("--url")
     args = parser.parse_args()
     web_url = args.url
-    
+
     # # override
     # web_url = 'https://bet.hkjc.com/football/odds/odds_inplay_all.aspx?lang=EN&tmatchid=09537faa-eb94-494f-9d33-5ed8da41139a'
     print(web_url)
-    
+
     # read schedule
     schedule = pd.read_csv(path_dir+"schedule.csv")
     # returns latest row in case there are duplicates
     # if it is empty then something gone wrong
-    try: 
+    try:
         game_info = schedule[schedule['game_url'] == web_url].iloc[-1,]
     except:
         print("Found no such URL in schedule.csv. Program will now terminate.")
-        sys.exit()        
-    
+        sys.exit()
+
     url = game_info['game_url']
     event_id = game_info['event_id']
     league = game_info['league']
     game_starting_time = game_info['time']
     team_name_dict = dict(home=game_info['home'], away=game_info['away'])
-    
+
     driver = initialize(url)
-    
+
     # record job history
     record_job_history_csv(event_id, path_dir)
 
     # check odd content availability; if no corner hilow odds then terminate program
     check_odds_availability(driver=driver, odd_type='chl', event_id=event_id)
-    
+
     # make and export match information
     match_data = make_match_data(event_id, league, team_name_dict, game_starting_time)
     export_match_csv(match_data, path_dir)
@@ -224,7 +225,7 @@ def main(crawl_interval=10):
     while True:
         # check odd content availability; if no corner hilow odds then terminate program
         check_odds_availability(driver=driver, odd_type='chl', event_id=event_id)
-        
+
         live_score_dict = scrap_live_score(driver)
         total_corner = scrap_total_corner(driver)
         odds_dict = scrap_odds(driver, event_id)
@@ -235,6 +236,8 @@ def main(crawl_interval=10):
                               game_starting_time) # string
         # if not odds.total_corner.isnull().values.any():
         export_odds_csv(odds, event_id, path_dir)
+        # if there is a bet signal, output the action row to signal.csv
+        signal_check(event_id)
 
         print("Done crawling on {}. Wait {} seconds for another crawl...".format(
             datetime.now(), crawl_interval))
