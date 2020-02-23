@@ -56,13 +56,13 @@ def data_pipeline(game_date, source): # source is 'YYYYmmddXXXn.csv'
 
 
 # signal performance
-def display_signal_data():
-    signal_data = signal_analysis()
-    signal_data = signal_data[signal_data['return'] != 0]
+def display_signal_data(min_peak_change):
+    signal_data = signal_analysis(min_peak_change=min_peak_change)
+    signal_data = signal_data[signal_data['signal'] != 0]
     signal_data = signal_data[~signal_data['result_corner'].isna()]
-    signal_data['date'] = signal_data.event_id.apply(lambda x: x[:8])
-    signal_data['number'] = signal_data.event_id.apply(lambda x: x[11:])
-    signal_data = signal_data.sort_values(by=['date','number']).reset_index(drop=True)
+#     signal_data['date'] = signal_data.event_id.apply(lambda x: x[:8])
+#     signal_data['number'] = signal_data.event_id.apply(lambda x: int(x[11:]))
+#     signal_data = signal_data.sort_values(by=['date','number']).reset_index(drop=True)
     signal_data = signal_data[['event_id','line','chl_low',
                                'peak_change','signal','result_corner',
                                'correct_prediction','return']]
@@ -100,24 +100,25 @@ os.chdir('/Users/TysonWu/dev/odds-crawl-app/odds-crawl-app/development/data_coll
 app = dash.Dash(__name__)
 server = app.server
 
+MIN_PEAK_CHANGE = 0.98
 match_data = pd.read_csv('data/match_data.csv')
 current_match = match_data.iloc[-1,]
 current_match_event_id = current_match['event_id']
 game_date = current_match_event_id[:8] # a string YYYYmmdd
 matches = sorted([file for file in os.listdir('data/') if '202' in file],
                  reverse=True)
-signal_data = display_signal_data()
+signal_data = display_signal_data(min_peak_change=MIN_PEAK_CHANGE)
 
 # color codes
 color_list = ['#FFA65A', '#E86146', '#E8469A', '#B574FF', '#5D69E8', '#54C3C7',
 '#61FFB0', '#8DFF5C', '#EDF05D', '#D43353', '#8A66FF', '#3E84ED',
 '#3EEDC1', '#D4D4D4',
     ]
-
+defaults = ['#1f77b4','#ff7f0e'] # default muted blue, safety orange
 font_color = '#c5c5c5'
 grid_color = '#2f373d'
 paper_bgcolor = 'rgba(0,0,0,0)'
-plot_bgcolor='rgba(0,0,0,0)'
+plot_bgcolor = 'rgba(0,0,0,0)'
 
 app.layout = html.Div(className='app__container', children=
                       [
@@ -209,7 +210,7 @@ app.layout = html.Div(className='app__container', children=
               [Input('interval-component', 'n_intervals')])
 
 def update_dropdown(n):
-    match_info = sorted([file for file in os.listdir('data/') if '202' in file], 
+    match_info = sorted([file for file in os.listdir('data/') if '202' in file],
                      reverse=True)
     options = [{'label': i, 'value': i} for i in match_info]
     return options
@@ -270,7 +271,7 @@ def update_graph(n, source):
         y=total_corner['total_corner'],
         name='Corners',
         mode='lines',
-        line=dict(width=1.3, dash='solid', color=color_list[-2])
+        line=dict(dash='solid', color=defaults[0])
         ))
 
     layout = plotly.graph_objs.Layout(

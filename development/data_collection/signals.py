@@ -7,13 +7,41 @@ from datetime import datetime, time
 import utils as u
 
 
+def signal_data_pipeline(event_id):
+    data = pd.read_csv('data/'+event_id+'.csv')
+    # data = data[['event_id','minutes','chl_line','chl_hi','chl_low']]
+    data = u.remove_empty_rows(data)
+    # if remove_empty_rows removes ALL rows, then there will be an empty df
+    # to prevent raise of error, only process the pipeline when df is not empty
+    # if df is empty, return None
+    if data.empty == False:
+        data['line_odds'] = data.apply(lambda x: [x.chl_line, x.chl_hi, x.chl_low], axis = 1)
+        odd_list = data[['minutes', 'line_odds']].groupby('minutes')['line_odds'].apply(list).reset_index(name='line_odds')
+        data = odd_list.merge(data[['event_id','minutes','total_corner']], how='inner', on='minutes')
+        # data = data[['event_id', 'minutes', 'line_odds','total_corner']]
+    
+        data['min_odds_info'] = data.line_odds.apply(u.lowest_odd)
+        data['line'] = data.min_odds_info.apply(lambda x: x[0])
+        data['chl_low'] = data.min_odds_info.apply(lambda x: x[-1])
+        data['chl_hi'] = data.min_odds_info.apply(lambda x: x[1])
+        data = data[['event_id','minutes','total_corner','line','chl_hi','chl_low']]
+        data['minutes'] = data['minutes'].apply(lambda x: datetime.strptime(event_id[:8]+x, "%Y%m%d%H:%M:%S"))
+        return data
+    else:
+        return None
+
+
 def signal_rules(event_id, data, t, min_peak_change):
     # create peak df
     data['odd_change'] = data.chl_low/data.chl_low.shift(1)
+    # line change
+    #data['line_change'] = data.line - data.line.shift(1)
+    # is a peak
     data['peak'] = np.where(data.odd_change > 1, 1, 0)
     peaks = data[data.peak == 1]
     peaks['peak_change'] = peaks.chl_low/peaks.chl_low.shift(1)
     peaks['peak_change'] = peaks.peak_change.apply(lambda x: round(x,4))
+    
 
     # apply signal rules---------------------------------------
     peaks['signal'] = np.where(peaks.peak_change < min_peak_change, 1,
@@ -49,9 +77,14 @@ def signal_analysis(t=time(1,30,0), min_peak_change=0.98): # returns a df
     signal_list = None
     for event_id in [file[:-4] for file in os.listdir('data/') if '2020' in file]:
         # data pipeline
-        data = u.signal_data_pipeline(event_id)
-        peaks = signal_rules(event_id, data, t, min_peak_change)
-
+        data = signal_data_pipeline(event_id)
+        # signal_data_pipeline returns none when the df is empty after undergo pipeline
+        if data is not None:
+            peaks = signal_rules(event_id, data, t, min_peak_change)
+        else: # if df is empty then return an empty peaks df
+            peaks = pd.DataFrame({})
+        
+        # if peaks df is empty then nothing will be concat
         if signal_list is None:
             if peaks.empty == False:
                 signal_list = peaks.iloc[[0]]
@@ -60,7 +93,12 @@ def signal_analysis(t=time(1,30,0), min_peak_change=0.98): # returns a df
                 signal_list = pd.concat([signal_list, peaks.iloc[[0]]], ignore_index=True)
 
     signals = return_calc(signal_list)
-    return signals.sort_values(by='event_id').reset_index(drop=True)
+    signals['date'] = signals.event_id.apply(lambda x: x[:8])
+    signals['number'] = signals.event_id.apply(lambda x: int(x[11:]))
+    signals = signals.sort_values(by=['date','number']).reset_index(drop=True)
+    del signals['date']
+    del signals['number']
+    return signals
 
 
 def graph_profit(signal):
@@ -69,19 +107,22 @@ def graph_profit(signal):
 
 def signal_check(event_id, t=time(1,30,0), min_peak_change=0.98): # input an event_id of live game and check if it is a bet signal_list
     signal_row = None
-    live_data = u.signal_data_pipeline(event_id)
-    peaks = signal_rules(event_id, live_data, t, min_peak_change)
-    # if signal != 0 then there is a bet action to take
-    peaks = peaks[peaks['signal'] != 0]
-    if peaks.empty == False:
-        signal_row = peaks.iloc[[0]]
-        if os.path.isfile('data/signals.csv') == True:
-            signals = pd.read_csv('data/signals.csv')
-            signals_exist = signals[signals['event_id']==event_id]
-            if signals_exist.empty == False:
-                signals.update(signal_row)
-                signals.to_csv('data/signals.csv', index=False, mode="w", header=True)
+    live_data = signal_data_pipeline(event_id)
+    if live_data is not None:
+        peaks = signal_rules(event_id, live_data, t, min_peak_change)
+        # if signal != 0 then there is a bet action to take
+        peaks = peaks[peaks['signal'] != 0]
+        if peaks.empty == False:
+            signal_row = peaks.iloc[[0]]
+            if os.path.isfile('data/signals.csv') == True:
+                signals = pd.read_csv('data/signals.csv')
+                signals_exist = signals[signals['event_id']==event_id]
+                if signals_exist.empty == False:
+                    signals.update(signal_row)
+                    signals.to_csv('data/signals.csv', index=False, mode="w", header=True)
+                else:
+                    signal_row.to_csv('data/signals.csv', index=False, mode="a", header=False)
             else:
-                signal_row.to_csv('data/signals.csv', index=False, mode="a", header=False)
-        else:
-            signal_row.to_csv('data/signals.csv', index=False, mode="w", header=True)
+                signal_row.to_csv('data/signals.csv', index=False, mode="w", header=True)
+    else:
+        pass

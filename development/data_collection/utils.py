@@ -47,25 +47,6 @@ def lowest_odd(x): # x is a 2D list [[a,b,c],[a,b,c],[a,b,c]] 1-3 elements
     return x[i]
 
 
-def signal_data_pipeline(event_id):
-    data = pd.read_csv('data/'+event_id+'.csv')
-    data = data[['event_id','minutes','chl_line','chl_hi','chl_low']]
-    data = remove_empty_rows(data)
-    data['line_odds'] = data.apply(lambda x: [x.chl_line, x.chl_hi, x.chl_low], axis = 1)
-    odd_list = data[['minutes', 'line_odds']].groupby('minutes')['line_odds'].apply(list).reset_index(name='line_odds')
-    data = odd_list.merge(data[['event_id','minutes']], how='inner', on='minutes')
-    data = data[['event_id', 'minutes', 'line_odds']]
-
-    data['min_odds_info'] = data.line_odds.apply(lowest_odd)
-    data['line'] = data.min_odds_info.apply(lambda x: x[0])
-    data['chl_low'] = data.min_odds_info.apply(lambda x: x[-1])
-    data['chl_hi'] = data.min_odds_info.apply(lambda x: x[1])
-    data = data[['event_id','minutes','line','chl_hi','chl_low']]
-    data['minutes'] = data['minutes'].apply(lambda x: datetime.strptime(event_id[:8]+x, "%Y%m%d%H:%M:%S"))
-    return data
-
-
-
 def separate_by_lines(event_id): # read event_id -> reads data file in crawled format
     data = pd.read_csv('data/'+event_id+'.csv')
     data = remove_empty_rows(data)
