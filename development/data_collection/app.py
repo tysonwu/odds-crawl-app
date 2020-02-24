@@ -63,7 +63,7 @@ def display_signal_data(min_peak_change):
 #     signal_data['date'] = signal_data.event_id.apply(lambda x: x[:8])
 #     signal_data['number'] = signal_data.event_id.apply(lambda x: int(x[11:]))
 #     signal_data = signal_data.sort_values(by=['date','number']).reset_index(drop=True)
-    signal_data = signal_data[['event_id','line','chl_low',
+    signal_data = signal_data[['event_id','line','chl_hi','chl_low',
                                'peak_change','signal','result_corner',
                                'correct_prediction','return']]
     return signal_data
