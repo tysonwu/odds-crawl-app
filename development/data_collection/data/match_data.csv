@@ -16,3 +16,43 @@ event_id,game_starting_time,league,home,away
 20200218TUE5,2020-02-18 23:35:00,Asian Champions League,Al Sadd,Sepaha
 20200218TUE14,2020-02-19 04:00:00,UE Champions,Dortmund,Paris Saint Germain
 20200218TUE13,2020-02-19 04:00:00,UE Champions,Atletico Madrid,Liverpool
+20200218TUE18,2020-02-19 08:30:00,South American Cup,Aucas,Velez Sarsfield
+20200218TUE20,2020-02-19 11:00:00,Central and North American Cup,Club Leon,Los Angeles FC
+20200219WED1,2020-02-19 18:30:00,League,Yokohama F.Marinos,Sydney FC
+20200219WED3,2020-02-20 03:30:00,Eng Premier,Manchester City,West Ham
+20200219WED11,2020-02-20 08:30:00,Copa Libertadores,Deportes Tolima,Internacional
+20200219WED16,2020-02-20 11:00:00,Central and North American Cup,CSD Comunicaciones,CF America
+20200220THU1,2020-02-21 01:55:00,UE Cup,Bruges,Manchester Utd
+20200220THU9,2020-02-21 04:00:00,UE Cup,Olympiakos,Arsenal
+20200220THU20,2020-02-21 08:30:00,South American Cup,Atletico Mineiro,Union Santa Fe
+20200220THU22,2020-02-21 11:00:00,Central and North American Cup,CD Olimpia,Seattle Sounders
+20200221FRI1,2020-02-21 14:15:00,Australian Division 1,Wellington Phoenix,Western Utd
+20200221FRI3,2020-02-21 18:00:00,League,Shonan Bellmare,Urawa Reds
+20200221FRI35,2020-02-22 08:10:00,Argentine Division 1,Argentinos Juniors,Patronato
+20200222SAT1,2020-02-22 13:00:00,Japanese Division 1,Vegalta Sendai,Nagoya Grampus
+20200222SAT5,2020-02-22 14:00:00,Australian Division 1,Brisbane Roar,Perth Glory
+20200222SAT6,2020-02-22 16:30:00,Australian Division 1,Newcastle Jets,Melbourne Victory
+20200222SAT8,2020-02-22 20:00:00,Spanish Division 1,Celta Vigo,Leganes
+20200222SAT13,2020-02-22 20:30:00,Eng Premier,Chelsea,Tottenham
+20200222SAT16,2020-02-22 22:00:00,Italian Division 1,Bologna,Udinese
+20200222SAT18,2020-02-22 22:30:00,German Division 1,Werder Bremen,Dortmund
+20200222SAT23,2020-02-22 23:00:00,Eng Premier,Crystal Palace,Newcastle
+20200222SAT22,2020-02-22 23:00:00,Eng Premier,Sheff Utd,Brighton
+20200222SAT52,2020-02-23 00:30:00,French Division 1,Marseille,Nantes
+20200222SAT55,2020-02-23 01:30:00,Eng Premier,Leicester,Manchester City
+20200222SAT68,2020-02-23 03:45:00,Italian Division 1,Fiorentina,AC Milan
+20200222SAT77,2020-02-23 08:50:00,Argentine Division 1,Atletico Tucuman,Lanus
+20200223SUN3,2020-02-23 13:00:00,Japanese Division 1,Yokohama F.Marinos,Gamba Osaka
+20200223SUN16,2020-02-23 15:00:00,Australian Division 1,Central Coast Mariners,Sydney FC
+20200223SUN17,2020-02-23 19:00:00,Spanish Division 1,Osasuna,CF Granada
+20200223SUN19,2020-02-23 19:30:00,Italian Division 1,Genoa,Lazio
+20200223SUN24,2020-02-23 21:00:00,Spanish Division 1,Alaves,Bilbao
+20200223SUN30,2020-02-23 22:00:00,Eng Premier,Wolves,Norwich
+20200223SUN29,2020-02-23 22:00:00,Eng Premier,Manchester Utd,Watford
+20200223SUN35,2020-02-23 22:30:00,German Division 1,Leverkusen,Augsburg
+20200223SUN36,2020-02-23 23:00:00,Spanish Division 1,Valladolid,Espanyol
+20200223SUN41,2020-02-23 23:45:00,Dutch Division 1,Heracles,Ajax
+20200223SUN43,2020-02-24 00:30:00,Eng Premier,Arsenal,Everton
+20200223SUN47,2020-02-24 01:30:00,Spanish Division 1,Getafe,Sevilla
+20200223SUN52,2020-02-24 04:00:00,Spanish Division 1,Atletico Madrid,Villarreal
+20200223SUN59,2020-02-24 07:00:00,Mexican Premier,Queretaro,Atletico San Luis
