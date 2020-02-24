@@ -5,22 +5,90 @@
 
 ![sceenshot](sceenshot.png)
 
+![Screenshot2](screenshot2.png)
+
+
+
 ## Data Collection
 
 All data collection scripts are contained in the folder `development`.
 
 ### Data Crawling Procedures
 
-1. Run `schedule_crawler.py`
+#### Step 1 
 
-- Specify the working directory under `self.path_dir`
+Run `run_schedule_crawler` shell script which runs `schedule_crawler.py`
 
+- Change the shell script to your own directory
+
+- Specify the working directory under `self.path_dir` before running the shell script
 - This script crawls the schedule of upcoming matches (excluding matches that has already started), and export several attributes (event_id, home, away, league, start time, url) to `data/schedule.csv`
 - Also create `crontab_command.txt` which includes *crontab commands* that will be used to schedule runtime of `crawler.py` 
 
+#### Step 2
+
+Copy the crontab commands to crontab in your computer to schedule job. More information about crontab commands is given in the appendix below.
+
+#### Step 3
+
+Your computer should evoke `crawler.py` according to the cronjobs.
+
+- Specify the directory to store data. The directory should be under the `data/` folder of the main working directory that stores the script.
+- For each time the script runs, a log will be written on `data/job_history.csv`
+- Match data will be appended to `data/match_data.csv`
+- The script will create the odds in `data/` with `event_id` as filename. **Do not open the csv file in Excel when the script is running** as Excel may automatically convert datetime strings to other formats (crazy Excel). 
+- The script runs whenever the odds are still available. Script terminates when the match ends and no more odds are available for crawling.
+- Crawler currently crawls live score and corner hilow odds every 10 seconds. 
 
 
-2. Copy the crontab commands to crontab in your computer to schedule job. Here is a brief note about crontab:
+
+### Post-crawling
+
+The result collection file is under the folder `result_collection`.
+
+Run the `run_update_to_result_collection` shell script, which updates match data (according to `match_data.csv` ) to `match_corner_result.csv`. Manual input of the final result of the game is needed. It is recommended to Google search for the team names and input the total corner shown in the search result.
+
+#### Remarks
+
+This process is to be done every few days as the result input is currently manual.
+
+### Future development
+
+- Will store data in a mySQL database instead of local file `schedule.csv`, `match_data.csv`, `job_history.csv` and odds files. 
+
+## Signal
+
+Current implementation of odd decision signal is modelled in `signal.py` along with `signal_analysis.ipynb`. There are also other Jupyter notebooks with obsolete analysis.
+
+Signal is implemented during the crawling process. The existence of signal is checked in `crawler.py` every intervals (specified in `crawler.py`). 
+
+### Live signal notification
+
+The deployment of live signals is done by utilizing Telegram bot, where notification will be sent to user when there is a live signal available. It is also used to notify user through Telegram about the crawling process during the data collection period. The related codes are stored in `telegram_notification.py`
+
+## Web App Data Visualization
+
+### Offline live graph
+
+An off-line live graph of odds visualisation is made with *Dash* in Python.
+
+See `app.py` and assets folder under `data_collection`.
+
+- Run `run_live_app` shell script to call `app.py`.
+
+- Live games will update in live. Graphs of previous games are also available.
+
+- Performance graph indicates the running return of the current signal implementation (specified in `signal.py`.
+
+### Deployment
+
+> **Under construction**
+
+## Appendix
+
+#### Brief note about crontab
+
+Watch:
 
 https://www.youtube.com/watch?v=QZJ1drMQz1A
 
@@ -49,64 +117,7 @@ https://www.youtube.com/watch?v=QZJ1drMQz1A
 ```
 
 ##### Cron job utilities
+
 `crontab -l` shows a list of cronjobs
 `crontab -r` removes cronjobs
 
-
-
-3. Your computer should evoke `crawler.py` according to the cronjobs.
-
-- Specify the directory to store data. The directory should be under the `data/` folder of the main working directory that stores the script.
-- For each time the script runs, a log will be written on `data/job_history.csv`
-- Match data will be appended to `data/match_data.csv`
-- The script will create the odds in `data/` with `event_id` as filename. **Do not open the csv file in Excel when the script is running** as Excel may automatically convert datetime strings to other formats (crazy Excel). 
-- The script runs whenever the odds are still available. Script terminates when the match ends and no more odds are available for crawling.
-- Crawler currently crawls live score and corner hilow odds every 10 seconds. 
-
-
-
-> game_info.py is not under use now.
-
-
-
-### Remarks
-
-#### Future development
-
-- Will store data in a mySQL database instead of local file `schedule.csv`, `match_data.csv`, `job_history.csv` and odds files. Storing data in local machine is crazy.
-
-
-
-## Match Result Collection
-
-> **Under construction**
-
-- The corner results of all matches will be collected by finding third-party data sources online (Football APIs).
-
-
-
-## Signal
-
-> **Under construction**
-
-
-
-## Deployment
-
-### Off-line live graph
-
-An off-line live graph of odds visualisation is made with *Dash* in Python.
-
-See `app.py` and assets folder under `data_collection`.
-
-#### How to use the live graph
-
-- Run `app.py`. Make sure css file is present under the asset folder in the same directory.
-- The script reads the event_id from the latest job under `job_history.csv`. 
-- As long as `crawler.py` is running and updating the odds csv, the graph will update in live.
-
-
-
-### Deployment with node.js
-
-> **Under construction**

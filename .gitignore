@@ -137,3 +137,8 @@ development/data_collection/data/job_history.csv
 development/data_collection/data/match_data.csv
 development/data_collection/data/schedule.csv
 development/data_collection/telegram_tokens.py
+development/data_collection/data/job_history.csv
+development/data_collection/data/match_data.csv
+development/data_collection/data/schedule.csv
+development/data_collection/sql_connection.ipynb
+development/data_collection/sql_output.py
