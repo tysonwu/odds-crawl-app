@@ -6,7 +6,9 @@ import os
 from datetime import datetime, time
 import utils as u
 from tqdm import tqdm
+import emoji
 from sql_output import write_to_db
+from telegram_notifier import notify
 
 
 def signal_data_pipeline(event_id):
@@ -109,6 +111,8 @@ def graph_profit(signal):
 
 def signal_check(event_id, t=time(1,30,0), min_peak_change=0.98): # input an event_id of live game and check if it is a bet signal_list
     signal_row = None
+    SIGNAL_EMOJI = emoji.emojize(':triangular_flag_on_post:', use_aliases=True)*6
+    
     live_data = signal_data_pipeline(event_id)
     if live_data is not None:
         peaks = signal_rules(event_id, live_data, t, min_peak_change)
@@ -127,10 +131,12 @@ def signal_check(event_id, t=time(1,30,0), min_peak_change=0.98): # input an eve
                     signals.update(signal_row)
                     signals.to_csv('data/signals.csv', index=False, mode="w", header=True)
                 else:
-                    notify(singal_row.T.to_string())
+                    notify('{}\n{} SIGNAL FOUND: \n{}'.format(
+                        SIGNAL_EMOJI, event_id, signal_row.T.to_string()))
                     signal_row.to_csv('data/signals.csv', index=False, mode="a", header=False)
             else:
-                notify(singal_row.T.to_string())
+                notify('{}\n{} SIGNAL FOUND: \n{}'.format(
+                    SIGNAL_EMOJI, event_id, signal_row.T.to_string()))
                 signal_row.to_csv('data/signals.csv', index=False, mode="w", header=True)
     else:
         pass
