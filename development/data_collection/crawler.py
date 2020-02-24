@@ -17,6 +17,7 @@ import argparse
 import time
 import sys
 import uuid
+import logging
 from datetime import datetime, timedelta
 from selenium import webdriver
 from bs4 import BeautifulSoup
@@ -25,10 +26,12 @@ import emoji
 from signals import signal_check
 from telegram_notifier import notify
 
-os.chdir('/Users/TysonWu/dev/odds-crawl-app/odds-crawl-app/development/data_collection/')
+
 #--------------------------
 path_dir = '/Users/TysonWu/dev/odds-crawl-app/odds-crawl-app/development/data_collection/'
+os.chdir(path_dir)
 #--------------------------
+
 
 # for telegram notifications
 SOCCER_EMOJI = emoji.emojize(':soccer:', use_aliases=True)*6
@@ -47,7 +50,7 @@ def check_odds_availability(driver, odd_type, event_id):
         driver.quit()
         notify('{}\n{}\nCrawling terminates due to unavailability of corner odds.'.format(
             WARNING_EMOJI, event_id))
-        print("Error finding corner hilow odds. Program will now terminate.")
+        logging.error("Error finding corner hilow odds. Program will now terminate.")
         sys.exit()
 
 
@@ -84,7 +87,7 @@ def scrap_total_corner(driver): # return a number
                                      'html.parser').text.strip()
     except:
         driver.quit()
-        print("Error finding total corner. Program will now terminate.")
+        logging.error("Error finding total corner. Program will now terminate.")
         sys.exit()
 
     return total_corner
@@ -95,7 +98,7 @@ def scrap_live_score(driver):  # return a dict eg. {home_score: 1, away_score: 2
         live_score = driver.find_element_by_class_name('matchresult').get_attribute('innerHTML')
     except:
         driver.quit()
-        print("Error finding live score. Program will now terminate.")
+        logging.error("Error finding live score. Program will now terminate.")
         sys.exit()
 
     score_list = [score.strip() for score in live_score.split(':')]  # [home, away]
@@ -131,13 +134,13 @@ def export_match_csv(match_data, path_dir):
     else:
         match_data.to_csv(path_file, index=True, mode="w", header=True)
 
-    print('Updated match data and exported to csv.')
+    logging.debug('Updated match data and exported to csv.')
 
 
-def record_job_history_csv(event_id, path_dir):
+def record_job_history_csv(path_dir):
     path_file = path_dir + "data/job_history.csv"
-    job_data = pd.DataFrame({'job_id': uuid.uuid1().hex,
-                             'event_id': event_id,
+    job_id = uuid.uuid1().hex
+    job_data = pd.DataFrame({'job_id': job_id,
                              'timestamp': datetime.strptime(
                                  datetime.strftime(datetime.now(),
                                                    "%Y-%m-%d %H:%M:%S"),
@@ -147,8 +150,7 @@ def record_job_history_csv(event_id, path_dir):
         job_data.to_csv(path_file, index=False, mode="a", header=False)
     else:
         job_data.to_csv(path_file, index=False, mode="w", header=True)
-
-    print('Created job_id: {}'.format(job_data['job_id']))
+    return job_id
 
 
 def make_odds_data(odd_dict, total_corner, live_score_dict, event_id, game_starting_time):
@@ -183,7 +185,7 @@ def export_odds_csv(odds, event_id, path_dir):
         odds.to_csv(path_file, index=False, mode="w", header=True)
 
 
-def initialize(url, load_sleep=7):
+def initialize(url, load_sleep=10):
     driver = webdriver.Chrome(ChromeDriverManager().install())
     driver.get(url)
     time.sleep(load_sleep)  # to let the HTML load
@@ -191,7 +193,12 @@ def initialize(url, load_sleep=7):
 
 
 def main(crawl_interval=10):
-    print("Start running crawl script...")
+    # record job history
+    job_id = record_job_history_csv(path_dir)
+
+    # initialize logger
+    logging.basicConfig(filename='log/{}.log'.format(job_id),level=logging.DEBUG)
+    logging.debug("Start running crawl script...")
 
     # read html from command line argument
     parser = argparse.ArgumentParser(description='Web url as an argument')
@@ -201,7 +208,7 @@ def main(crawl_interval=10):
 
     # # override
     # web_url = 'https://bet.hkjc.com/football/odds/odds_inplay_all.aspx?lang=EN&tmatchid=fdc9ebc7-5597-4cdc-a03c-c62bc3b2ac83'
-    print(web_url)
+    logging.info(web_url)
 
     # read schedule
     schedule = pd.read_csv(path_dir+"data/schedule.csv")
@@ -210,7 +217,7 @@ def main(crawl_interval=10):
     try:
         game_info = schedule[schedule['game_url'] == web_url].iloc[-1,]
     except:
-        print("Found no such URL in schedule.csv. Program will now terminate.")
+        logging.warning("Found no such URL in schedule.csv. Program will now terminate.")
         sys.exit()
 
     url = game_info['game_url']
@@ -218,15 +225,18 @@ def main(crawl_interval=10):
     league = game_info['league']
     game_starting_time = game_info['time']
     team_name_dict = dict(home=game_info['home'], away=game_info['away'])
-    
+
+    logging.info('URL: '+url)
+    logging.info('Event ID: '+event_id)
+    logging.info('League: '+league)
+    logging.info('Game starting time: '+game_starting_time)
+    logging.info('Teams: '+team_name_dict)
+
     notify('{} \nStart crawling for {}.\nGame starting time: {}\nLeauge: {}\n{} VS {}'.format(
-        SOCCER_EMOJI, event_id, game_starting_time, league, 
+        SOCCER_EMOJI, event_id, game_starting_time, league,
         team_name_dict['home'], team_name_dict['away']))
 
     driver = initialize(url)
-
-    # record job history
-    record_job_history_csv(event_id, path_dir)
 
     # check odd content availability; if no corner hilow odds then terminate program
     check_odds_availability(driver=driver, odd_type='chl', event_id=event_id)
@@ -253,10 +263,10 @@ def main(crawl_interval=10):
         signal_check(event_id)
         # telegram notify
         # notify(random_stuff)
-        print("Done crawling on {}. Wait {} seconds for another crawl...".format(
+        logging.debug("Done crawling on {}. Wait {} seconds for another crawl...".format(
             datetime.now(), crawl_interval))
         time.sleep(crawl_interval)
-        print("Refresh, start crawling again...")
+        logging.debug("Refresh, start crawling again...")
 
 
 if __name__ == "__main__":
