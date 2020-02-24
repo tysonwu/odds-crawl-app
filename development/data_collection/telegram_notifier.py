@@ -33,17 +33,27 @@ class LogstashFormatter(Formatter):
 
     def format(self, record):
         t = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        return "<i>{datetime}</i><pre>\n{message}</pre>".format(message=record.msg, datetime=t)
+        return "<i>{datetime}</i>\n{message}".format(message=record.msg, datetime=t)
 
 
 def notify(info): # receives a string
+    # set a logger
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.WARNING)
     
+    # format the handler
     handler = RequestsHandler()
     formatter = LogstashFormatter()
     handler.setFormatter(formatter)
-    logger.addHandler(handler)
     
+    # add handler every time notify function is called
+    logger.addHandler(handler)
     logger.setLevel(logging.INFO)
     logger.info(info)
+    # remove handler every time notify function is called
+    logger.handlers.pop()
+    
+if __name__ == '__main__':
+    notify('Testing1')
+    notify('Testing2')
+    notify('Testing3')
