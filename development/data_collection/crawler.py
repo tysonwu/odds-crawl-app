@@ -21,6 +21,7 @@ from datetime import datetime, timedelta
 from selenium import webdriver
 from bs4 import BeautifulSoup
 from webdriver_manager.chrome import ChromeDriverManager
+import emoji
 from signals import signal_check
 from telegram_notifier import notify
 
@@ -28,6 +29,11 @@ os.chdir('/Users/TysonWu/dev/odds-crawl-app/odds-crawl-app/development/data_coll
 #--------------------------
 path_dir = '/Users/TysonWu/dev/odds-crawl-app/odds-crawl-app/development/data_collection/'
 #--------------------------
+
+# for telegram notifications
+SOCCER_EMOJI = emoji.emojize(':soccer:', use_aliases=True)*6
+WARNING_EMOJI = emoji.emojize(':x:', use_aliases=True)*6
+
 
 def check_odds_availability(driver, odd_type, event_id):
     if odd_type == 'chl':
@@ -39,7 +45,8 @@ def check_odds_availability(driver, odd_type, event_id):
         driver.find_element_by_xpath("//div[@id='" + path_id + "'" + "and @class='betTypeAllOdds']")
     except:
         driver.quit()
-        notify('Crawling terminates due to unavailability of corner odds.')
+        notify('{}\n{}\nCrawling terminates due to unavailability of corner odds.'.format(
+            WARNING_EMOJI, event_id))
         print("Error finding corner hilow odds. Program will now terminate.")
         sys.exit()
 
@@ -212,8 +219,9 @@ def main(crawl_interval=10):
     game_starting_time = game_info['time']
     team_name_dict = dict(home=game_info['home'], away=game_info['away'])
     
-    notify('Start crawling for {}. \n Game starting time: {} \n Leauge: {} \n {} vs {} '.format(
-        event_id, game_starting_time, league, team_name_dict['home'], team_name_dict['away']))
+    notify('{} \nStart crawling for {}.\nGame starting time: {}\nLeauge: {}\n{} VS {}'.format(
+        SOCCER_EMOJI, event_id, game_starting_time, league, 
+        team_name_dict['home'], team_name_dict['away']))
 
     driver = initialize(url)
 
@@ -249,8 +257,6 @@ def main(crawl_interval=10):
             datetime.now(), crawl_interval))
         time.sleep(crawl_interval)
         print("Refresh, start crawling again...")
-
-    print("Crawling done. Termination of script.")
 
 
 if __name__ == "__main__":
