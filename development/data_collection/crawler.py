@@ -22,6 +22,7 @@ from selenium import webdriver
 from bs4 import BeautifulSoup
 from webdriver_manager.chrome import ChromeDriverManager
 from signals import signal_check
+from telegram_notifier import notify
 
 os.chdir('/Users/TysonWu/dev/odds-crawl-app/odds-crawl-app/development/data_collection/')
 #--------------------------
@@ -38,6 +39,7 @@ def check_odds_availability(driver, odd_type, event_id):
         driver.find_element_by_xpath("//div[@id='" + path_id + "'" + "and @class='betTypeAllOdds']")
     except:
         driver.quit()
+        notify('Crawling terminates due to unavailability of corner odds.')
         print("Error finding corner hilow odds. Program will now terminate.")
         sys.exit()
 
@@ -209,6 +211,9 @@ def main(crawl_interval=10):
     league = game_info['league']
     game_starting_time = game_info['time']
     team_name_dict = dict(home=game_info['home'], away=game_info['away'])
+    
+    notify('Start crawling for {}. \n Game starting time: {} \n Leauge: {} \n {} vs {} '.format(
+        event_id, game_starting_time, league, team_name_dict['home'], team_name_dict['away']))
 
     driver = initialize(url)
 
@@ -238,7 +243,8 @@ def main(crawl_interval=10):
         export_odds_csv(odds, event_id, path_dir)
         # if there is a bet signal, output the action row to signal.csv
         signal_check(event_id)
-
+        # telegram notify
+        # notify(random_stuff)
         print("Done crawling on {}. Wait {} seconds for another crawl...".format(
             datetime.now(), crawl_interval))
         time.sleep(crawl_interval)

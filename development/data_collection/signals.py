@@ -5,6 +5,8 @@ import pandas as pd
 import os
 from datetime import datetime, time
 import utils as u
+from tqdm import tqdm
+from sql_output import write_to_db
 
 
 def signal_data_pipeline(event_id):
@@ -19,7 +21,7 @@ def signal_data_pipeline(event_id):
         odd_list = data[['minutes', 'line_odds']].groupby('minutes')['line_odds'].apply(list).reset_index(name='line_odds')
         data = odd_list.merge(data[['event_id','minutes','total_corner']], how='inner', on='minutes')
         # data = data[['event_id', 'minutes', 'line_odds','total_corner']]
-    
+
         data['min_odds_info'] = data.line_odds.apply(u.lowest_odd)
         data['line'] = data.min_odds_info.apply(lambda x: x[0])
         data['chl_low'] = data.min_odds_info.apply(lambda x: x[-1])
@@ -41,7 +43,7 @@ def signal_rules(event_id, data, t, min_peak_change):
     peaks = data[data.peak == 1]
     peaks['peak_change'] = peaks.chl_low/peaks.chl_low.shift(1)
     peaks['peak_change'] = peaks.peak_change.apply(lambda x: round(x,4))
-    
+
 
     # apply signal rules---------------------------------------
     peaks['signal'] = np.where(peaks.peak_change < min_peak_change, 1,
@@ -75,7 +77,7 @@ def return_calc(signal_list):
 
 def signal_analysis(t=time(1,30,0), min_peak_change=0.98): # returns a df
     signal_list = None
-    for event_id in [file[:-4] for file in os.listdir('data/') if '2020' in file]:
+    for event_id in tqdm([file[:-4] for file in os.listdir('data/') if '2020' in file]):
         # data pipeline
         data = signal_data_pipeline(event_id)
         # signal_data_pipeline returns none when the df is empty after undergo pipeline
@@ -83,7 +85,7 @@ def signal_analysis(t=time(1,30,0), min_peak_change=0.98): # returns a df
             peaks = signal_rules(event_id, data, t, min_peak_change)
         else: # if df is empty then return an empty peaks df
             peaks = pd.DataFrame({})
-        
+
         # if peaks df is empty then nothing will be concat
         if signal_list is None:
             if peaks.empty == False:
@@ -113,7 +115,11 @@ def signal_check(event_id, t=time(1,30,0), min_peak_change=0.98): # input an eve
         # if signal != 0 then there is a bet action to take
         peaks = peaks[peaks['signal'] != 0]
         if peaks.empty == False:
+            # return the first row ie. the first signal row
             signal_row = peaks.iloc[[0]]
+            # write to database
+            # write_to_db(signal_row)
+            # also a local file
             if os.path.isfile('data/signals.csv') == True:
                 signals = pd.read_csv('data/signals.csv')
                 signals_exist = signals[signals['event_id']==event_id]
@@ -121,8 +127,10 @@ def signal_check(event_id, t=time(1,30,0), min_peak_change=0.98): # input an eve
                     signals.update(signal_row)
                     signals.to_csv('data/signals.csv', index=False, mode="w", header=True)
                 else:
+                    notify(singal_row.T.to_string())
                     signal_row.to_csv('data/signals.csv', index=False, mode="a", header=False)
             else:
+                notify(singal_row.T.to_string())
                 signal_row.to_csv('data/signals.csv', index=False, mode="w", header=True)
     else:
         pass
