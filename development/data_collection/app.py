@@ -111,8 +111,10 @@ signal_data = display_signal_data(min_peak_change=MIN_PEAK_CHANGE)
 
 # color codes
 color_list = ['#FFA65A', '#E86146', '#E8469A', '#B574FF', '#5D69E8', '#54C3C7',
-'#61FFB0', '#8DFF5C', '#EDF05D', '#D43353', '#8A66FF', '#3E84ED',
-'#3EEDC1', '#D4D4D4',
+'#49debb','#49de7d','#84d660', '#e3d864', '#FFA65A', '#E86146', '#E8469A', '#B574FF', '#5D69E8', '#54C3C7',
+'#49debb','#49de7d','#84d660', '#e3d864'
+#'#f7e557', '#fc7638','#ad332a', '#de4976', '#be49de', '#8049de',
+#'#4953de', '#49debb','#49de7d','#76de49','#b9de49'
     ]
 defaults = ['#1f77b4','#ff7f0e'] # default muted blue, safety orange
 font_color = '#c5c5c5'
@@ -153,6 +155,7 @@ app.layout = html.Div(className='app__container', children=
                                                 interval=10*1000,
                                                 n_intervals=0),
                                    html.H4(children='Signal Performance'),
+                                   html.H5(children=MIN_PEAK_CHANGE),
                                    dcc.Graph(id='performance',
                                              figure={
                                                  'data':[{
