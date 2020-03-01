@@ -59,7 +59,7 @@ def signal_rules(event_id, data, t, min_peak_change):
 def return_calc(signal_list):
     # merge current results
     result = pd.read_csv('/Users/TysonWu/dev/odds-crawl-app/odds-crawl-app/development/result_collection/match_corner_result.csv')
-    signals = signal_list.merge(result[['event_id', 'result_corner']], how='inner', on='event_id')
+    signals = signal_list.merge(result[['event_id', 'result_corner', 'league']], how='inner', on='event_id')
 
     # exclude games without results
     signals = signals[~signals.result_corner.isna()]
@@ -67,7 +67,8 @@ def return_calc(signal_list):
     # calculate return
     signals['correct_prediction'] = np.where(signals.signal == 1,
                                              np.where(signals.line > signals.result_corner, 1, 0),
-                                             np.where(signals.line < signals.result_corner, 1, 0))
+                                             np.where(signals.signal == 0, None,
+                                                      np.where(signals.line < signals.result_corner, 1, 0)))
     signals['return'] = np.where(signals.signal == 1,
                                  np.where(signals.correct_prediction == 1, signals.chl_low-1, -1),
                                  np.where(signals.signal == 0, 0,
@@ -109,10 +110,10 @@ def graph_profit(signal):
     u.graph(signal.index, signal['return'].cumsum(), 'Profit over games')
 
 
-def signal_check(event_id, t=time(1,30,0), min_peak_change=0.98): # input an event_id of live game and check if it is a bet signal_list
+def signal_check(event_id, team_name_dict, t=time(1,30,0), min_peak_change=0.98): # input an event_id of live game and check if it is a bet signal_list
     signal_row = None
     SIGNAL_EMOJI = emoji.emojize(':triangular_flag_on_post:', use_aliases=True)*6
-    
+
     live_data = signal_data_pipeline(event_id)
     if live_data is not None:
         peaks = signal_rules(event_id, live_data, t, min_peak_change)
@@ -131,12 +132,14 @@ def signal_check(event_id, t=time(1,30,0), min_peak_change=0.98): # input an eve
                     signals.update(signal_row)
                     signals.to_csv('data/signals.csv', index=False, mode="w", header=True)
                 else:
-                    notify('{}\n{} SIGNAL FOUND: \n{}'.format(
-                        SIGNAL_EMOJI, event_id, signal_row.T.to_string()))
+                    notify('{}\n{}\nSIGNAL FOUND: \n{} vs {}\n{}'.format(
+                        SIGNAL_EMOJI, event_id, team_name_dict['home'],
+                        team_name_dict['away'], signal_row.T.to_string()))
                     signal_row.to_csv('data/signals.csv', index=False, mode="a", header=False)
             else:
-                notify('{}\n{} SIGNAL FOUND: \n{}'.format(
-                    SIGNAL_EMOJI, event_id, signal_row.T.to_string()))
+                notify('{}\n{}\nSIGNAL FOUND: \n{} vs {}\n{}'.format(
+                    SIGNAL_EMOJI, event_id, team_name_dict['home'],
+                    team_name_dict['away'], signal_row.T.to_string()))
                 signal_row.to_csv('data/signals.csv', index=False, mode="w", header=True)
     else:
         pass
