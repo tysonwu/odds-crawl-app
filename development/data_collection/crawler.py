@@ -35,7 +35,7 @@ os.chdir(path_dir)
 
 # for telegram notifications
 SOCCER_EMOJI = emoji.emojize(':soccer:', use_aliases=True)*6
-WARNING_EMOJI = emoji.emojize(':x:', use_aliases=True)*6
+WARNING_EMOJI = emoji.emojize(':end:', use_aliases=True)
 
 
 def check_odds_availability(driver, odd_type, event_id):
@@ -97,14 +97,24 @@ def scrap_live_score(driver):  # return a dict eg. {home_score: 1, away_score: 2
     try:
         live_score = driver.find_element_by_class_name('matchresult').get_attribute('innerHTML')
     except:
-        driver.quit()
-        logging.error("Error finding live score. Program will now terminate.")
-        sys.exit()
+        logging.error("Error finding live score.")
 
     score_list = [score.strip() for score in live_score.split(':')]  # [home, away]
     # when score is not live yet (eg. before start of game), the attribute reutrns 'vs'
     # so the return dict would be {home_score: vs, away_score: vs}
     return dict(home_score=score_list[0], away_score=score_list[-1])
+
+
+def scrap_status(driver):
+    try:
+        status = driver.find_element_by_id('headerEsst').get_attribute('innerHTML')
+        status_content = BeautifulSoup(status, 'html.parser')
+        status_list = [x.strip() for x in status_content.find_all(text=True) if 'react-text' not in x]
+        status_string = ';'.join(status_list)
+    except:
+        status_string = None
+        logging.error("Error finding status.")
+    return status_string
 
 
 def make_match_data(event_id, league, team_name_dict, game_starting_time):
@@ -153,7 +163,7 @@ def record_job_history_csv(path_dir):
     return job_id
 
 
-def make_odds_data(odd_dict, total_corner, live_score_dict, event_id, game_starting_time):
+def make_odds_data(odd_dict, total_corner, live_score_dict, status, event_id, game_starting_time):
     # add timestamp
     timestamp = datetime.strptime(datetime.strftime(datetime.now(), "%Y-%m-%d %H:%M:%S"),
                                   "%Y-%m-%d %H:%M:%S")
@@ -165,7 +175,8 @@ def make_odds_data(odd_dict, total_corner, live_score_dict, event_id, game_start
     time_data = pd.DataFrame({"event_id": event_id,
                               "timestamp": timestamp,
                               "minutes": minutes,
-                              "total_corner": total_corner},index=[0])
+                              "total_corner": total_corner,
+                              "status": status},index=[0])
 
     # append live_score data
     odds = pd.concat([time_data, pd.DataFrame(live_score_dict, index=[0])], axis=1)
@@ -197,8 +208,8 @@ def main(crawl_interval=10):
     job_id = record_job_history_csv(path_dir)
 
     # initialize logger
-    logging.basicConfig(filename='log/{}.log'.format(job_id),level=logging.DEBUG)
-    logging.debug("Start running crawl script...")
+    logging.basicConfig(filename='log/{}.log'.format(job_id),level=logging.INFO)
+    logging.info("Start running crawl script...")
 
     # read html from command line argument
     parser = argparse.ArgumentParser(description='Web url as an argument')
@@ -207,7 +218,7 @@ def main(crawl_interval=10):
     web_url = args.url
 
     # # override
-    # web_url = 'https://bet.hkjc.com/football/odds/odds_inplay_all.aspx?lang=EN&tmatchid=fdc9ebc7-5597-4cdc-a03c-c62bc3b2ac83'
+    # web_url = 'https://bet.hkjc.com/football/odds/odds_inplay_all.aspx?lang=EN&tmatchid=b763c364-80ce-43c4-b663-68c7de6ec9a2'
     logging.info(web_url)
 
     # read schedule
@@ -228,9 +239,7 @@ def main(crawl_interval=10):
 
     logging.info('URL: '+url)
     logging.info('Event ID: '+event_id)
-    logging.info('League: '+league)
     logging.info('Game starting time: '+game_starting_time)
-    logging.info('Teams: '+team_name_dict)
 
     notify('{} \nStart crawling for {}.\nGame starting time: {}\nLeauge: {}\n{} VS {}'.format(
         SOCCER_EMOJI, event_id, game_starting_time, league,
@@ -248,25 +257,26 @@ def main(crawl_interval=10):
     while True:
         # check odd content availability; if no corner hilow odds then terminate program
         check_odds_availability(driver=driver, odd_type='chl', event_id=event_id)
-
         live_score_dict = scrap_live_score(driver)
+        status = scrap_status(driver)
         total_corner = scrap_total_corner(driver)
         odds_dict = scrap_odds(driver, event_id)
         odds = make_odds_data(odds_dict, # dict
                               total_corner, # number
                               live_score_dict, # dict
+                              status, # string
                               event_id, # string
                               game_starting_time) # string
         # if not odds.total_corner.isnull().values.any():
         export_odds_csv(odds, event_id, path_dir)
         # if there is a bet signal, output the action row to signal.csv
-        signal_check(event_id)
+        signal_check(event_id, team_name_dict)
         # telegram notify
         # notify(random_stuff)
-        logging.debug("Done crawling on {}. Wait {} seconds for another crawl...".format(
+        logging.info("Done crawling on {}. Wait {} seconds for another crawl...".format(
             datetime.now(), crawl_interval))
         time.sleep(crawl_interval)
-        logging.debug("Refresh, start crawling again...")
+        logging.info("Refresh, start crawling again...")
 
 
 if __name__ == "__main__":
