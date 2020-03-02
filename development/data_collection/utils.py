@@ -37,12 +37,12 @@ def remove_empty_rows(df):
     return df
 
 
-def lowest_odd(x): # x is a 2D list [[a,b,c],[a,b,c],[a,b,c]] 1-3 elements
+def lowest_odd(x): # x is a 2D list [[a,b,c,d],[a,b,c,d],[a,b,c,d]] 4 elements
     odd = 99
     i = 0
     for pos, list in enumerate(x):
-        if list[-1] <= odd: # compare chl_low
-            odd = list[-1]
+        if list[2] <= odd: # compare chl_low
+            odd = list[2]
             i = pos
     return x[i]
 

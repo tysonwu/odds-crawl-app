@@ -165,6 +165,7 @@ app.layout = html.Div(className='app__container', children=
                                                      }],
                                                  'layout':{
                                                      'font': {'color': font_color},
+                                                     #'height': 720,
                                                      'axis':{'title': 'Time Since Start of Game',
                                                              'autorange': True,
                                                              'gridcolor': grid_color},
@@ -248,7 +249,7 @@ def update_graph(n, source):
         title={'text':'Live Corner HiLow Odds - {}'.format(
             source[:-4])},
         font={'color': font_color},
-        height=420,
+        height=540,
         xaxis={'title': 'Time Since Start of Game',
                'autorange': True,
                'gridcolor': grid_color},

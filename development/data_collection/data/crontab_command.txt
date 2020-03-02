@@ -1,10 +1,10 @@
-45 3 24 2 * /opt/anaconda3/bin/python /Users/TysonWu/dev/odds-crawl-app/odds-crawl-app/development/data_collection/crawler.py --url 'https://bet.hkjc.com/football/odds/odds_inplay_all.aspx?lang=EN&tmatchid=a999c53a-a458-4e08-bdbd-a5a6dbfd8331' > /Users/TysonWu/dev/odds-crawl-app/odds-crawl-app/crawl_log.log 2>&1
+45 3 3 3 * cd /Users/TysonWu/dev/odds-crawl-app/odds-crawl-app/development/data_collection/ && /opt/anaconda3/bin/python crawler.py --url 'https://bet.hkjc.com/football/odds/odds_inplay_all.aspx?lang=EN&tmatchid=51446ab8-33d9-4c18-8206-69ad7d05b4ab'
 
-0 4 24 2 * /opt/anaconda3/bin/python /Users/TysonWu/dev/odds-crawl-app/odds-crawl-app/development/data_collection/crawler.py --url 'https://bet.hkjc.com/football/odds/odds_inplay_all.aspx?lang=EN&tmatchid=4b5b0e54-20c1-4fbe-954d-9b9001b624c0' > /Users/TysonWu/dev/odds-crawl-app/odds-crawl-app/crawl_log.log 2>&1
+0 6 3 3 * cd /Users/TysonWu/dev/odds-crawl-app/odds-crawl-app/development/data_collection/ && /opt/anaconda3/bin/python crawler.py --url 'https://bet.hkjc.com/football/odds/odds_inplay_all.aspx?lang=EN&tmatchid=719d7b4a-3947-46bc-b9d1-72be4895a5f2'
 
-0 7 24 2 * /opt/anaconda3/bin/python /Users/TysonWu/dev/odds-crawl-app/odds-crawl-app/development/data_collection/crawler.py --url 'https://bet.hkjc.com/football/odds/odds_inplay_all.aspx?lang=EN&tmatchid=d7d68576-df10-47ac-8f80-a66c7c3ea37c' > /Users/TysonWu/dev/odds-crawl-app/odds-crawl-app/crawl_log.log 2>&1 
+10 8 3 3 * cd /Users/TysonWu/dev/odds-crawl-app/odds-crawl-app/development/data_collection/ && /opt/anaconda3/bin/python crawler.py --url 'https://bet.hkjc.com/football/odds/odds_inplay_all.aspx?lang=EN&tmatchid=0faa17ef-8994-40f0-816b-657710156266'
 
-30 3 25 2 * /opt/anaconda3/bin/python /Users/TysonWu/dev/odds-crawl-app/odds-crawl-app/development/data_collection/crawler.py --url 'https://bet.hkjc.com/football/odds/odds_inplay_all.aspx?lang=EN&tmatchid=b19ebf0b-a321-4b2c-a45d-7a66f5825530' > /Users/TysonWu/dev/odds-crawl-app/odds-crawl-app/crawl_log.log 2>&1 
+45 20 3 3 * cd /Users/TysonWu/dev/odds-crawl-app/odds-crawl-app/development/data_collection/ && /opt/anaconda3/bin/python crawler.py --url 'https://bet.hkjc.com/football/odds/odds_inplay_all.aspx?lang=EN&tmatchid=af4bf298-d845-41c0-8780-82982343a184'
 
-0 4 25 2 * /opt/anaconda3/bin/python /Users/TysonWu/dev/odds-crawl-app/odds-crawl-app/development/data_collection/crawler.py --url 'https://bet.hkjc.com/football/odds/odds_inplay_all.aspx?lang=EN&tmatchid=ffb1f428-399b-4eef-a107-3b05bb07e182' > /Users/TysonWu/dev/odds-crawl-app/odds-crawl-app/crawl_log.log 2>&1 
+30 16 4 3 * cd /Users/TysonWu/dev/odds-crawl-app/odds-crawl-app/development/data_collection/ && /opt/anaconda3/bin/python crawler.py --url 'https://bet.hkjc.com/football/odds/odds_inplay_all.aspx?lang=EN&tmatchid=938ae916-10a2-4589-ae59-97074f0ef13c'
 

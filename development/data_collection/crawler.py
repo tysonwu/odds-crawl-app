@@ -38,14 +38,11 @@ SOCCER_EMOJI = emoji.emojize(':soccer:', use_aliases=True)*6
 WARNING_EMOJI = emoji.emojize(':end:', use_aliases=True)
 
 
-def check_odds_availability(driver, odd_type, event_id):
-    if odd_type == 'chl':
-        path_id = "dCHLTable" + event_id
-    else:
-        path_id = None
+def check_odds_availability(driver, event_id):
+    chl_path = "dCHLTable" + event_id
 
     try:
-        driver.find_element_by_xpath("//div[@id='" + path_id + "'" + "and @class='betTypeAllOdds']")
+        driver.find_element_by_xpath("//div[@id='" + chl_path + "'" + "and @class='betTypeAllOdds']")
     except:
         driver.quit()
         notify('{}\n{}\nCrawling terminates due to unavailability of corner odds.'.format(
@@ -54,15 +51,19 @@ def check_odds_availability(driver, odd_type, event_id):
         sys.exit()
 
 
-def scrap_odds(driver, event_id):  #  returns a dict
+def scrap_chl_odds(driver, event_id):  #  returns a dict
     entry = "1"
     chl_line_list = []
     chl_hi_list = []
     chl_low_list = []
+    line_entry = []
 
     # skip suspended time "---" entry
     if (driver.find_element_by_id(event_id+'_CHL_H_'+entry).get_attribute('innerHTML') == "---"):
-        return dict(chl_line=chl_line_list, chl_hi=chl_hi_list, chl_low=chl_low_list)
+        return dict(chl_line=chl_line_list, 
+                    chl_hi=chl_hi_list, 
+                    chl_low=chl_low_list, 
+                    line_entry=line_entry)
 
     while (True):
         try:
@@ -75,10 +76,38 @@ def scrap_odds(driver, event_id):  #  returns a dict
             chl_low_list.append(
                 driver.find_element_by_id(event_id+'_CHL_L_'+entry).get_attribute(
                     'innerHTML'))
+            line_entry.append(entry)
             entry = str(int(entry) + 1)
         except:
             # return things when error
-            return dict(chl_line=chl_line_list, chl_hi=chl_hi_list, chl_low=chl_low_list)
+            return dict(chl_line=chl_line_list, 
+                        chl_hi=chl_hi_list, 
+                        chl_low=chl_low_list, 
+                        line_entry=line_entry)
+
+
+def scrap_had_odds(driver, event_id):  #  returns a dict
+    # skip suspended time "---" entry
+    if (driver.find_element_by_id(event_id+'_HAD_H').get_attribute('innerHTML') == "---"):
+        return dict(home_odd=None, draw_odd=None, away_odd=None)
+
+    home_odd = driver.find_element_by_id(event_id+'_HAD_H').get_attribute('innerHTML')
+    draw_odd = driver.find_element_by_id(event_id+'_HAD_D').get_attribute('innerHTML')
+    away_odd = driver.find_element_by_id(event_id+'_HAD_A').get_attribute('innerHTML')
+
+    return dict(home_odd=home_odd, draw_odd=draw_odd, away_odd=away_odd)
+
+
+def scrap_nts_odds(driver, event_id):  #  returns a dict
+    # skip suspended time "---" entry
+    if (driver.find_element_by_id(event_id+'_NTS_H').get_attribute('innerHTML') == "---"):
+        return dict(nts_home=None, nts_no=None, nts_away=None)
+
+    nts_home = driver.find_element_by_id(event_id+'_NTS_H').get_attribute('innerHTML')
+    nts_no = driver.find_element_by_id(event_id+'_NTS_N').get_attribute('innerHTML')
+    nts_away = driver.find_element_by_id(event_id+'_NTS_A').get_attribute('innerHTML')
+
+    return dict(nts_home=nts_home, nts_no=nts_no, nts_away=nts_away)
 
 
 def scrap_total_corner(driver): # return a number
@@ -163,7 +192,7 @@ def record_job_history_csv(path_dir):
     return job_id
 
 
-def make_odds_data(odd_dict, total_corner, live_score_dict, status, event_id, game_starting_time):
+def make_odds_data(chl_odd_dict, had_odd_dict, nts_odd_dict, total_corner, live_score_dict, status, event_id, game_starting_time):
     # add timestamp
     timestamp = datetime.strptime(datetime.strftime(datetime.now(), "%Y-%m-%d %H:%M:%S"),
                                   "%Y-%m-%d %H:%M:%S")
@@ -175,14 +204,20 @@ def make_odds_data(odd_dict, total_corner, live_score_dict, status, event_id, ga
     time_data = pd.DataFrame({"event_id": event_id,
                               "timestamp": timestamp,
                               "minutes": minutes,
-                              "total_corner": total_corner,
-                              "status": status},index=[0])
+                              "status": status,
+                              "total_corner": total_corner},index=[0])
 
     # append live_score data
     odds = pd.concat([time_data, pd.DataFrame(live_score_dict, index=[0])], axis=1)
 
+    # append had odds data
+    odds = pd.concat([odds, pd.DataFrame(had_odd_dict, index=[0])], axis=1)
+
+    # append had odds data
+    odds = pd.concat([odds, pd.DataFrame(nts_odd_dict, index=[0])], axis=1)
+
     # append corner hilow odds data
-    odds = pd.concat([odds, pd.DataFrame(odd_dict)], axis=1).fillna(method="ffill")
+    odds = pd.concat([odds, pd.DataFrame(chl_odd_dict)], axis=1).fillna(method="ffill")
     return odds
 
 
@@ -247,21 +282,27 @@ def main(crawl_interval=10):
 
     driver = initialize(url)
 
+    # first crawl
     # check odd content availability; if no corner hilow odds then terminate program
-    check_odds_availability(driver=driver, odd_type='chl', event_id=event_id)
+    check_odds_availability(driver=driver, event_id=event_id)
 
     # make and export match information
     match_data = make_match_data(event_id, league, team_name_dict, game_starting_time)
     export_match_csv(match_data, path_dir)
 
+    # sequantial loop
     while True:
         # check odd content availability; if no corner hilow odds then terminate program
-        check_odds_availability(driver=driver, odd_type='chl', event_id=event_id)
+        check_odds_availability(driver=driver, event_id=event_id)
         live_score_dict = scrap_live_score(driver)
         status = scrap_status(driver)
         total_corner = scrap_total_corner(driver)
-        odds_dict = scrap_odds(driver, event_id)
-        odds = make_odds_data(odds_dict, # dict
+        chl_odds_dict = scrap_chl_odds(driver, event_id)
+        had_odds_dict = scrap_had_odds(driver, event_id)
+        nts_odds_dict = scrap_nts_odds(driver, event_id)
+        odds = make_odds_data(chl_odds_dict, # dict
+                              had_odds_dict, # dict
+                              nts_odds_dict, # dict
                               total_corner, # number
                               live_score_dict, # dict
                               status, # string
@@ -270,7 +311,7 @@ def main(crawl_interval=10):
         # if not odds.total_corner.isnull().values.any():
         export_odds_csv(odds, event_id, path_dir)
         # if there is a bet signal, output the action row to signal.csv
-        signal_check(event_id, team_name_dict)
+        signal_check(event_id, team_name_dict, url)
         # telegram notify
         # notify(random_stuff)
         logging.info("Done crawling on {}. Wait {} seconds for another crawl...".format(

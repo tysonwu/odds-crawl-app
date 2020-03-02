@@ -9,6 +9,7 @@ from tqdm import tqdm
 import emoji
 from sql_output import write_to_db
 from telegram_notifier import notify
+from autobet import auto_bet
 
 
 def signal_data_pipeline(event_id):
@@ -19,16 +20,17 @@ def signal_data_pipeline(event_id):
     # to prevent raise of error, only process the pipeline when df is not empty
     # if df is empty, return None
     if data.empty == False:
-        data['line_odds'] = data.apply(lambda x: [x.chl_line, x.chl_hi, x.chl_low], axis = 1)
+        data['line_odds'] = data.apply(lambda x: [x.chl_line, x.chl_hi, x.chl_low, x.line_entry], axis = 1)
         odd_list = data[['minutes', 'line_odds']].groupby('minutes')['line_odds'].apply(list).reset_index(name='line_odds')
         data = odd_list.merge(data[['event_id','minutes','total_corner']], how='inner', on='minutes')
         # data = data[['event_id', 'minutes', 'line_odds','total_corner']]
 
         data['min_odds_info'] = data.line_odds.apply(u.lowest_odd)
         data['line'] = data.min_odds_info.apply(lambda x: x[0])
-        data['chl_low'] = data.min_odds_info.apply(lambda x: x[-1])
+        data['chl_low'] = data.min_odds_info.apply(lambda x: x[2])
         data['chl_hi'] = data.min_odds_info.apply(lambda x: x[1])
-        data = data[['event_id','minutes','total_corner','line','chl_hi','chl_low']]
+        data['line_entry'] = data.min_odds_info.apply(lambda x: x[3])
+        data = data[['event_id','minutes','total_corner','line','chl_hi','chl_low','line_entry']]
         data['minutes'] = data['minutes'].apply(lambda x: datetime.strptime(event_id[:8]+x, "%Y%m%d%H:%M:%S"))
         return data
     else:
@@ -65,6 +67,7 @@ def return_calc(signal_list):
     signals = signals[~signals.result_corner.isna()]
 
     # calculate return
+    signals['actual_result'] = np.where(signals.line > signals.result_corner, 1, -1) # 1: low wins, -1: high wins
     signals['correct_prediction'] = np.where(signals.signal == 1,
                                              np.where(signals.line > signals.result_corner, 1, 0),
                                              np.where(signals.signal == 0, None,
@@ -110,7 +113,15 @@ def graph_profit(signal):
     u.graph(signal.index, signal['return'].cumsum(), 'Profit over games')
 
 
-def signal_check(event_id, team_name_dict, t=time(1,30,0), min_peak_change=0.98): # input an event_id of live game and check if it is a bet signal_list
+def convert_hilow(num):
+    if num == 1:
+        return 'L'
+    if num == -1:
+        return 'H'
+    else:
+        return ''
+    
+def signal_check(event_id, team_name_dict, url, t=time(1,30,0), min_peak_change=0.98): # input an event_id of live game and check if it is a bet signal_list
     signal_row = None
     SIGNAL_EMOJI = emoji.emojize(':triangular_flag_on_post:', use_aliases=True)*6
 
@@ -119,27 +130,38 @@ def signal_check(event_id, team_name_dict, t=time(1,30,0), min_peak_change=0.98)
         peaks = signal_rules(event_id, live_data, t, min_peak_change)
         # if signal != 0 then there is a bet action to take
         peaks = peaks[peaks['signal'] != 0]
+        # reset index to row 0
+        signal_row = signal_row.reset_index(drop=True)
         if peaks.empty == False:
             # return the first row ie. the first signal row
             signal_row = peaks.iloc[[0]]
+            line_entry = signal_row['line_entry'][0] # return order of rows
+            hilow = convert_hilow(signal_row['signal'][0]) # 1 to L and -1 to H
             # write to database
             # write_to_db(signal_row)
             # also a local file
             if os.path.isfile('data/signals.csv') == True:
                 signals = pd.read_csv('data/signals.csv')
                 signals_exist = signals[signals['event_id']==event_id]
+                # no need to notify and make new entry when there is new signal
                 if signals_exist.empty == False:
                     signals.update(signal_row)
                     signals.to_csv('data/signals.csv', index=False, mode="w", header=True)
                 else:
+                    # notify when new signal is found
                     notify('{}\n{}\nSIGNAL FOUND: \n{} vs {}\n{}'.format(
                         SIGNAL_EMOJI, event_id, team_name_dict['home'],
                         team_name_dict['away'], signal_row.T.to_string()))
+                    # make auto bet here
+                    auto_bet(url, event_id, hilow, line_entry)
                     signal_row.to_csv('data/signals.csv', index=False, mode="a", header=False)
             else:
+                # notify when new signal is found
                 notify('{}\n{}\nSIGNAL FOUND: \n{} vs {}\n{}'.format(
                     SIGNAL_EMOJI, event_id, team_name_dict['home'],
                     team_name_dict['away'], signal_row.T.to_string()))
+                # make auto bet here
+                auto_bet(url, event_id, hilow, line_entry)
                 signal_row.to_csv('data/signals.csv', index=False, mode="w", header=True)
     else:
         pass

@@ -3,6 +3,7 @@ import time
 import re
 from bs4 import BeautifulSoup
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 from datetime import datetime
 
@@ -13,7 +14,9 @@ class hkjc_info:
         self.url = 'https://bet.hkjc.com/football/odds/odds_inplay.aspx?lang=en'
 
 def parse_web(url):
-    driver = webdriver.Chrome(ChromeDriverManager().install())
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
     driver.get(url)
     time.sleep(7) # let the potato rest for a while
     games_info = driver.find_element_by_id('ActiveMatchesOdds')
