@@ -43,7 +43,7 @@ def signal_rules(event_id, data, t, min_peak_change):
     # line change
     #data['line_change'] = data.line - data.line.shift(1)
     # is a peak
-    data['peak'] = np.where(data.odd_change > 1, 1, 0)
+    data['peak'] = np.where(data.odd_change > 1, 1, 0) # odd_change > 1.01?
     peaks = data[data.peak == 1]
     peaks['peak_change'] = peaks.chl_low/peaks.chl_low.shift(1)
     peaks['peak_change'] = peaks.peak_change.apply(lambda x: round(x,4))
@@ -51,9 +51,11 @@ def signal_rules(event_id, data, t, min_peak_change):
 
     # apply signal rules---------------------------------------
     peaks['signal'] = np.where(peaks.peak_change < min_peak_change, 1,
-                              np.where(peaks.peak_change > 1.01,-1,0))
+                              np.where(peaks.peak_change > 1.01,-1,0)) # -1, 0
     # signal = 1 means that we predict results will be lower than chl_line, -1 vice versa
     peaks = peaks[peaks.minutes >= datetime.combine(datetime.strptime(event_id[:8],"%Y%m%d"), t)]
+    # no saturday thanks
+    peaks = peaks[~peaks.event_id.str.contains('SAT')]
     #----------------------------------------------------------
     return peaks
 
@@ -61,6 +63,8 @@ def signal_rules(event_id, data, t, min_peak_change):
 def return_calc(signal_list):
     # merge current results
     result = pd.read_csv('/Users/TysonWu/dev/odds-crawl-app/odds-crawl-app/development/result_collection/match_corner_result.csv')
+#     print(result)
+#     print(signal_list)
     signals = signal_list.merge(result[['event_id', 'result_corner', 'league']], how='inner', on='event_id')
 
     # exclude games without results
@@ -120,8 +124,10 @@ def convert_hilow(num):
         return 'H'
     else:
         return ''
-    
-def signal_check(event_id, team_name_dict, url, t=time(1,30,0), min_peak_change=0.98): # input an event_id of live game and check if it is a bet signal_list
+
+
+# for production
+def signal_check(driver, event_id, team_name_dict, url, t=time(1,30,0), min_peak_change=0.98): # input an event_id of live game and check if it is a bet signal_list
     signal_row = None
     SIGNAL_EMOJI = emoji.emojize(':triangular_flag_on_post:', use_aliases=True)*6
 
@@ -130,12 +136,18 @@ def signal_check(event_id, team_name_dict, url, t=time(1,30,0), min_peak_change=
         peaks = signal_rules(event_id, live_data, t, min_peak_change)
         # if signal != 0 then there is a bet action to take
         peaks = peaks[peaks['signal'] != 0]
-        # reset index to row 0
-        signal_row = signal_row.reset_index(drop=True)
         if peaks.empty == False:
             # return the first row ie. the first signal row
             signal_row = peaks.iloc[[0]]
-            line_entry = signal_row['line_entry'][0] # return order of rows
+            # reset index to row 0
+            signal_row = signal_row.reset_index(drop=True)
+            # line_entry = str(int(signal_row['line_entry'][0])) # return order of rows
+            line = str(signal_row['line'][0])
+            line_xpath = "//*[@id='dCHL"+event_id+"']//*[contains(text(), '["+line+"]')]"
+            try:
+                line_entry = driver.find_elements_by_xpath(line_xpath)[0].get_attribute('id')[-1]
+            except:
+                return None
             hilow = convert_hilow(signal_row['signal'][0]) # 1 to L and -1 to H
             # write to database
             # write_to_db(signal_row)
@@ -153,7 +165,10 @@ def signal_check(event_id, team_name_dict, url, t=time(1,30,0), min_peak_change=
                         SIGNAL_EMOJI, event_id, team_name_dict['home'],
                         team_name_dict['away'], signal_row.T.to_string()))
                     # make auto bet here
-                    auto_bet(url, event_id, hilow, line_entry)
+                    try:
+                        auto_bet(url, event_id, hilow, line_entry)
+                    except:
+                        notify('{}\nAutobet failed.'.format(event_id))
                     signal_row.to_csv('data/signals.csv', index=False, mode="a", header=False)
             else:
                 # notify when new signal is found
@@ -161,7 +176,12 @@ def signal_check(event_id, team_name_dict, url, t=time(1,30,0), min_peak_change=
                     SIGNAL_EMOJI, event_id, team_name_dict['home'],
                     team_name_dict['away'], signal_row.T.to_string()))
                 # make auto bet here
-                auto_bet(url, event_id, hilow, line_entry)
+                try:
+                    auto_bet(url, event_id, hilow, line_entry)
+                except:
+                    notify('{}\nAutobet failed.'.format(event_id))
                 signal_row.to_csv('data/signals.csv', index=False, mode="w", header=True)
+        else:
+            pass
     else:
         pass
