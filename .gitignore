@@ -149,3 +149,4 @@ development/data_collection/data/match_data.csv
 development/data_collection/data/schedule.csv
 development/data_collection/account_details.py
 development/data_collection/signals.py
+development/data_collection/signals.py

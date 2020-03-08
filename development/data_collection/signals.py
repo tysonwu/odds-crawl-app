@@ -126,7 +126,7 @@ def convert_hilow(num):
         return ''
 
 
-# for production
+# production-ready
 def signal_check(driver, event_id, team_name_dict, url, t=time(1,30,0), min_peak_change=0.98): # input an event_id of live game and check if it is a bet signal_list
     signal_row = None
     SIGNAL_EMOJI = emoji.emojize(':triangular_flag_on_post:', use_aliases=True)*6
