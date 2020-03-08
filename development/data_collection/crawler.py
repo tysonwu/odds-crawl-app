@@ -60,9 +60,9 @@ def scrap_chl_odds(driver, event_id):  #  returns a dict
 
     # skip suspended time "---" entry
     if (driver.find_element_by_id(event_id+'_CHL_H_'+entry).get_attribute('innerHTML') == "---"):
-        return dict(chl_line=chl_line_list, 
-                    chl_hi=chl_hi_list, 
-                    chl_low=chl_low_list, 
+        return dict(chl_line=chl_line_list,
+                    chl_hi=chl_hi_list,
+                    chl_low=chl_low_list,
                     line_entry=line_entry)
 
     while (True):
@@ -80,9 +80,9 @@ def scrap_chl_odds(driver, event_id):  #  returns a dict
             entry = str(int(entry) + 1)
         except:
             # return things when error
-            return dict(chl_line=chl_line_list, 
-                        chl_hi=chl_hi_list, 
-                        chl_low=chl_low_list, 
+            return dict(chl_line=chl_line_list,
+                        chl_hi=chl_hi_list,
+                        chl_low=chl_low_list,
                         line_entry=line_entry)
 
 
@@ -243,7 +243,7 @@ def main(crawl_interval=10):
     job_id = record_job_history_csv(path_dir)
 
     # initialize logger
-    logging.basicConfig(filename='log/{}.log'.format(job_id),level=logging.INFO)
+    logging.basicConfig(filename='log/{}.log'.format(job_id),level=logging.DEBUG)
     logging.info("Start running crawl script...")
 
     # read html from command line argument
@@ -311,7 +311,7 @@ def main(crawl_interval=10):
         # if not odds.total_corner.isnull().values.any():
         export_odds_csv(odds, event_id, path_dir)
         # if there is a bet signal, output the action row to signal.csv
-        signal_check(event_id, team_name_dict, url)
+        signal_check(driver, event_id, team_name_dict, url)
         # telegram notify
         # notify(random_stuff)
         logging.info("Done crawling on {}. Wait {} seconds for another crawl...".format(
