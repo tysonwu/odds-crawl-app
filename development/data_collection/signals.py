@@ -7,7 +7,7 @@ from datetime import datetime, time
 import utils as u
 from tqdm import tqdm
 import emoji
-from sql_output import write_to_db
+# from sql_output import write_to_db
 from telegram_notifier import notify
 from autobet import auto_bet
 
@@ -22,6 +22,7 @@ def signal_data_pipeline(event_id):
     if data.empty == False:
         data['line_odds'] = data.apply(lambda x: [x.chl_line, x.chl_hi, x.chl_low, x.line_entry], axis = 1)
         odd_list = data[['minutes', 'line_odds']].groupby('minutes')['line_odds'].apply(list).reset_index(name='line_odds')
+        # data = odd_list.merge(data[['event_id','minutes','minute_adjusted','total_corner']], how='inner', on='minutes')
         data = odd_list.merge(data[['event_id','minutes','total_corner']], how='inner', on='minutes')
         # data = data[['event_id', 'minutes', 'line_odds','total_corner']]
 
@@ -30,8 +31,10 @@ def signal_data_pipeline(event_id):
         data['chl_low'] = data.min_odds_info.apply(lambda x: x[2])
         data['chl_hi'] = data.min_odds_info.apply(lambda x: x[1])
         data['line_entry'] = data.min_odds_info.apply(lambda x: x[3])
+        # data = data[['event_id','minutes','minute_adjusted','total_corner','line','chl_hi','chl_low','line_entry']]
         data = data[['event_id','minutes','total_corner','line','chl_hi','chl_low','line_entry']]
         data['minutes'] = data['minutes'].apply(lambda x: datetime.strptime(event_id[:8]+x, "%Y%m%d%H:%M:%S"))
+        # data['minute_adjusted'] = data['minute_adjusted'].apply(lambda x: datetime.strptime(event_id[:8]+x, "%Y%m%d%H:%M:%S"))
         return data
     else:
         return None
@@ -54,6 +57,7 @@ def signal_rules(event_id, data, t, min_peak_change):
                               np.where(peaks.peak_change > 1.01,-1,0)) # -1, 0
     # signal = 1 means that we predict results will be lower than chl_line, -1 vice versa
     peaks = peaks[peaks.minutes >= datetime.combine(datetime.strptime(event_id[:8],"%Y%m%d"), t)]
+    # how about peaks.minute_adjusted?
     # no saturday thanks
     peaks = peaks[~peaks.event_id.str.contains('SAT')]
     #----------------------------------------------------------
@@ -117,17 +121,9 @@ def graph_profit(signal):
     u.graph(signal.index, signal['return'].cumsum(), 'Profit over games')
 
 
-def convert_hilow(num):
-    if num == 1:
-        return 'L'
-    if num == -1:
-        return 'H'
-    else:
-        return ''
-
 
 # production-ready
-def signal_check(driver, event_id, team_name_dict, url, t=time(1,30,0), min_peak_change=0.98): # input an event_id of live game and check if it is a bet signal_list
+def signal_check(driver, event_id, team_name_dict, url, SIGNAL_TRIGGER, t=time(1,30,0), min_peak_change=0.98): # input an event_id of live game and check if it is a bet signal_list
     signal_row = None
     SIGNAL_EMOJI = emoji.emojize(':triangular_flag_on_post:', use_aliases=True)*6
 
@@ -142,13 +138,15 @@ def signal_check(driver, event_id, team_name_dict, url, t=time(1,30,0), min_peak
             # reset index to row 0
             signal_row = signal_row.reset_index(drop=True)
             # line_entry = str(int(signal_row['line_entry'][0])) # return order of rows
-            line = str(signal_row['line'][0])
-            line_xpath = "//*[@id='dCHL"+event_id+"']//*[contains(text(), '["+line+"]')]"
-            try:
-                line_entry = driver.find_elements_by_xpath(line_xpath)[0].get_attribute('id')[-1]
-            except:
-                return None
-            hilow = convert_hilow(signal_row['signal'][0]) # 1 to L and -1 to H
+            # line = str(signal_row['line'][0])
+
+            # line_xpath = "//*[@id='dCHL"+event_id+"']//*[contains(text(), '["+line+"]')]"
+            # try:
+            #     line_entry = driver.find_elements_by_xpath(line_xpath)[0].get_attribute('id')[-1]
+            # except:
+            #     return None
+            # hilow = convert_hilow(signal_row['signal'][0]) # 1 to L and -1 to H
+
             # write to database
             # write_to_db(signal_row)
             # also a local file
@@ -166,7 +164,8 @@ def signal_check(driver, event_id, team_name_dict, url, t=time(1,30,0), min_peak
                         team_name_dict['away'], signal_row.T.to_string()))
                     # make auto bet here
                     try:
-                        auto_bet(url, event_id, hilow, line_entry)
+                        #auto_bet(url, event_id, hilow, line_entry)
+                        auto_bet(url, event_id, signal_row)
                     except:
                         notify('{}\nAutobet failed.'.format(event_id))
                     signal_row.to_csv('data/signals.csv', index=False, mode="a", header=False)
@@ -177,7 +176,7 @@ def signal_check(driver, event_id, team_name_dict, url, t=time(1,30,0), min_peak
                     team_name_dict['away'], signal_row.T.to_string()))
                 # make auto bet here
                 try:
-                    auto_bet(url, event_id, hilow, line_entry)
+                    auto_bet(url, event_id, signal_row)
                 except:
                     notify('{}\nAutobet failed.'.format(event_id))
                 signal_row.to_csv('data/signals.csv', index=False, mode="w", header=True)
