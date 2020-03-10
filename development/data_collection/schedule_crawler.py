@@ -1,6 +1,7 @@
 import pandas as pd
 import time
 import re
+import os
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -48,21 +49,25 @@ def pipeline(soup, path_dir):
     current_year = str(datetime.now().year)
     games['time'] = games.time.apply(lambda x: datetime.strptime(
         current_year+'/'+x, '%Y/%d/%m %H:%M'))
+    games['time'] = games.time.apply(lambda x: datetime.strftime(x, '%Y-%m-%d %H:%M:%S'))
     games['month'] = games['time'].apply(lambda x: str(x.month))
     games['day'] = games['time'].apply(lambda x: str(x.day))
     games['hour'] = games['time'].apply(lambda x: str(x.hour))
     games['minute'] = games['time'].apply(lambda x: str(x.minute))
-    games['crontab_cmd'] = games['minute']+' '+games['hour']+' '+games['day']+' '+games['month']+' * cd '+path_dir+" && /opt/anaconda3/bin/python crawler.py --url '"+games['game_url']+"'\n"
+    games['crontab_cmd'] = games['minute']+' '+games['hour']+' '+games['day']+' '+games['month']+' * cd '+path_dir+" && /opt/anaconda3/bin/python crawler.py --event_id "+games['event_id']+"\n"
+    games['sofascore_url'] = None
     return games, games['crontab_cmd']
 
 
 def export_to_csv(games_data, path_dir):
     path_file = path_dir+"data/schedule.csv"
-    # if os.path.exists(path_file) == True:
-    #     games_data.to_csv(path_file, index=False, mode="a", header=False)
-    # else:
-    games_data.to_csv(path_file, index=False, mode="a", header=False)
-    # games_data.to_csv(path_file, index=False, mode="w", header=True)
+    if os.path.exists(path_file) == True:
+        current_schedule = pd.read_csv(path_file)
+        current_schedule = pd.concat([current_schedule,games_data]).drop_duplicates(subset='event_id',keep='first')
+        current_schedule.update(games_data)
+        current_schedule.to_csv(path_file, index=False, mode="w", header=True)
+    else:
+        games_data.to_csv(path_file, index=False, mode="w", header=True)
 
 
 def export_to_txt(command, path_dir):
