@@ -3,3 +3,4 @@
 cd ~/dev/odds-crawl-app/odds-crawl-app/development/data_collection/
 python schedule_crawler.py
 open data/crontab_command.txt
+open data/schedule.csv
