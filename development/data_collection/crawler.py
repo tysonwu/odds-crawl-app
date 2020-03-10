@@ -13,6 +13,7 @@ https://stackoverflow.com/questions/29858752/error-message-chromedriver-executab
 
 import pandas as pd
 import os
+import re
 import argparse
 import time
 import sys
@@ -192,7 +193,77 @@ def record_job_history_csv(path_dir):
     return job_id
 
 
-def make_odds_data(chl_odd_dict, had_odd_dict, nts_odd_dict, total_corner, live_score_dict, status, event_id, game_starting_time):
+# def get_match_status(s):
+#     if 'Selling Time' in s:
+#         return 'pre'
+#     if '1st Half' in s:
+#         return '1st half'
+#     if 'Half Time' in s:
+#         return 'half time'
+#     if '2nd Half' in s:
+#         return '2nd half'
+#     else:
+#         return None
+
+
+# def adjust_minute(default_dict, status, timestamp):
+#     # pre_stop = datetime.strptime(default_dict['pre'], "%Y-%m-%d %H:%M:%S")
+#     # ht_stop = datetime.strptime(default_dict['half time'], "%Y-%m-%d %H:%M:%S")
+#     pre_stop = default_dict['pre']
+#     ht_stop = default_dict['half time']
+#     # print(pre_stop)
+#     # print(ht_stop)
+#     if status == 'pre':
+#         return timedelta(minutes=0)
+#     if status == '1st half':
+#         return min(timestamp-pre_stop, timedelta(minutes=45))
+#     if status == 'half time':
+#         return timedelta(minutes=45)
+#     if status == '2nd half':
+#         return min(timestamp-ht_stop, timedelta(minutes=45))+timedelta(minutes=45)
+
+
+# def adjust_minute_compensate(default_dict, status, timestamp):
+#     # pre_stop = datetime.strptime(default_dict['pre'], "%Y-%m-%d %H:%M:%S")
+#     # ht_stop = datetime.strptime(default_dict['half time'], "%Y-%m-%d %H:%M:%S")
+#     # print(default_dict['pre'])
+#     # print(default_dict['half time'])
+#     pre_stop = default_dict['pre']
+#     ht_stop = default_dict['half time']
+#     if status == 'pre':
+#         return timedelta(minutes=0)
+#     if status == '1st half':
+#         current_dur = timestamp-pre_stop
+#         if current_dur > timedelta(minutes=45):
+#             return current_dur-timedelta(minutes=45)
+#         else:
+#             return timedelta(minutes=0)
+#     if status == 'half time':
+#         return timedelta(minutes=0)
+#     if status == '2nd half':
+#         current_dur = timestamp-ht_stop
+#         if current_dur > timedelta(minutes=45):
+#             return current_dur-timedelta(minutes=45)
+#         else:
+#             return timedelta(minutes=0)
+
+
+# def update_status_change(default_dict, timestamp, match_status): # takes a dict
+#     # status_df = df[['timestamp','match_status']].groupby('match_status').max()
+#     # status_change.update(status_df)
+#     default_dict[match_status] = timestamp
+#     return default_dict
+
+
+def make_odds_data(chl_odd_dict,
+                   had_odd_dict,
+                   nts_odd_dict,
+                   total_corner,
+                   live_score_dict,
+                   status,
+                   event_id,
+                   game_starting_time,
+                   timer):
     # add timestamp
     timestamp = datetime.strptime(datetime.strftime(datetime.now(), "%Y-%m-%d %H:%M:%S"),
                                   "%Y-%m-%d %H:%M:%S")
@@ -201,10 +272,26 @@ def make_odds_data(chl_odd_dict, had_odd_dict, nts_odd_dict, total_corner, live_
     minutes = str(max((timestamp - game_starting_time),
                       timedelta(seconds=0))) # truncate for time before game starts
 
+    # # make adjusted time data
+    # match_status = get_match_status(status)
+    #
+    # # update status_change
+    # default_dict = update_status_change(default_dict, timestamp, match_status)
+    #
+    # minute_adjusted = str(adjust_minute(default_dict, match_status, timestamp))
+    # minute_adjusted = re.sub('0 days ','',minute_adjusted)
+    # minute_adjusted_compensate = str(adjust_minute_compensate(default_dict, match_status, timestamp))
+    # minute_adjusted_compensate = re.sub('0 days ','',minute_adjusted_compensate)
+
+
     time_data = pd.DataFrame({"event_id": event_id,
                               "timestamp": timestamp,
                               "minutes": minutes,
+                              "timer": timer,
+                              #"minute_adjusted": minute_adjusted,
+                              #"minute_adjusted_compensate": minute_adjusted_compensate,
                               "status": status,
+                              #"match_status": match_status,
                               "total_corner": total_corner},index=[0])
 
     # append live_score data
@@ -231,11 +318,17 @@ def export_odds_csv(odds, event_id, path_dir):
         odds.to_csv(path_file, index=False, mode="w", header=True)
 
 
-def initialize(url, load_sleep=10):
+def initialize(url, load_sleep=15):
     driver = webdriver.Chrome(ChromeDriverManager().install())
     driver.get(url)
     time.sleep(load_sleep)  # to let the HTML load
     return driver
+
+
+def scrap_sofascore(driver):
+    timer = driver.find_element_by_class_name('js-details-component-startTime-container')
+    time_text = timer.text.split("\n")[-1]
+    return time_text
 
 
 def main(crawl_interval=10):
@@ -247,30 +340,50 @@ def main(crawl_interval=10):
     logging.info("Start running crawl script...")
 
     # read html from command line argument
-    parser = argparse.ArgumentParser(description='Web url as an argument')
-    parser.add_argument("--url")
+    parser = argparse.ArgumentParser(description='Event ID as an argument')
+    parser.add_argument("--event_id")
     args = parser.parse_args()
-    web_url = args.url
+    event_id = args.event_id
 
     # # override
     # web_url = 'https://bet.hkjc.com/football/odds/odds_inplay_all.aspx?lang=EN&tmatchid=b763c364-80ce-43c4-b663-68c7de6ec9a2'
-    logging.info(web_url)
+    logging.info(event_id)
 
     # read schedule
     schedule = pd.read_csv(path_dir+"data/schedule.csv")
     # returns latest row in case there are duplicates
     # if it is empty then something gone wrong
     try:
-        game_info = schedule[schedule['game_url'] == web_url].iloc[-1,]
+        game_info = schedule[schedule['event_id'] == event_id].iloc[-1,]
     except:
-        logging.warning("Found no such URL in schedule.csv. Program will now terminate.")
+        logging.warning("Found no such Event ID in schedule.csv. Program will now terminate.")
         sys.exit()
 
     url = game_info['game_url']
-    event_id = game_info['event_id']
     league = game_info['league']
     game_starting_time = game_info['time']
     team_name_dict = dict(home=game_info['home'], away=game_info['away'])
+
+    # sofascore timer
+    sofascore_url = game_info['sofascore_url']
+
+    # initialize a dict of max time in each status
+    # this is a dict to be continuously loop and update
+    # if the data file existed already, then the crawl is a continued crawl from previous
+    # gst_strip = datetime.strptime(game_starting_time, "%Y-%m-%d %H:%M:%S")
+    # default_list = [gst_strip,gst_strip,gst_strip,gst_strip]
+
+    # with the default_dict and without checking whether part of the data in the game already exists,
+    # if the crawling re-runs on the same game, the adjusted time will not be accurate.
+
+    # default_dict = pd.DataFrame({'match_status':['pre','1st half','half time','2nd half'],
+    #                              'timestamp':datetime.strptime(game_starting_time, "%Y-%m-%d %H:%M:%S")}).set_index('match_status')
+    # if os.path.exists(path_dir+"data/"+event_id+".csv") == True:
+    #     initial_data = pd.read_csv(path_dir+"data/"+event_id+".csv")
+    #     initial_data = initial_data[['timestamp','match_status']].groupby('match_status').max()
+    #     # do an initial update
+    #     default_dict.update(initial_data)
+    # default_dict = default_dict.to_dict()['timestamp']
 
     logging.info('URL: '+url)
     logging.info('Event ID: '+event_id)
@@ -280,7 +393,14 @@ def main(crawl_interval=10):
         SOCCER_EMOJI, event_id, game_starting_time, league,
         team_name_dict['home'], team_name_dict['away']))
 
+    # initialize hkjc driver
     driver = initialize(url)
+
+    try:
+        # initialize sofascore url
+        driver_timer = initialize(sofascore_url)
+    except:
+        notify('Sofascore timer initialization error.')
 
     # first crawl
     # check odd content availability; if no corner hilow odds then terminate program
@@ -290,10 +410,20 @@ def main(crawl_interval=10):
     match_data = make_match_data(event_id, league, team_name_dict, game_starting_time)
     export_match_csv(match_data, path_dir)
 
+    # signal trigger
+    SIGNAL_TRIGGER = False # when false, do not do signal check
     # sequantial loop
     while True:
         # check odd content availability; if no corner hilow odds then terminate program
         check_odds_availability(driver=driver, event_id=event_id)
+
+        # get timer from sofascore
+        try:
+            timer = scrap_sofascore(driver_timer)
+        except:
+            timer = None
+            logging.error('Sofascore driver error.')
+
         live_score_dict = scrap_live_score(driver)
         status = scrap_status(driver)
         total_corner = scrap_total_corner(driver)
@@ -307,11 +437,15 @@ def main(crawl_interval=10):
                               live_score_dict, # dict
                               status, # string
                               event_id, # string
-                              game_starting_time) # string
+                              game_starting_time,
+                              timer) # string
+                              #default_dict) # dict containing datetimes
+        # logging.info(default_dict)
+
         # if not odds.total_corner.isnull().values.any():
         export_odds_csv(odds, event_id, path_dir)
         # if there is a bet signal, output the action row to signal.csv
-        signal_check(driver, event_id, team_name_dict, url)
+        signal_check(driver, event_id, team_name_dict, url, SIGNAL_TRIGGER)
         # telegram notify
         # notify(random_stuff)
         logging.info("Done crawling on {}. Wait {} seconds for another crawl...".format(
