@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import re
+import tableprint as tp
 import plotly.graph_objects as go
 
 
@@ -24,6 +25,7 @@ del data['hilow_content']
 
 # merge with result
 data = data.merge(result[['event_id','result_corner']], how='inner', on='event_id')
+data = data[~data.result_corner.isna()]
 data['result_corner'] = data['result_corner'].apply(pd.to_numeric)
 data['is_win'] = np.where(data.hilow == 'Low',
 	np.where(data.line>data.result_corner,1,0),
@@ -31,9 +33,17 @@ data['is_win'] = np.where(data.hilow == 'Low',
 data['pnl'] = np.where(data.is_win == 1, data.odds - 1, -1)
 data['pnl_actual'] = data.bet_amount * data.pnl
 
+tp.banner("Bet Slips")
+# table = []
+# cols = ['event_id','bet_amount','hilow','line','is_win','pnl','pnl_actual']
+# bet_slip = data[cols].tail(40).values.tolist()
+# tp.table(bet_slip, cols)
+print("───────────────────────────────────────────────────────────────────────")
 print(data[['event_id','bet_amount','hilow','line','is_win','pnl','pnl_actual']].tail(40))
-print('\nCurrent running profit/loss: $ {} for $ 1 in each bet'.format(round(data['pnl'].sum(),2)))
-print('Current running actual profit/loss: $ {} since starting stack'.format(round(data['pnl_actual'].sum(),2)))
+sentence_1 = '  Current running profit/loss: $ {} for $ 1 in each bet  '.format(round(data['pnl'].sum(),2))
+sentence_2 = '  Current running actual profit/loss: $ {} since starting stack  '.format(round(data['pnl_actual'].sum(),2))
+tp.banner(sentence_1)
+tp.banner(sentence_2)
 #u.graph(data.index, data.pnl.cumsum(), 'Running returns')
 
 # plotly plot
