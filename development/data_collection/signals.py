@@ -40,11 +40,9 @@ def signal_data_pipeline(event_id):
         return None
 
 
-def signal_rules(event_id, data, t, min_peak_change):
+def signal_rules(event_id, data, t, peak_change, exclude_weekdays):
     # create peak df
     data['odd_change'] = data.chl_low/data.chl_low.shift(1)
-    # line change
-    #data['line_change'] = data.line - data.line.shift(1)
     # is a peak
     data['peak'] = np.where(data.odd_change > 1, 1, 0) # odd_change > 1.01?
     peaks = data[data.peak == 1]
@@ -53,14 +51,14 @@ def signal_rules(event_id, data, t, min_peak_change):
 
 
     # apply signal rules---------------------------------------
-    peaks['signal'] = np.where(peaks.peak_change < min_peak_change, 1,
-                              np.where(peaks.peak_change > 1.01,-1,0)) # -1, 0
+    peaks['signal'] = np.where(peaks.peak_change < peak_change[0], 1,
+                              np.where(peaks.peak_change > peak_change[1],-1,0))
     # signal = 1 means that we predict results will be lower than chl_line, -1 vice versa
-    peaks = peaks[peaks.minutes >= datetime.combine(datetime.strptime(event_id[:8],"%Y%m%d"), t)]
-    # how about peaks.minute_adjusted?
-    # no saturday thanks
-    peaks = peaks[~peaks.event_id.str.contains('SAT')]
-    #----------------------------------------------------------
+    peaks = peaks[peaks.minutes >= datetime.combine(datetime.strptime(event_id[:8],"%Y%m%d"), t[0])]
+    peaks = peaks[peaks.minutes <= datetime.combine(datetime.strptime(event_id[:8],"%Y%m%d"), t[1])]
+    if exclude_weekdays is not None:
+        peaks = peaks[~peaks.event_id.str.contains('|'.join(exclude_weekdays))]
+   #----------------------------------------------------------
     return peaks
 
 
@@ -89,14 +87,16 @@ def return_calc(signal_list):
     return signals
 
 
-def signal_analysis(t=time(1,30,0), min_peak_change=0.98): # returns a df
+def signal_analysis(t=[time(1,30,0),time(1,40,0)],
+                    peak_change=[0.98,1.04],
+                    exclude_weekdays=['SAT']): # returns a df
     signal_list = None
     for event_id in tqdm([file[:-4] for file in os.listdir('data/') if '2020' in file]):
         # data pipeline
         data = signal_data_pipeline(event_id)
         # signal_data_pipeline returns none when the df is empty after undergo pipeline
         if data is not None:
-            peaks = signal_rules(event_id, data, t, min_peak_change)
+            peaks = signal_rules(event_id, data, t, peak_change, exclude_weekdays)
         else: # if df is empty then return an empty peaks df
             peaks = pd.DataFrame({})
 
@@ -121,66 +121,70 @@ def graph_profit(signal):
     u.graph(signal.index, signal['return'].cumsum(), 'Profit over games')
 
 
-
 # production-ready
-def signal_check(driver, event_id, team_name_dict, url, SIGNAL_TRIGGER, t=time(1,30,0), min_peak_change=0.98): # input an event_id of live game and check if it is a bet signal_list
+def signal_check(driver,
+                 event_id,
+                 team_name_dict,
+                 url,
+                 SIGNAL_TRIGGER,
+                 t=[time(1,30,0),time(1,40,0)],
+                 peak_change=[0.98,1.04],
+                 exclude_weekdays=['SAT']): # input an event_id of live game and check if it is a bet signal_list
     signal_row = None
     SIGNAL_EMOJI = emoji.emojize(':triangular_flag_on_post:', use_aliases=True)*6
 
     live_data = signal_data_pipeline(event_id)
     if live_data is not None:
-        peaks = signal_rules(event_id, live_data, t, min_peak_change)
+        peaks = signal_rules(event_id, live_data, t, peak_change, exclude_weekdays)
         # if signal != 0 then there is a bet action to take
-        peaks = peaks[peaks['signal'] != 0]
+        # peaks = peaks[peaks['signal'] != 0]
         if peaks.empty == False:
             # return the first row ie. the first signal row
             signal_row = peaks.iloc[[0]]
             # reset index to row 0
             signal_row = signal_row.reset_index(drop=True)
-            # line_entry = str(int(signal_row['line_entry'][0])) # return order of rows
-            # line = str(signal_row['line'][0])
-
-            # line_xpath = "//*[@id='dCHL"+event_id+"']//*[contains(text(), '["+line+"]')]"
-            # try:
-            #     line_entry = driver.find_elements_by_xpath(line_xpath)[0].get_attribute('id')[-1]
-            # except:
-            #     return None
-            # hilow = convert_hilow(signal_row['signal'][0]) # 1 to L and -1 to H
-
-            # write to database
-            # write_to_db(signal_row)
-            # also a local file
             if os.path.isfile('data/signals.csv') == True:
                 signals = pd.read_csv('data/signals.csv')
                 signals_exist = signals[signals['event_id']==event_id]
                 # no need to notify and make new entry when there is new signal
                 if signals_exist.empty == False:
-                    signals.update(signal_row)
-                    signals.to_csv('data/signals.csv', index=False, mode="w", header=True)
+                    pass
+#                     signals.update(signal_row)
+#                     signals.to_csv('data/signals.csv', index=False, mode="w", header=True)
                 else:
                     # notify when new signal is found
                     notify('{}\n{}\nSIGNAL FOUND: \n{} vs {}\n{}'.format(
                         SIGNAL_EMOJI, event_id, team_name_dict['home'],
                         team_name_dict['away'], signal_row.T.to_string()))
                     # make auto bet here
-                    try:
-                        #auto_bet(url, event_id, hilow, line_entry)
-                        auto_bet(url, event_id, signal_row)
-                    except:
-                        notify('{}\nAutobet failed.'.format(event_id))
+                    if signal_row['signal'][0] != 0:
+                        try:
+                            #auto_bet(url, event_id, hilow, line_entry)
+                            auto_bet(driver, url, event_id, signal_row)
+                        except:
+                            notify('{}\nAutobet failed.'.format(event_id))
+                    else:
+                        notify('{}\nNo autobet due to SIGNAL is 0'.format(event_id))
                     signal_row.to_csv('data/signals.csv', index=False, mode="a", header=False)
+                    SIGNAL_TRIGGER = False
             else:
                 # notify when new signal is found
                 notify('{}\n{}\nSIGNAL FOUND: \n{} vs {}\n{}'.format(
                     SIGNAL_EMOJI, event_id, team_name_dict['home'],
                     team_name_dict['away'], signal_row.T.to_string()))
                 # make auto bet here
-                try:
-                    auto_bet(url, event_id, signal_row)
-                except:
-                    notify('{}\nAutobet failed.'.format(event_id))
+                if signal_row['signal'][0] != 0:
+                    try:
+                        #auto_bet(url, event_id, hilow, line_entry)
+                        auto_bet(driver, url, event_id, signal_row)
+                    except:
+                        notify('{}\nAutobet failed.'.format(event_id))
+                else:
+                    notify('{}\nNo autobet due to SIGNAL is 0'.format(event_id))
                 signal_row.to_csv('data/signals.csv', index=False, mode="w", header=True)
+                SIGNAL_TRIGGER = False
         else:
             pass
     else:
         pass
+    return SIGNAL_TRIGGER

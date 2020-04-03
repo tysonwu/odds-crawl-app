@@ -8,14 +8,19 @@ import warnings
 warnings.filterwarnings("ignore")
 import matplotlib.pyplot as plt
 import seaborn as sns
+import plotly.express as px
 
 
-def graph(x,y,title='Plot'): # x -> list, y -> list, title -> string
-    sns.set()
-    fig=plt.figure(figsize=(18, 6))
-    plt.plot(x, y)
-    plt.title(title)
-    plt.show()
+
+
+def graph(x,y): # x -> list, y -> list, title -> string
+    fig = px.line(x=x, y=y)
+    fig.show()
+#     sns.set()
+#     fig=plt.figure(figsize=(18, 6))
+#     plt.plot(x, y)
+#     plt.title(title)
+#     plt.show()
 
 
 def remove_empty_rows(df):

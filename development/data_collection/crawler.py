@@ -335,15 +335,15 @@ def main(crawl_interval=10):
     # record job history
     job_id = record_job_history_csv(path_dir)
 
-    # initialize logger
-    logging.basicConfig(filename='log/{}.log'.format(job_id),level=logging.DEBUG)
-    logging.info("Start running crawl script...")
-
     # read html from command line argument
     parser = argparse.ArgumentParser(description='Event ID as an argument')
     parser.add_argument("--event_id")
     args = parser.parse_args()
     event_id = args.event_id
+
+    # initialize logger
+    logging.basicConfig(filename='log/{}_{}.log'.format(event_id, job_id),level=logging.INFO)
+    logging.info("Start running crawl script...")
 
     # # override
     # web_url = 'https://bet.hkjc.com/football/odds/odds_inplay_all.aspx?lang=EN&tmatchid=b763c364-80ce-43c4-b663-68c7de6ec9a2'
@@ -411,7 +411,7 @@ def main(crawl_interval=10):
     export_match_csv(match_data, path_dir)
 
     # signal trigger
-    SIGNAL_TRIGGER = False # when false, do not do signal check
+    SIGNAL_TRIGGER = True # when false, do not do signal check
     # sequantial loop
     while True:
         # check odd content availability; if no corner hilow odds then terminate program
@@ -445,7 +445,8 @@ def main(crawl_interval=10):
         # if not odds.total_corner.isnull().values.any():
         export_odds_csv(odds, event_id, path_dir)
         # if there is a bet signal, output the action row to signal.csv
-        signal_check(driver, event_id, team_name_dict, url, SIGNAL_TRIGGER)
+        if SIGNAL_TRIGGER == True:
+            SIGNAL_TRIGGER = signal_check(driver, event_id, team_name_dict, url, SIGNAL_TRIGGER)
         # telegram notify
         # notify(random_stuff)
         logging.info("Done crawling on {}. Wait {} seconds for another crawl...".format(
