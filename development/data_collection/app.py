@@ -56,9 +56,9 @@ def data_pipeline(game_date, source): # source is 'YYYYmmddXXXn.csv'
 
 
 # signal performance
-def display_signal_data(min_peak_change):
-    signal_data = signal_analysis(min_peak_change=min_peak_change)
-    signal_data = signal_data[signal_data['signal'] != 0]
+def display_signal_data(peak_change):
+    signal_data = signal_analysis(peak_change=peak_change)
+#     signal_data = signal_data[signal_data['signal'] != 0]
     signal_data = signal_data[~signal_data['result_corner'].isna()]
 #     signal_data['date'] = signal_data.event_id.apply(lambda x: x[:8])
 #     signal_data['number'] = signal_data.event_id.apply(lambda x: int(x[11:]))
@@ -100,14 +100,14 @@ os.chdir('/Users/TysonWu/dev/odds-crawl-app/odds-crawl-app/development/data_coll
 app = dash.Dash(__name__)
 server = app.server
 
-MIN_PEAK_CHANGE = 0.98
+PEAK_CHANGE = [0.98,1.04]
 match_data = pd.read_csv('data/match_data.csv')
 current_match = match_data.iloc[-1,]
 current_match_event_id = current_match['event_id']
 game_date = current_match_event_id[:8] # a string YYYYmmdd
 matches = sorted([file for file in os.listdir('data/') if '202' in file],
                  reverse=True)
-signal_data = display_signal_data(min_peak_change=MIN_PEAK_CHANGE)
+signal_data = display_signal_data(peak_change=PEAK_CHANGE)
 
 # color codes
 color_list = ['#FFA65A', '#E86146', '#E8469A', '#B574FF', '#5D69E8', '#54C3C7',
@@ -155,7 +155,7 @@ app.layout = html.Div(className='app__container', children=
                                                 interval=10*1000,
                                                 n_intervals=0),
                                    html.H4(children='Signal Performance'),
-                                   html.H5(children=MIN_PEAK_CHANGE),
+                                   html.H5(children=PEAK_CHANGE),
                                    dcc.Graph(id='performance',
                                              figure={
                                                  'data':[{
