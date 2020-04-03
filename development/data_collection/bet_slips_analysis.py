@@ -53,16 +53,16 @@ grid_color = '#42494f'
 paper_bgcolor = '#303538'
 plot_bgcolor = '#303538'
 
-fig = go.Figure(data=go.Scatter(x=data.index, y=data.pnl_actual.cumsum(), line=dict(color=line_color)))
-fig.update_layout(title='Actual Running Profit or Loss',
-                   xaxis=dict(title='Current running actual profit/loss: $ {} since starting stack '.format(round(data['pnl_actual'].sum(),2)),
-                              gridcolor=grid_color,
-                              zerolinecolor=grid_color),
-                   yaxis=dict(title='Amount($)',
-                              gridcolor=grid_color,
-                              zerolinecolor=grid_color),
-                   font=dict(color=font_color),
-                   paper_bgcolor=plot_bgcolor,
-                   plot_bgcolor=plot_bgcolor,
-                   template='plotly_dark')
-fig.show(width=800, height=400)
+# fig = go.Figure(data=go.Scatter(x=data.index, y=data.pnl_actual.cumsum(), line=dict(color=line_color)))
+# fig.update_layout(title='Actual Running Profit or Loss',
+#                    xaxis=dict(title='Current running actual profit/loss: $ {} since starting stack '.format(round(data['pnl_actual'].sum(),2)),
+#                               gridcolor=grid_color,
+#                               zerolinecolor=grid_color),
+#                    yaxis=dict(title='Amount($)',
+#                               gridcolor=grid_color,
+#                               zerolinecolor=grid_color),
+#                    font=dict(color=font_color),
+#                    paper_bgcolor=plot_bgcolor,
+#                    plot_bgcolor=plot_bgcolor,
+#                    template='plotly_dark')
+# fig.show(width=800, height=400)
