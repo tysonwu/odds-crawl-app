@@ -1,12 +1,12 @@
 event_id,game_starting_time,league,home,away
-20200213THU7,14/2/2020 06:15,League,Zamora FC,Plaza Colonia
-20200214FRI1,14/2/2020 16:30,League,Adelaide Utd,Central Coast Mariners
-20200214FRI29,15/2/2020 08:10,League,Colon,Racing Club
-20200215SAT3,15/2/2020 20:00,League,Mallorca,Alaves
-20200215SAT48,16/2/2020 01:30,League,Norwich,Liverpool
-20200215SAT60,16/2/2020 03:45,League,Atalanta,Roma
-20200216SUN37,17/2/2020 00:30,League,Arsenal,Newcastle
-20200216SUN50,17/2/2020 06:40,League,Lanus,Newell's Old Boys
+20200213THU7,2020-02-14 06:15:00,South American Cup,Zamora FC,Plaza Colonia
+20200214FRI1,2020-02-14 16:30:00,Australian Division 1,Adelaide Utd,Central Coast Mariners
+20200214FRI29,2020-02-15 08:10:00,Argentine Division 1,Colon,Racing Club
+20200215SAT3,2020-02-15 20:00:00,Spanish Division 1,Mallorca,Alaves
+20200215SAT48,2020-02-16 01:30:00,UE Champions,Norwich,Liverpool
+20200215SAT60,2020-02-16 03:45:00,Italian Division 1,Atalanta,Roma
+20200216SUN37,2020-02-17 00:30:00,UE Cup,Arsenal,Newcastle
+20200216SUN50,2020-02-17 06:40:00,Argentine Division 1,Lanus,Newell's Old Boys
 20200217MON9,2020-02-18 04:00:00,Eng Premier,Chelsea,Manchester Utd
 20200217MON10,2020-02-18 06:00:00,Argentine Division 1,Estudiantes,Defensa y Justicia
 20200217MON12,2020-02-18 08:10:00,Argentine Division 1,Independiente,Sarandi Arsenal
@@ -18,7 +18,7 @@ event_id,game_starting_time,league,home,away
 20200218TUE13,2020-02-19 04:00:00,UE Champions,Atletico Madrid,Liverpool
 20200218TUE18,2020-02-19 08:30:00,South American Cup,Aucas,Velez Sarsfield
 20200218TUE20,2020-02-19 11:00:00,Central and North American Cup,Club Leon,Los Angeles FC
-20200219WED1,2020-02-19 18:30:00,League,Yokohama F.Marinos,Sydney FC
+20200219WED1,2020-02-19 18:30:00,Japanese Division 1,Yokohama F.Marinos,Sydney FC
 20200219WED3,2020-02-20 03:30:00,Eng Premier,Manchester City,West Ham
 20200219WED11,2020-02-20 08:30:00,Copa Libertadores,Deportes Tolima,Internacional
 20200219WED16,2020-02-20 11:00:00,Central and North American Cup,CSD Comunicaciones,CF America
@@ -56,3 +56,115 @@ event_id,game_starting_time,league,home,away
 20200223SUN47,2020-02-24 01:30:00,Spanish Division 1,Getafe,Sevilla
 20200223SUN52,2020-02-24 04:00:00,Spanish Division 1,Atletico Madrid,Villarreal
 20200223SUN59,2020-02-24 07:00:00,Mexican Premier,Queretaro,Atletico San Luis
+20200224MON7,2020-02-25 04:00:00,Eng Premier,Liverpool,West Ham
+20200225TUE16,2020-02-26 08:30:00,Copa Libertadores,Atletico Tucuman,Independiente Medellin
+20200225TUE20,2020-02-26 09:00:00,Central and North American Cup,Atlanta Utd,CD Motagua
+20200226WED20,2020-02-27 08:30:00,Copa Libertadores,Internacional,Deportes Tolima
+20200227THU1,2020-02-28 01:55:00,UE Cup,Espanyol,Wolves
+20200227THU8,2020-02-28 04:00:00,UE Cup,Manchester Utd,Bruges
+20200227THU18,2020-02-28 08:30:00,South American Cup,Audax Italiano,Cusco FC
+20200227THU20,2020-02-28 11:00:00,Central and North American Cup,Los Angeles FC,Club Leon
+20200228FRI1,2020-02-28 17:00:00,Australian Division 1,Sydney FC,Western Sydney Wanderers
+20200228FRI28,2020-02-29 04:00:00,Eng Premier,Norwich,Leicester
+20200228FRI33,2020-02-29 08:10:00,Argentine Division 1,Colon,Boca Juniors
+20200229SAT1,2020-02-29 14:00:00,Australian Division 1,Newcastle Jets,Perth Glory
+20200229SAT2,2020-02-29 16:30:00,Australian Division 1,Melbourne Victory,Adelaide Utd
+20200229SAT4,2020-02-29 20:00:00,Spanish Division 1,Eibar,Levante
+20200229SAT8,2020-02-29 20:30:00,Eng Premier,Brighton,Crystal Palace
+20200229SAT12,2020-02-29 22:00:00,Italian Division 1,Lazio,Bologna
+20200229SAT15,2020-02-29 22:30:00,German Division 1,Dortmund,Freiburg
+20200229SAT14,2020-02-29 22:30:00,German Division 1,Hoffenheim,Bayern Munich
+20200229SAT18,2020-02-29 23:00:00,Eng Premier,Bournemouth,Chelsea
+20200229SAT43,2020-03-01 00:30:00,French Division 1,Paris Saint Germain,Dijon
+20200229SAT47,2020-03-01 01:30:00,German Division 1,Cologne,Schalke 04
+20200229SAT45,2020-03-01 01:30:00,Eng Premier,Watford,Liverpool
+20200229SAT61,2020-03-01 03:45:00,Italian Division 1,Napoli,AC Torino
+20200229SAT80,2020-03-01 11:30:00,US Football League,Vancouver Whitecaps,Sporting Kansas City
+20200301SUN1,2020-03-01 13:00:00,Australian Division 1,Western Utd,Central Coast Mariners
+20200301SUN2,2020-03-01 15:30:00,Australian Division 1,Melbourne City,Brisbane Roar
+20200301SUN3,2020-03-01 19:00:00,Spanish Division 1,Sevilla,Osasuna
+20200301SUN9,2020-03-01 20:30:00,German Division 1,Union Berlin,Wolfsburg
+20200301SUN13,2020-03-01 21:00:00,Spanish Division 1,Bilbao,Villarreal
+20200301SUN17,2020-03-01 22:00:00,Eng Premier,Everton,Manchester Utd
+20200301SUN18,2020-03-01 22:00:00,Eng Premier,Tottenham,Wolves
+20200301SUN24,2020-03-01 23:00:00,Spanish Division 1,Espanyol,Atletico Madrid
+20200301SUN31,2020-03-02 00:30:00,Eng League Cup,Aston Villa,Manchester City
+20200301SUN32,2020-03-02 01:00:00,Italian Division 1,Cagliari,Roma
+20200301SUN42,2020-03-02 04:00:00,Spanish Division 1,Real Madrid,Barcelona
+20200301SUN48,2020-03-02 06:30:00,US Football League,Los Angeles FC,Inter Miami CF
+20200301SUN53,2020-03-02 08:30:00,US Football League,Portland Timbers,Minnesota Utd
+20200302MON12,2020-03-03 06:00:00,Argentine Division 1,Patronato,Talleres
+20200302MON15,2020-03-03 02:00:00,Swedish Cup,Sandvikens IF,Djurgardens
+20200302MON14,2020-03-03 08:10:00,Argentine Division 1,Huracan,Independiente
+20200303TUE1,2020-03-03 20:45:00,Asian Champions League,Johor DT,Suwon Bluewings
+20200303TUE3,2020-03-04 01:30:00,German Cup,Saarbrucken,Dusseldorf
+20200303TUE5,2020-03-04 03:45:00,German Cup,Schalke 04,Bayern Munich
+20200303TUE17,2020-03-04 08:30:00,Copa Libertadores,Caracas FC,Boca Juniors
+20200304WED1,2020-03-04 16:30:00,Asian Champions League,Sydney FC,Jeonbuk Motors
+20200304WED4,2020-03-05 01:30:00,German Cup,Leverkusen,Union Berlin
+20200304WED9,2020-03-05 03:45:00,German Cup,Frankfurt,Werder Bremen
+20200304WED17,2020-03-05 04:10:00,French FA Cup,Lyon,Paris Saint Germain
+20200304WED22,2020-03-05 08:30:00,Copa Libertadores,LDU Quito,River Plate
+20200305THU4,2020-03-06 03:55:00,French FA Cup,St. Etienne,Rennes
+20200305THU9,2020-03-06 08:00:00,Copa Libertadores,Deportivo Binacional,Sao Paulo
+20200306FRI1,2020-03-06 17:30:00,Australian Division 1,Brisbane Roar,Western Sydney Wanderers
+20200306FRI4,2020-03-07 03:00:00,German Division 1,Paderborn,Cologne
+20200306FRI27,2020-03-07 09:00:00,Mexican Premier,Queretaro,Toluca
+20200307SAT1,2020-03-07 14:00:00,Australian Division 1,Adelaide Utd,Western Utd
+20200307SAT2,2020-03-07 16:30:00,Australian Division 1,Melbourne Victory,Sydney FC
+20200307SAT5,2020-03-07 20:00:00,Spanish Division 1,Eibar,Mallorca
+20200307SAT9,2020-03-07 20:30:00,Eng Premier,Liverpool,Bournemouth
+20200307SAT16,2020-03-07 22:30:00,German Division 1,Wolfsburg,RB Leipzig
+20200307SAT21,2020-03-07 23:00:00,Eng Premier,Arsenal,West Ham
+20200307SAT57,2020-03-08 01:30:00,Eng Premier,Burnley,Tottenham
+20200307SAT58,2020-03-08 01:30:00,Spanish Division 1,Barcelona,Real Sociedad
+20200307SAT76,2020-03-08 04:00:00,Spanish Division 1,Getafe,Celta Vigo
+20200307SAT89,2020-03-08 08:00:00,US Football League,Atlanta Utd,FC Cincinnati
+20200307SAT90,2020-03-08 09:00:00,US Football League,San Jose Earthquakes,Minnesota Utd
+20200307SAT95,2020-03-08 11:00:00,US Football League,Seattle Sounders,Columbus Crew
+20200307SAT94,2020-03-08 11:00:00,US Football League,LA Galaxy,Vancouver Whitecaps
+20200308SUN1,2020-03-08 13:00:00,Australian Division 1,Central Coast Mariners,Wellington Phoenix
+20200308SUN2,2020-03-08 15:00:00,Australian Division 1,Perth Glory,Melbourne City
+20200308SUN3,2020-03-08 19:00:00,Spanish Division 1,Osasuna,Espanyol
+20200308SUN13,2020-03-08 21:00:00,Spanish Division 1,Valladolid,Bilbao
+20200308SUN25,2020-03-08 22:30:00,German Division 1,Bayern Munich,Augsburg
+20200308SUN21,2020-03-08 22:00:00,Eng Premier,Chelsea,Everton
+20200308SUN35,2020-03-09 00:30:00,Eng Premier,Manchester Utd,Manchester City
+20200308SUN44,2020-03-09 03:45:00,Italian Division 1,Juventus,Inter Milan
+20200308SUN50,2020-03-09 07:00:00,US Football League,Portland Timbers,Nashville SC
+20200308SUN53,2020-03-09 08:50:00,Argentine Division 1,Talleres,Colon
+20200308SUN55,2020-03-09 10:30:00,US Football League,Los Angeles FC,Philadelphia Union
+20200309MON9,2020-03-10 01:30:00,Italian Division 1,Sassuolo,Brescia
+20200309MON11,2020-03-10 04:00:00,Eng Premier,Leicester,Aston Villa
+20200309MON13,2020-03-10 06:00:00,Argentine Division 1,Union Santa Fe,Velez Sarsfield
+20200309MON15,2020-03-10 08:10:00,Argentine Division 1,Estudiantes,Racing Club
+20200310TUE1,2020-03-11 03:00:00,Spanish Division 1,Eibar,Real Sociedad
+20200310TUE7,2020-03-11 04:00:00,UE Champions,RB Leipzig,Tottenham
+20200310TUE14,2020-03-11 08:30:00,Copa Libertadores,Libertad,Caracas FC
+20200311WED2,2020-03-12 01:30:00,German Division 1,Monchengladbach,Cologne
+20200311WED5,2020-03-12 04:00:00,UE Champions,Liverpool,Atletico Madrid
+20200311WED10,2020-03-12 08:30:00,Copa Libertadores,Independiente del Valle,Atletico Junior
+20200311WED16,2020-03-12 10:30:00,Central and North American Cup,CF America,Atlanta Utd
+20200312THU1,2020-03-13 01:55:00,UE Cup,LASK Linz,Manchester Utd
+20200312THU5,2020-03-13 04:00:00,UE Cup,Rangers,Leverkusen
+20200312THU10,2020-03-13 08:00:00,Copa Libertadores,Gremio,Internacional
+20200313FRI1,2020-03-13 16:30:00,Australian Division 1,Brisbane Roar,Central Coast Mariners
+20200313FRI30,2020-03-14 08:10:00,Cup Competition,Patronato,San Lorenzo
+20200314SAT1,2020-03-14 14:00:00,Australian Division 1,Sydney FC,Perth Glory
+20200314SAT2,2020-03-14 16:30:00,Australian Division 1,Melbourne City,Western Sydney Wanderers
+20200314SAT48,2020-03-14 23:00:00,Chilean Division 1,Cobresal,Universidad Catolica
+20200314SAT71,2020-03-15 02:30:00,Cup Competition,Independiente,Velez Sarsfield
+20200314SAT94,2020-03-15 07:00:00,Chilean Division 1,Everton VM,La Serena
+20200314SAT99,2020-03-15 09:00:00,Mexican Premier,Club Leon,Pumas UNAM
+20200315SUN1,2020-03-15 13:20:00,Australian Division 1,Wellington Phoenix,Melbourne Victory
+20200315SUN2,2020-03-15 15:20:00,Australian Division 1,Adelaide Utd,Newcastle Jets
+20200315SUN24,2020-03-15 23:00:00,Chilean Division 1,Coquimbo Unido,Iquique
+20200315SUN38,2020-03-16 02:30:00,Cup Competition,Huracan,Talleres
+20200315SUN49,2020-03-16 08:00:00,Mexican Premier,Santos Laguna,Necaxa
+20200315SUN50,2020-03-16 09:00:00,Cup Competition,CA Central Cordoba,Newell's Old Boys
+20200316MON6,2020-03-17 05:00:00,Chilean Division 1,O'Higgins,Antofagasta
+20200316MON7,2020-03-17 06:00:00,Cup Competition,Lanus,Argentinos Juniors
+20200316MON10,2020-03-17 08:10:00,Cup Competition,Rosario Central,Colon
+20200320FRI1,2020-03-20 14:30:00,Australian Division 1,Central Coast Mariners,Melbourne City
+20200320FRI2,2020-03-20 16:30:00,Australian Division 1,Brisbane Roar,Newcastle Jets
+20200321SAT1,2020-03-21 16:30:00,Australian Division 1,Western Sydney Wanderers,Sydney FC

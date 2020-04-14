@@ -150,3 +150,17 @@ development/data_collection/data/schedule.csv
 development/data_collection/account_details.py
 development/data_collection/signals.py
 development/data_collection/signals.py
+*.png
+development/data_collection/notebooks/adjust_time_test.ipynb
+development/data_collection/notebooks/autobet_development.ipynb
+development/data_collection/notebooks/debug_log.ipynb
+development/data_collection/notebooks/machine_learning.ipynb
+development/data_collection/notebooks/momentum.ipynb
+development/data_collection/notebooks/signal_analysis.ipynb
+development/data_collection/notebooks/signal_analysis_multibet.ipynb
+development/data_collection/notebooks/signal_halftime_analysis.ipynb
+development/data_collection/notebooks/sql_connection.ipynb
+development/data_collection/old_files/data_exp/crontab_command.txt
+development/data_collection/old_files/statistical inference.xlsx
+development/data_collection/autobet.py
+development/data_collection/bet_slips/receipt.txt
